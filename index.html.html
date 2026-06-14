@@ -1,0 +1,1854 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>CVPro Africa</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230A0A14'/%3E%3Cpath d='M 28 10 C 14 10 6 18 6 28 C 6 38 14 46 28 46 C 34 46 39 44 43 40' fill='none' stroke='%23D4AF37' stroke-width='7' stroke-linecap='round'/%3E%3Cpath d='M 24 12 L 34 42 L 44 12' fill='none' stroke='white' stroke-width='5' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M 38 8 L 56 22' fill='none' stroke='%23D4AF37' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAYAAAAjH0l1AAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAABmJLR0QA/wD/AP+gvaeTAAAAB3RJTUUH6AEQCRQhB5MJHQAAB2lJREFUeNrt3X1sVfUdx/H3uef0tqUtLQVKKU+lgCCgPIiCqICIgjJFEDUwRMQHNhVxijoHm3OK02nUaZxOHerUiXPqFEUUBEVAkWcEhCIgpUBLaUuhD/Tcp3P2x70tty29ved3fr/7+yb9pLnn9He+55Pf9577kBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghJr0BuNnVMjXLz3oAAAAASUVORK5CYII=">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Poppins',sans-serif;background:#0A0A14;color:#e8e6f2;min-height:100vh;}
+:root{--gold:#D4AF37;--d2:#10101e;--d3:#18182e;--d4:#20203a;--border:#2a2a45;--muted:#7a7a99;--ok:#2ecc71;--err:#e74c3c;}
+.pg{display:none;min-height:100vh;flex-direction:column;}
+.pg.on{display:flex;}
+.hnav{padding:14px 28px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(42,42,69,.5);background:rgba(10,10,20,.8);backdrop-filter:blur(10px);flex-shrink:0;}
+.logo{display:flex;align-items:center;gap:10px;}
+.logo-t{font-family:'Playfair Display',serif;font-size:18px;font-weight:900;color:#fff;}
+.logo-t span{color:#D4AF37;}
+.logo-s{font-size:8px;color:#D4AF37;letter-spacing:3px;text-transform:uppercase;}
+.lsw{display:flex;gap:3px;background:#18182e;border:1px solid #2a2a45;border-radius:8px;padding:3px;}
+.lbtn{padding:5px 14px;border:none;border-radius:6px;font-size:11px;font-weight:700;cursor:pointer;font-family:'Poppins',sans-serif;transition:all .2s;}
+.lbtn.on{background:#D4AF37;color:#000;}
+.lbtn:not(.on){background:transparent;color:#7a7a99;}
+#home{background:#0A0A14;overflow-y:auto;}
+.hbody{flex:1;max-width:1100px;margin:0 auto;width:100%;padding:50px 24px 60px;position:relative;z-index:1;}
+.hero{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center;margin-bottom:60px;}
+@media(max-width:768px){.hero{grid-template-columns:1fr;}.hillus{display:none;}}
+.htitle{font-family:'Playfair Display',serif;font-size:clamp(36px,5vw,60px);font-weight:900;line-height:1.1;color:#fff;margin-bottom:10px;}
+.htitle span{color:#D4AF37;}
+.btn-gold{padding:14px 32px;background:linear-gradient(135deg,#D4AF37,#b8892a);color:#000;border:none;border-radius:10px;font-size:15px;font-weight:700;cursor:pointer;font-family:'Poppins',sans-serif;box-shadow:0 4px 20px rgba(212,175,55,.3);transition:transform .2s;}
+.btn-gold:hover{transform:translateY(-2px);}
+.hfeats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:60px;}
+@media(max-width:600px){.hfeats{grid-template-columns:repeat(2,1fr);}}
+.hfeat{background:#18182e;border:1px solid #2a2a45;border-radius:12px;padding:16px;text-align:center;}
+.avis-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px;}
+.avis-card{background:#18182e;border:1px solid #2a2a45;border-radius:14px;padding:18px;}
+.nav{padding:0 24px;height:56px;display:flex;align-items:center;justify-content:space-between;background:#0A0A14;border-bottom:1px solid #2a2a45;flex-shrink:0;position:sticky;top:0;z-index:50;}
+.nav-r{display:flex;align-items:center;gap:10px;}
+.nav-av{width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,#D4AF37,#8a6820);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;color:#000;}
+.btn-sm{padding:5px 11px;background:transparent;border:1px solid #2a2a45;color:#7a7a99;border-radius:7px;cursor:pointer;font-size:11px;font-family:'Poppins',sans-serif;}
+.btn-sm:hover{border-color:#e74c3c;color:#e74c3c;}
+#dash,#admin{background:#10101e;}
+.db-body,.admin-body{padding:28px;max-width:960px;margin:0 auto;width:100%;}
+.db-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin-top:20px;}
+.db-card{background:#18182e;border:1px solid #2a2a45;border-radius:14px;padding:20px;cursor:pointer;text-align:center;transition:border-color .2s,transform .2s;}
+.db-card:hover{border-color:rgba(212,175,55,.5);transform:translateY(-4px);}
+.stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:20px;}
+.stat-c{background:#18182e;border:1px solid #2a2a45;border-radius:10px;padding:14px;text-align:center;}
+.stat-n{font-size:24px;font-weight:900;color:#D4AF37;font-family:'Playfair Display',serif;}
+.admin-box{background:#18182e;border:1px solid rgba(212,175,55,.2);border-radius:12px;padding:20px;margin-bottom:14px;}
+.code-box{background:#0A0A14;border:2px solid #D4AF37;border-radius:9px;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px;}
+.code-v{font-size:22px;font-weight:900;color:#D4AF37;letter-spacing:4px;font-family:'Playfair Display',serif;}
+.btn-cp{padding:6px 12px;background:#D4AF37;border:none;border-radius:6px;color:#000;font-size:11px;font-weight:700;cursor:pointer;font-family:'Poppins',sans-serif;}
+#builder{background:#10101e;flex-direction:row !important;}
+.bside{width:400px;flex-shrink:0;background:#0A0A14;border-right:1px solid #2a2a45;display:flex;flex-direction:column;height:100vh;position:sticky;top:0;overflow:hidden;}
+.btop{padding:12px 16px;border-bottom:1px solid #2a2a45;display:flex;align-items:center;gap:9px;}
+.bbk{background:#18182e;border:1px solid #2a2a45;color:#e8e6f2;padding:6px 11px;border-radius:7px;cursor:pointer;font-size:11px;font-family:'Poppins',sans-serif;}
+.btabs{display:flex;border-bottom:1px solid #2a2a45;overflow-x:auto;flex-shrink:0;}
+.btabs::-webkit-scrollbar{height:0;}
+.btab{padding:9px 11px;border:none;background:transparent;color:#7a7a99;font-size:10px;font-weight:600;cursor:pointer;white-space:nowrap;border-bottom:2px solid transparent;font-family:'Poppins',sans-serif;}
+.btab.on{color:#D4AF37;border-bottom-color:#D4AF37;}
+.bform{flex:1;overflow-y:auto;padding:14px;}
+.fsec{font-size:10px;font-weight:700;color:#D4AF37;text-transform:uppercase;letter-spacing:1px;margin-bottom:10px;margin-top:4px;}
+.fr2{display:grid;grid-template-columns:1fr 1fr;gap:7px;}
+.fg2{margin-bottom:9px;}
+.fg2 label{font-size:10px;font-weight:600;color:#7a7a99;display:block;margin-bottom:3px;}
+.fi2{width:100%;padding:7px 10px;background:#18182e;border:1.5px solid #2a2a45;border-radius:7px;color:#e8e6f2;font-size:11px;outline:none;font-family:'Poppins',sans-serif;}
+.fi2:focus{border-color:rgba(212,175,55,.5);}
+.fi2::placeholder{color:#333;}
+textarea.fi2{resize:vertical;min-height:58px;}
+.icard{background:#18182e;border:1px solid #2a2a45;border-radius:8px;padding:10px;margin-bottom:8px;}
+.icard-h{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;}
+.icard-l{font-size:10px;font-weight:700;color:#D4AF37;}
+.brm{background:none;border:none;color:#e74c3c;cursor:pointer;font-size:15px;line-height:1;}
+.badd{width:100%;padding:7px;background:transparent;border:1.5px dashed rgba(212,175,55,.4);color:#D4AF37;border-radius:7px;cursor:pointer;font-size:11px;font-weight:600;font-family:'Poppins',sans-serif;margin-top:3px;}
+.aib{padding:5px 10px;background:rgba(212,175,55,.15);border:1px solid rgba(212,175,55,.4);color:#D4AF37;border-radius:6px;cursor:pointer;font-size:10px;font-weight:700;font-family:'Poppins',sans-serif;display:inline-flex;align-items:center;gap:4px;}
+.aib:disabled{opacity:.4;cursor:not-allowed;}
+.uphz{border:2px dashed #2a2a45;border-radius:8px;padding:12px;text-align:center;cursor:pointer;margin-bottom:8px;}
+.uphz input{display:none;}
+.ph-wrap{display:flex;align-items:center;gap:12px;margin-bottom:12px;}
+.ph-c{width:56px;height:56px;border-radius:50%;background:#20203a;border:2px solid #2a2a45;display:flex;align-items:center;justify-content:center;font-size:22px;overflow:hidden;flex-shrink:0;}
+.ph-c img{width:100%;height:100%;object-fit:cover;border-radius:50%;}
+.bfoot{padding:12px 16px;border-top:1px solid #2a2a45;flex-shrink:0;}
+.cdots{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px;}
+.cdot{width:20px;height:20px;border-radius:50%;cursor:pointer;border:2px solid transparent;transition:all .15s;}
+.cdot.on{border-color:#fff;transform:scale(1.2);}
+.prev-panel{flex:1;background:#e8e5df;overflow-y:auto;display:flex;flex-direction:column;align-items:center;padding:20px 14px;}
+.prev-tb{width:100%;max-width:600px;display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;flex-wrap:wrap;gap:8px;}
+.tbtns{display:flex;gap:4px;}
+.tbtn{padding:4px 10px;border-radius:5px;border:1.5px solid #ccc;background:white;color:#555;font-size:10px;font-weight:700;cursor:pointer;font-family:'Poppins',sans-serif;}
+.tbtn.on{border-color:#1a1926;background:#1a1926;color:white;}
+.pgbtn{padding:4px 10px;border-radius:5px;border:1.5px solid #ccc;background:white;color:#555;font-size:10px;font-weight:700;cursor:pointer;font-family:'Poppins',sans-serif;}
+.pgbtn.on{border-color:#D4AF37;background:#D4AF37;color:#000;}
+.cv-sheet{width:600px;min-height:848px;background:white;box-shadow:0 16px 60px rgba(0,0,0,.2);flex-shrink:0;font-family:'Poppins',sans-serif;overflow:hidden;}
+.ov{display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);backdrop-filter:blur(8px);z-index:1000;align-items:center;justify-content:center;}
+.ov.on{display:flex;}
+.modal{background:#18182e;border:1px solid #2a2a45;border-radius:20px;padding:32px;width:100%;max-width:420px;position:relative;max-height:90vh;overflow-y:auto;}
+.mc{position:absolute;top:12px;right:12px;background:#20203a;border:none;color:#7a7a99;width:28px;height:28px;border-radius:50%;cursor:pointer;font-size:13px;}
+.mt{font-family:'Playfair Display',serif;font-size:22px;color:#fff;margin-bottom:4px;}
+.ms{font-size:12px;color:#7a7a99;margin-bottom:18px;}
+.mtabs{display:flex;gap:4px;background:#20203a;border-radius:8px;padding:4px;margin-bottom:16px;}
+.mtab{flex:1;padding:7px;text-align:center;border:none;background:transparent;color:#7a7a99;border-radius:6px;cursor:pointer;font-size:12px;font-weight:600;font-family:'Poppins',sans-serif;}
+.mtab.on{background:#D4AF37;color:#000;}
+.fg{margin-bottom:12px;}
+.fl{font-size:10px;font-weight:600;color:#7a7a99;display:block;margin-bottom:4px;text-transform:uppercase;letter-spacing:.5px;}
+.fi{width:100%;padding:10px 12px;background:#20203a;border:1.5px solid #2a2a45;border-radius:8px;color:#e8e6f2;font-size:13px;outline:none;font-family:'Poppins',sans-serif;}
+.fi:focus{border-color:#D4AF37;}
+.fi::placeholder{color:#7a7a99;}
+.bbl{width:100%;padding:11px;background:linear-gradient(135deg,#D4AF37,#b8892a);color:#000;border:none;border-radius:8px;font-size:14px;font-weight:700;cursor:pointer;font-family:'Poppins',sans-serif;margin-top:4px;}
+.pay-opts{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:14px;}
+.popt{flex:1;min-width:85px;background:#20203a;border:2px solid #2a2a45;border-radius:8px;padding:10px;cursor:pointer;text-align:center;}
+.popt.on{border-color:#D4AF37;background:rgba(212,175,55,.1);}
+.popt-p{font-size:16px;font-weight:900;color:#D4AF37;font-family:'Playfair Display',serif;}
+.pmths{display:flex;flex-direction:column;gap:7px;margin-bottom:12px;}
+.pmth{display:flex;align-items:center;justify-content:space-between;background:#20203a;border:1.5px solid #2a2a45;border-radius:8px;padding:10px 12px;cursor:pointer;}
+.pmth.on{border-color:#D4AF37;background:rgba(212,175,55,.1);}
+.pmth-i{display:flex;align-items:center;gap:8px;}
+.pmth-n{font-size:12px;font-weight:700;}
+.pmth-num{font-size:10px;color:#7a7a99;}
+.prad{width:14px;height:14px;border-radius:50%;border:2px solid #2a2a45;display:flex;align-items:center;justify-content:center;}
+.pmth.on .prad{border-color:#D4AF37;}
+.prdot{width:6px;height:6px;border-radius:50%;background:#D4AF37;display:none;}
+.pmth.on .prdot{display:block;}
+.psteps{background:#20203a;border-radius:8px;padding:10px;margin-bottom:12px;}
+.pstep{display:flex;align-items:flex-start;gap:6px;margin-bottom:4px;}
+.psn{width:14px;height:14px;border-radius:50%;background:#D4AF37;color:#000;font-size:8px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;}
+.toast{position:fixed;bottom:18px;right:18px;background:#18182e;border:1px solid #2a2a45;border-radius:8px;padding:11px 16px;font-size:12px;font-weight:600;z-index:9999;display:none;max-width:280px;font-family:'Poppins',sans-serif;}
+.toast.on{display:block;}
+.toast.ok{border-color:#2ecc71;color:#2ecc71;}
+.toast.er{border-color:#e74c3c;color:#e74c3c;}
+.toast.nf{border-color:#D4AF37;color:#D4AF37;}
+.sp{display:inline-block;width:11px;height:11px;border:2px solid currentColor;border-top-color:transparent;border-radius:50%;animation:spin .7s linear infinite;vertical-align:middle;margin-right:3px;}
+@keyframes spin{to{transform:rotate(360deg);}}
+.adot{position:fixed;bottom:6px;left:50%;transform:translateX(-50%);font-size:8px;color:#2a2a45;cursor:pointer;z-index:100;}
+@media(max-width:860px){#builder{flex-direction:column !important;}.bside{width:100%;height:auto;position:relative;}.cv-sheet{width:100%;max-width:600px;}}
+</style>
+</head>
+<body>
+
+<!-- HOME -->
+<div id="home" class="pg on">
+  <nav class="hnav">
+    <div class="logo">
+      <svg width="40" height="36" viewBox="0 0 44 40" xmlns="http://www.w3.org/2000/svg">
+        <defs><linearGradient id="lg1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#F0C96A"/><stop offset="100%" style="stop-color:#9a7a1a"/></linearGradient></defs>
+        <path d="M 20 6 C 8 6 2 13 2 20 C 2 27 8 34 20 34 C 25 34 29 32 32 29" fill="none" stroke="url(#lg1)" stroke-width="5" stroke-linecap="round"/>
+        <path d="M 18 8 L 26 30 L 34 8" fill="none" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M 28 4 L 42 16" fill="none" stroke="url(#lg1)" stroke-width="3" stroke-linecap="round"/>
+        <path d="M 36 14 C 38 14 39 16 39 18 C 39 20 38 22 37 23 C 36 24 35 25 35 25 C 34 26 33 25 33 24 C 32 22 33 20 33 18 C 33 16 34 14 36 14 Z" fill="url(#lg1)" opacity="0.85"/>
+      </svg>
+      <div><div class="logo-t">CV<span>Pro</span></div><div class="logo-s">AFRICA</div></div>
+    </div>
+    <!-- lang switch désactivé - app FR uniquement -->
+  </nav>
+  <div style="position:fixed;inset:0;background-image:linear-gradient(rgba(42,42,69,.25) 1px,transparent 1px),linear-gradient(90deg,rgba(42,42,69,.25) 1px,transparent 1px);background-size:50px 50px;pointer-events:none;z-index:0;"></div>
+  <div class="hbody">
+    <div class="hero">
+      <div>
+        <div style="display:inline-flex;padding:5px 14px;background:rgba(212,175,55,.1);border:1px solid rgba(212,175,55,.35);border-radius:50px;font-size:11px;color:#D4AF37;font-weight:600;letter-spacing:1px;text-transform:uppercase;margin-bottom:20px;">&#127462;&#127467; &#127481;&#127475; &#127474;&#127273; &#127474;&#127462; &#127464;&#127470; CVPro Africa</div>
+        <h1 class="htitle" id="h-title">Votre CV<br><span>Professionnel</span><br>en minutes</h1>
+        <p style="font-size:13px;color:#7a7a99;margin-bottom:8px;font-style:italic;letter-spacing:1px;">Votre CV. Votre futur.</p>
+        <p id="h-sub" style="font-size:13px;color:#7a7a99;line-height:1.7;margin-bottom:24px;">4 templates premium &bull; Intelligence Artificielle<br>Score CV &bull; Lettre de motivation</p>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px;">
+          <div style="padding:5px 14px;border-radius:50px;font-size:11px;font-weight:600;border:1px solid rgba(212,175,55,.4);background:rgba(212,175,55,.1);color:#D4AF37;">&#128196; CV 1 page &mdash; 1 500 FCFA</div>
+          <div style="padding:5px 14px;border-radius:50px;font-size:11px;font-weight:600;border:1px solid rgba(212,175,55,.4);background:rgba(212,175,55,.1);color:#D4AF37;">&#128196; 2 pages &mdash; 2 000 FCFA</div>
+          <div style="padding:5px 14px;border-radius:50px;font-size:11px;font-weight:600;border:1px solid rgba(212,175,55,.4);background:rgba(212,175,55,.1);color:#D4AF37;">&#127873; Pack &mdash; 3 000 FCFA</div>
+        </div>
+        <button class="btn-gold" id="btn-start"><span id="btn-start-txt">&#10024; Cr&eacute;er mon CV &mdash; Gratuit</span></button>
+        <p id="h-note" style="font-size:11px;color:#7a7a99;margin-top:10px;">Aucun compte requis &bull; Payez uniquement pour t&eacute;l&eacute;charger</p>
+      </div>
+      <div class="hillus" style="display:flex;justify-content:center;">
+        <svg width="360" height="260" viewBox="0 0 360 260" xmlns="http://www.w3.org/2000/svg">
+          <defs><linearGradient id="cvbg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#1a1926"/><stop offset="100%" style="stop-color:#10101e"/></linearGradient></defs>
+          <rect x="52" y="28" width="200" height="210" rx="14" fill="#000" opacity="0.4"/>
+          <rect x="48" y="24" width="200" height="210" rx="14" fill="url(#cvbg)" stroke="#D4AF37" stroke-width="1.5"/>
+          <rect x="48" y="24" width="64" height="210" rx="14" fill="#1a1926"/>
+          <rect x="94" y="24" width="18" height="210" fill="#1a1926"/>
+          <circle cx="80" cy="62" r="22" fill="#D4AF37" opacity="0.15" stroke="#D4AF37" stroke-width="1.5"/>
+          <circle cx="80" cy="57" r="10" fill="#D4AF37" opacity="0.5"/>
+          <path d="M 63 78 Q 80 68 97 78" fill="#D4AF37" opacity="0.35" stroke="#D4AF37" stroke-width="1"/>
+          <rect x="58" y="90" width="46" height="5" rx="2.5" fill="#D4AF37" opacity="0.9"/>
+          <rect x="62" y="99" width="36" height="3" rx="1.5" fill="#fff" opacity="0.2"/>
+          <line x1="58" y1="108" x2="104" y2="108" stroke="#D4AF37" stroke-width="0.5" opacity="0.4"/>
+          <rect x="58" y="114" width="46" height="3" rx="1.5" fill="#D4AF37" opacity="0.5"/>
+          <rect x="58" y="121" width="38" height="3" rx="1.5" fill="#D4AF37" opacity="0.35"/>
+          <rect x="128" y="36" width="108" height="8" rx="4" fill="#D4AF37" opacity="0.95"/>
+          <rect x="128" y="48" width="76" height="4" rx="2" fill="#fff" opacity="0.3"/>
+          <rect x="128" y="64" width="42" height="4" rx="2" fill="#D4AF37" opacity="0.75"/>
+          <line x1="128" y1="71" x2="230" y2="71" stroke="#D4AF37" stroke-width="0.8" opacity="0.5"/>
+          <circle cx="134" cy="80" r="4" fill="#D4AF37" opacity="0.8"/>
+          <line x1="134" y1="84" x2="134" y2="105" stroke="#D4AF37" stroke-width="0.8" opacity="0.3"/>
+          <rect x="143" y="77" width="85" height="3" rx="1.5" fill="#fff" opacity="0.2"/>
+          <rect x="143" y="83" width="60" height="2.5" rx="1" fill="#D4AF37" opacity="0.4"/>
+          <rect x="143" y="89" width="85" height="2" rx="1" fill="#fff" opacity="0.12"/>
+          <circle cx="134" cy="109" r="4" fill="#D4AF37" opacity="0.6"/>
+          <rect x="143" y="106" width="85" height="3" rx="1.5" fill="#fff" opacity="0.18"/>
+          <rect x="128" y="128" width="44" height="4" rx="2" fill="#D4AF37" opacity="0.75"/>
+          <line x1="128" y1="135" x2="230" y2="135" stroke="#D4AF37" stroke-width="0.8" opacity="0.5"/>
+          <rect x="128" y="139" width="92" height="2.5" rx="1" fill="#fff" opacity="0.18"/>
+          <rect x="128" y="145" width="108" height="2.5" rx="1" fill="#fff" opacity="0.13"/>
+          <rect x="262" y="45" width="80" height="120" rx="9" fill="#1e1e35" stroke="#D4AF37" stroke-width="1" opacity="0.65"/>
+          <rect x="262" y="45" width="26" height="120" rx="9" fill="#16162a" opacity="0.9"/>
+          <circle cx="275" cy="64" r="10" fill="#D4AF37" opacity="0.28"/>
+          <rect x="296" y="56" width="42" height="4" rx="2" fill="#D4AF37" opacity="0.7"/>
+          <rect x="134" y="220" width="96" height="26" rx="13" fill="#D4AF37"/>
+          <text x="182" y="237" font-family="Poppins,Arial" font-size="9" font-weight="700" text-anchor="middle" fill="#000">1 500 FCFA</text>
+          <circle cx="22" cy="55" r="2.5" fill="#D4AF37" opacity="0.5"/>
+          <circle cx="340" cy="40" r="2" fill="#D4AF37" opacity="0.5"/>
+          <circle cx="350" cy="70" r="1.5" fill="#D4AF37" opacity="0.4"/>
+        </svg>
+      </div>
+    </div>
+    <div class="hfeats">
+      <div class="hfeat"><div style="font-size:24px;margin-bottom:8px;">&#127912;</div><div id="feat1" style="font-size:11px;color:#7a7a99;line-height:1.5;">4 templates premium</div></div>
+      <div class="hfeat"><div style="font-size:24px;margin-bottom:8px;">&#129302;</div><div id="feat2" style="font-size:11px;color:#7a7a99;line-height:1.5;">Intelligence Artificielle</div></div>
+      <div class="hfeat"><div style="font-size:24px;margin-bottom:8px;">&#128248;</div><div id="feat3" style="font-size:11px;color:#7a7a99;line-height:1.5;">Photo recadr&eacute;e auto</div></div>
+      
+    </div>
+    <div style="text-align:center;margin-bottom:24px;">
+      <div id="avis-star" style="font-size:11px;font-weight:700;color:#D4AF37;text-transform:uppercase;letter-spacing:2px;margin-bottom:8px;">&#11088; Avis clients</div>
+      <div id="avis-title" style="font-family:'Playfair Display',serif;font-size:26px;color:#fff;margin-bottom:6px;">Ce qu&apos;ils disent de nous</div>
+      <div id="avis-sub" style="font-size:13px;color:#7a7a99;">Plus de 200 professionnels nous font confiance</div>
+    </div>
+    <div class="avis-grid" id="avis-grid"></div>
+  </div>
+</div>
+
+<!-- ADMIN -->
+<div id="admin" class="pg">
+  <nav class="nav">
+    <div class="logo">
+      <svg width="32" height="29" viewBox="0 0 44 40" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="lg2" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#F0C96A"/><stop offset="100%" style="stop-color:#9a7a1a"/></linearGradient></defs><path d="M 20 6 C 8 6 2 13 2 20 C 2 27 8 34 20 34 C 25 34 29 32 32 29" fill="none" stroke="url(#lg2)" stroke-width="5" stroke-linecap="round"/><path d="M 18 8 L 26 30 L 34 8" fill="none" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><path d="M 28 4 L 42 16" fill="none" stroke="url(#lg2)" stroke-width="3" stroke-linecap="round"/></svg>
+      <span style="font-size:10px;color:#D4AF37;background:#18182e;padding:2px 8px;border-radius:4px;font-weight:700;letter-spacing:1px;">ADMIN</span>
+    </div>
+    <button class="btn-sm" id="btn-admin-out">D&eacute;connexion</button>
+  </nav>
+  <div class="admin-body">
+    <div style="font-family:'Playfair Display',serif;font-size:22px;color:#fff;margin-bottom:4px;">Dashboard Admin</div>
+    <div style="color:#7a7a99;font-size:12px;margin-bottom:20px;">G&eacute;rez les codes de d&eacute;blocage</div>
+    <div class="stat-row">
+      <div class="stat-c"><div class="stat-n" id="stat-today">0</div><div style="font-size:10px;color:#7a7a99;margin-top:2px;">Aujourd hui</div></div>
+      <div class="stat-c"><div class="stat-n" id="stat-month">0</div><div style="font-size:10px;color:#7a7a99;margin-top:2px;">Ce mois</div></div>
+      <div class="stat-c"><div class="stat-n" id="stat-total">0</div><div style="font-size:10px;color:#7a7a99;margin-top:2px;">Total</div></div>
+    </div>
+    <div class="admin-box">
+      <div style="font-size:13px;font-weight:700;color:#fff;margin-bottom:4px;">&#128273; G&eacute;n&eacute;rer un code</div>
+      <div style="font-size:11px;color:#7a7a99;margin-bottom:14px;">Apr&egrave;s confirmation paiement WhatsApp</div>
+      <button class="bbl" id="btn-gen" style="margin-bottom:12px;">&#9889; G&eacute;n&eacute;rer un code</button>
+      <div id="code-disp" style="display:none;">
+        <div class="code-box"><span class="code-v" id="code-val"></span><button class="btn-cp" id="btn-copy">Copier</button></div>
+        <div style="font-size:10px;color:#7a7a99;margin-bottom:7px;">Envoyer au client :</div>
+        <div style="display:flex;gap:7px;">
+          <input class="fi" id="client-wa" placeholder="Num&eacute;ro WhatsApp ex: 22670000000" style="flex:1;font-size:11px;padding:8px 10px;">
+          <button id="btn-wa-send" style="padding:8px 12px;background:linear-gradient(135deg,#25D366,#128C7E);border:none;border-radius:7px;color:white;font-size:11px;font-weight:700;cursor:pointer;font-family:'Poppins',sans-serif;white-space:nowrap;">&#128241; Envoyer</button>
+        </div>
+      </div>
+    </div>
+    <div class="admin-box">
+      <div style="font-size:13px;font-weight:700;color:#fff;margin-bottom:10px;">&#128203; Historique</div>
+      <div id="hist" style="font-size:11px;color:#7a7a99;text-align:center;padding:12px 0;">Aucun code</div>
+    </div>
+  </div>
+</div>
+
+<!-- DASHBOARD -->
+<div id="dash" class="pg">
+  <nav class="nav">
+    <div class="logo">
+      <svg width="32" height="29" viewBox="0 0 44 40" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="lg3" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#F0C96A"/><stop offset="100%" style="stop-color:#9a7a1a"/></linearGradient></defs><path d="M 20 6 C 8 6 2 13 2 20 C 2 27 8 34 20 34 C 25 34 29 32 32 29" fill="none" stroke="url(#lg3)" stroke-width="5" stroke-linecap="round"/><path d="M 18 8 L 26 30 L 34 8" fill="none" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><path d="M 28 4 L 42 16" fill="none" stroke="url(#lg3)" stroke-width="3" stroke-linecap="round"/></svg>
+      <div><div class="logo-t">CV<span style="color:#D4AF37;">Pro</span></div><div class="logo-s">AFRICA</div></div>
+    </div>
+    <div class="nav-r">
+      <div class="nav-av" id="nav-av">S</div>
+      <span style="font-size:12px;font-weight:600;" id="nav-nm">Sophie</span>
+      <button class="btn-sm" id="btn-out">D&eacute;connexion</button>
+    </div>
+  </nav>
+  <div class="db-body">
+    <div style="font-family:'Playfair Display',serif;font-size:24px;color:#fff;margin-bottom:4px;" id="db-title">Que souhaitez-vous faire ?</div>
+    <div style="color:#7a7a99;font-size:13px;" id="db-sub">Choisissez votre point de d&eacute;part</div>
+    <div class="db-cards">
+      <div class="db-card" id="dc-sc"><div style="font-size:28px;margin-bottom:8px;">&#9999;&#65039;</div><div style="font-size:13px;font-weight:700;color:#fff;margin-bottom:4px;" id="dc-sc-t">Cr&eacute;er from scratch</div><div style="font-size:11px;color:#7a7a99;line-height:1.5;" id="dc-sc-d">Remplissez le formulaire &eacute;tape par &eacute;tape</div></div>
+      <div class="db-card" id="dc-im"><div style="font-size:28px;margin-bottom:8px;">&#128194;</div><div style="font-size:13px;font-weight:700;color:#fff;margin-bottom:4px;" id="dc-im-t">Importer mon CV</div><div style="font-size:11px;color:#7a7a99;line-height:1.5;" id="dc-im-d">Importez votre ancien CV (.txt)</div></div>
+      <div class="db-card" id="dc-cl"><div style="font-size:28px;margin-bottom:8px;">&#127919;</div><div style="font-size:13px;font-weight:700;color:#fff;margin-bottom:4px;" id="dc-cl-t">Copier un design</div><div style="font-size:11px;color:#7a7a99;line-height:1.5;" id="dc-cl-d">Vos donn&eacute;es sur le design d&apos;un autre CV</div></div>
+    </div>
+    <!-- Historique téléchargements (optionnel) -->
+    <div id="dl-hist-wrap" style="margin-top:28px;display:none;">
+      <div style="font-family:'Playfair Display',serif;font-size:16px;color:#fff;margin-bottom:4px;">&#128229; Mes t&eacute;l&eacute;chargements</div>
+      <div style="color:#7a7a99;font-size:11px;margin-bottom:12px;">Historique de vos CV export&eacute;s</div>
+      <div id="dl-hist-list"></div>
+    </div>
+  </div>
+</div>
+
+<!-- BUILDER -->
+<div id="builder" class="pg">
+  <div class="bside">
+    <div class="btop" style="position:relative;"><div id="save-ind" style="position:absolute;top:8px;right:8px;font-size:9px;color:#2ecc71;opacity:0;transition:opacity .3s;pointer-events:none;">&#10003; Sauvegard&eacute;</div>
+      <button class="bbk" id="btn-back">&#8592; Retour</button>
+      <div style="font-size:12px;font-weight:700;color:#fff;">&#128736;&#65039; &Eacute;diteur CV</div>
+    </div>
+    <div class="btabs" id="btabs">
+      <button class="btab on" data-tab="id">&#128100; Identit&eacute;</button>
+      <button class="btab" data-tab="sum">&#128221; Profil</button>
+      <button class="btab" data-tab="exp">&#128188; Exp&eacute;riences</button>
+      <button class="btab" data-tab="edu">&#127979; Formation</button>
+      <button class="btab" data-tab="sk">&#9889; Comp&eacute;tences</button>
+      <button class="btab" data-tab="ext">&#127775; Compl&eacute;ments</button>
+      <button class="btab" data-tab="pro">&#128203; Form.Pro</button>
+      <button class="btab" data-tab="it">&#128187; Informatique</button>
+      <button class="btab" data-tab="ref">&#128222; R&eacute;f&eacute;rences</button>
+      <button class="btab" data-tab="sc">&#128202; Score</button>
+      <button class="btab" data-tab="lt">&#9993; Lettre</button>
+      
+    </div>
+    <div class="bform">
+      <div data-pane="id">
+        <div class="fsec">&#128248; Photo</div>
+        <div class="ph-wrap">
+          <div class="ph-c" id="ph-c"><span id="ph-ph">&#128100;</span><img id="ph-img" src="" style="display:none"></div>
+          <div>
+            <label style="cursor:pointer;display:block;margin-bottom:6px;"><div class="aib">&#128247; Choisir photo</div><input type="file" accept="image/*" style="display:none" id="ph-inp"></label>
+            <button class="aib" id="btn-crop" style="display:none">&#9986;&#65039; Recadrer</button>
+          </div>
+        </div>
+        
+        </div>
+        <div class="fsec">&#129431; Informations</div>
+        <div class="fg2"><label>Nom complet *</label><input class="fi2" id="fn" placeholder="Sophie Martin"></div>
+        <div class="fg2"><label>Titre du poste *</label><input class="fi2" id="ft" placeholder="Ing&eacute;nieure Senior"><div id="tsugg"></div></div>
+        <button class="aib" id="btn-tsugg" style="margin-bottom:8px;">&#128161; Sugg&eacute;rer un titre</button>
+        <div class="fr2">
+          <div class="fg2"><label>T&eacute;l&eacute;phone</label><input class="fi2" id="fph" placeholder="+226 70 00 00 00"></div>
+          <div class="fg2"><label>Email</label><input class="fi2" id="fem" placeholder="email@exemple.com"></div>
+        </div>
+        <div class="fg2"><label>Localisation</label><input class="fi2" id="floc" placeholder="Ouagadougou, BF"></div>
+        <div class="fr2">
+          <div class="fg2"><label>LinkedIn</label><input class="fi2" id="fli" placeholder="linkedin.com/in/..."></div>
+          <div class="fg2"><label>GitHub</label><input class="fi2" id="fgh" placeholder="github.com/..."></div>
+        </div>
+        <div class="fr2">
+          <div class="fg2"><label>Nationalit&eacute;</label><input class="fi2" id="fnat" placeholder="Burkinab&eacute;"></div>
+          <div class="fg2"><label>Date de naissance</label><input class="fi2" id="fbirth" placeholder="31 D&eacute;c 1999"></div>
+        </div>
+      </div>
+      <div data-pane="sum" style="display:none">
+        <div class="fsec">&#128221; R&eacute;sum&eacute; professionnel</div>
+        <div class="fg2"><label>D&eacute;crivez-vous en 3-4 phrases</label><textarea class="fi2" id="fsum" placeholder="Professionnel passionn&eacute; avec X ans d&apos;exp&eacute;rience..."></textarea></div>
+        <button class="aib" id="btn-isum">&#10024; Am&eacute;liorer avec l&apos;IA</button>
+      </div>
+      <div data-pane="exp" style="display:none">
+        <div class="fsec">&#128188; Exp&eacute;riences</div>
+        <div id="exp-list"></div>
+        <button class="badd" id="btn-addexp">+ Ajouter une exp&eacute;rience</button>
+      </div>
+      <div data-pane="edu" style="display:none">
+        <div class="fsec">&#127979; Formation</div>
+        <div id="edu-list"></div>
+        <button class="badd" id="btn-addedu">+ Ajouter une formation</button>
+      </div>
+      <div data-pane="sk" style="display:none">
+        <div class="fsec">&#9889; Comp&eacute;tences</div>
+        <button class="aib" id="btn-sksugg" style="margin-bottom:9px;width:100%;justify-content:center;">&#128161; Sugg&eacute;rer selon mon poste</button>
+        <div id="sk-list"></div>
+        <button class="badd" id="btn-addsk">+ Ajouter</button>
+        <div class="fsec" style="margin-top:14px;">&#127758; Langues</div>
+        <div id="lg-list"></div>
+        <button class="badd" id="btn-addlg">+ Ajouter</button>
+      </div>
+      <div data-pane="ext" style="display:none">
+        <div class="fsec">&#127942; Certifications</div>
+        <div id="ct-list"></div>
+        <button class="badd" id="btn-addct">+ Ajouter</button>
+        <div class="fsec" style="margin-top:14px;">&#128640; Projets</div>
+        <div id="pj-list"></div>
+        <button class="badd" id="btn-addpj">+ Ajouter</button>
+        <div class="fsec" style="margin-top:14px;">&#127919; Int&eacute;r&ecirc;ts</div>
+        <div id="in-list"></div>
+        <button class="badd" id="btn-addin">+ Ajouter</button>
+      </div>
+      <div data-pane="pro" style="display:none">
+        <div class="fsec">&#128203; Formations Professionnelles</div>
+        <div id="pro-list"></div>
+        <button class="badd" id="btn-addpro">+ Ajouter</button>
+      </div>
+      <div data-pane="it" style="display:none">
+        <div class="fsec">&#128187; Informatique / Logiciels</div>
+        <div style="font-size:10px;color:#7a7a99;margin-bottom:8px;background:#18182e;padding:7px;border-radius:6px;">Ex: <b>Bureautique</b> &rarr; Microsoft Excel, Word</div>
+        <div id="it-list"></div>
+        <button class="badd" id="btn-addit">+ Ajouter une cat&eacute;gorie</button>
+      </div>
+      <div data-pane="ref" style="display:none">
+        <div class="fsec">&#128222; R&eacute;f&eacute;rences</div>
+        <div id="ref-list"></div>
+        <button class="badd" id="btn-addref">+ Ajouter une r&eacute;f&eacute;rence</button>
+      </div>
+      <div data-pane="sc" style="display:none">
+        <div class="fsec">&#128202; Score IA</div>
+        <div id="score-wrap" style="background:#18182e;border:1px solid #2a2a45;border-radius:10px;padding:20px;margin-bottom:10px;text-align:center;color:#7a7a99;font-size:11px;">Cliquez Analyser pour voir votre score</div>
+        <button class="aib" id="btn-analyze" style="width:100%;justify-content:center;padding:9px;">&#129302; Analyser mon CV</button>
+      </div>
+      <div data-pane="lt" style="display:none">
+        <div class="fsec">&#9993; Lettre de motivation</div>
+        <div style="font-size:10px;color:#7a7a99;margin-bottom:8px;background:#18182e;padding:7px;border-radius:6px;">L&apos;IA g&eacute;n&egrave;re une lettre bas&eacute;e sur votre CV</div>
+        <button class="aib" id="btn-lettre" style="width:100%;justify-content:center;padding:9px;margin-bottom:8px;">&#9993; G&eacute;n&eacute;rer la lettre</button>
+        <div id="lt-prev" style="display:none">
+          <div style="background:#18182e;border:1px solid rgba(212,175,55,.33);border-radius:8px;padding:10px;max-height:180px;overflow-y:auto;margin-bottom:7px;">
+            <div id="lt-txt" style="font-size:10px;color:#e8e6f2;line-height:1.8;white-space:pre-wrap;"></div>
+          </div>
+          <button class="aib" id="btn-explt" style="width:100%;justify-content:center;padding:8px;">&#128229; T&eacute;l&eacute;charger lettre PDF</button>
+        </div>
+      </div>
+      
+    </div>
+    <div class="bfoot">
+      <div class="cdots" id="cdots"></div>
+      <button class="bbl" id="btn-export">&#128229; Exporter en PDF &mdash; &agrave; partir de 1 500 FCFA</button>
+      <div style="font-size:9px;color:#7a7a99;text-align:center;margin-top:4px;">Wave &bull; Orange Money &bull; Moov Money</div>
+    </div>
+  </div>
+  <div class="prev-panel">
+    <div class="prev-tb">
+      <div style="display:flex;align-items:center;gap:8px;">
+        <span style="font-size:10px;font-weight:700;color:#555;text-transform:uppercase;letter-spacing:.5px;">Aper&ccedil;u</span>
+        <button class="pgbtn on" id="pg1">1 page</button>
+        <button class="pgbtn" id="pg2">2 pages</button>
+      </div>
+      <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
+        <div class="tbtns">
+          <button class="tbtn on" id="tb1">&Eacute;l&eacute;gant</button>
+          <button class="tbtn" id="tb2">Moderne</button>
+          <button class="tbtn" id="tb3">Minimaliste</button>
+          <button class="tbtn" id="tb4">Executive</button>
+        </div>
+        <div class="cdots" id="cdots2"></div>
+      </div>
+    </div>
+    <div id="cv-prev" class="cv-sheet"></div>
+  </div>
+</div>
+
+<!-- MODAL AUTH -->
+<div class="ov" id="ov-auth">
+  <div class="modal">
+    <button class="mc" id="mc-auth">&#10005;</button>
+    <div class="mt">Bienvenue &#128075;</div>
+    <div class="ms">CVPro Africa &mdash; Votre CV. Votre futur.</div>
+    <div class="mtabs">
+      <button class="mtab on" id="mt-reg">Cr&eacute;er un compte</button>
+      <button class="mtab" id="mt-log">Se connecter</button>
+    </div>
+    <div id="frm-reg">
+      <div class="fg"><label class="fl">Pr&eacute;nom &amp; Nom</label><input class="fi" id="reg-name" placeholder="Sophie Martin" type="text"></div>
+      <div class="fg"><label class="fl">Email</label><input class="fi" id="reg-email" placeholder="email@exemple.com" type="email"></div>
+      <div class="fg"><label class="fl">Mot de passe</label><input class="fi" id="reg-pass" placeholder="&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;" type="password"></div>
+      <button class="bbl" id="btn-reg">Cr&eacute;er mon compte &rarr;</button>
+    </div>
+    <div id="frm-log" style="display:none">
+      <div class="fg"><label class="fl">Email</label><input class="fi" id="log-email" placeholder="email@exemple.com" type="email"></div>
+      <div class="fg"><label class="fl">Mot de passe</label><input class="fi" id="log-pass" placeholder="&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;" type="password"></div>
+      <button class="bbl" id="btn-log" style="margin-bottom:10px;">Se connecter &rarr;</button>
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
+        <div style="flex:1;height:1px;background:#2a2a45;"></div>
+        <div style="font-size:10px;color:#7a7a99;">ou</div>
+        <div style="flex:1;height:1px;background:#2a2a45;"></div>
+      </div>
+      <button id="btn-biometric" style="width:100%;padding:11px;background:#18182e;border:1.5px solid rgba(212,175,55,.4);color:#D4AF37;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;font-family:Poppins,sans-serif;display:flex;align-items:center;justify-content:center;gap:8px;">
+        <span style="font-size:18px;">&#128100;</span> Utiliser mon empreinte
+      </button>
+      <div id="bio-unavail" style="display:none;font-size:10px;color:#7a7a99;text-align:center;margin-top:6px;">Empreinte non disponible sur cet appareil</div>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL PAIEMENT -->
+<div class="ov" id="ov-pay">
+  <div class="modal" style="max-width:400px;">
+    <button class="mc" id="mc-pay">&#10005;</button>
+    <div class="mt">&#128179; Paiement</div>
+    <div style="font-size:12px;color:#7a7a99;margin-bottom:16px;">CV de <strong id="pay-nm">—</strong></div>
+    
+    <div style="background:linear-gradient(135deg,rgba(212,175,55,.15),rgba(212,175,55,.05));border:1px solid rgba(212,175,55,.4);border-radius:12px;padding:16px;text-align:center;margin-bottom:16px;">
+      <div style="font-size:11px;color:#7a7a99;margin-bottom:4px;">Montant à payer</div>
+      <div id="pay-amount" style="font-size:32px;font-weight:900;color:#D4AF37;font-family:'Playfair Display',serif;">1 500 FCFA</div>
+      <div id="pay-detail" style="font-size:11px;color:#7a7a99;margin-top:4px;">CV 1 page</div>
+    </div>
+
+    <div style="font-size:11px;font-weight:700;color:#fff;margin-bottom:10px;">Choisissez votre moyen de paiement :</div>
+    <div class="pmths">
+      <div class="pmth on" id="pm1">
+        <div class="pmth-i">
+          <svg width="32" height="32" viewBox="0 0 32 32"><rect width="32" height="32" rx="7" fill="#1DC7EA"/><text x="16" y="22" font-size="14" font-weight="900" text-anchor="middle" fill="white" font-family="Arial">W</text></svg>
+          <div><div class="pmth-n">Wave</div><div class="pmth-num">75318351</div></div>
+        </div>
+        <div class="prad"><div class="prdot"></div></div>
+      </div>
+      <div class="pmth" id="pm2">
+        <div class="pmth-i">
+          <svg width="32" height="32" viewBox="0 0 32 32"><rect width="32" height="32" rx="7" fill="#FF6600"/><circle cx="16" cy="16" r="8" fill="none" stroke="white" stroke-width="2"/><text x="16" y="20" font-size="8" font-weight="900" text-anchor="middle" fill="white" font-family="Arial">OM</text></svg>
+          <div><div class="pmth-n">Orange Money</div><div class="pmth-num">75318351</div></div>
+        </div>
+        <div class="prad"><div class="prdot"></div></div>
+      </div>
+      <div class="pmth" id="pm3">
+        <div class="pmth-i">
+          <svg width="32" height="32" viewBox="0 0 32 32"><rect width="32" height="32" rx="7" fill="#0055A4"/><text x="16" y="20" font-size="8" font-weight="900" text-anchor="middle" fill="white" font-family="Arial">MOOV</text></svg>
+          <div><div class="pmth-n">Moov Money</div><div class="pmth-num">71607287</div></div>
+        </div>
+        <div class="prad"><div class="prdot"></div></div>
+      </div>
+    </div>
+
+    <div class="psteps" style="margin-bottom:14px;">
+      <div style="font-size:10px;font-weight:700;color:#D4AF37;margin-bottom:7px;">Comment payer ?</div>
+      <div class="pstep"><div class="psn">1</div><div style="font-size:10px;color:#7a7a99;line-height:1.5;">Envoyez <strong id="ps-amt" style="color:#D4AF37;">1 500 FCFA</strong> au numéro ci-dessus</div></div>
+      <div class="pstep"><div class="psn">2</div><div style="font-size:10px;color:#7a7a99;line-height:1.5;">Prenez une capture d&apos;écran de la confirmation</div></div>
+      <div class="pstep"><div class="psn">3</div><div style="font-size:10px;color:#7a7a99;line-height:1.5;">Cliquez WhatsApp et envoyez la capture</div></div>
+      <div class="pstep"><div class="psn">4</div><div style="font-size:10px;color:#7a7a99;line-height:1.5;">Recevez votre code de téléchargement</div></div>
+    </div>
+
+    <button class="bbl" id="btn-wa" style="background:linear-gradient(135deg,#25D366,#128C7E);color:white;margin-bottom:7px;">
+      &#128241; Envoyer ma preuve sur WhatsApp
+    </button>
+    <div style="font-size:9px;color:#7a7a99;text-align:center;">Votre code PDF vous sera envoyé par WhatsApp dans les 5 minutes</div>
+  </div>
+</div>
+
+<!-- MODAL CODE -->
+<div class="ov" id="ov-code">
+  <div class="modal" style="max-width:340px;">
+    <div class="mt">&#128273; Code de d&eacute;blocage</div>
+    <div class="ms">Entrez le code re&ccedil;u par WhatsApp</div>
+    <div class="fg" style="margin-bottom:14px;">
+      <label class="fl">Votre code</label>
+      <input class="fi" id="input-code" placeholder="Ex: CVP-AB4K" style="text-align:center;font-size:18px;font-weight:900;letter-spacing:4px;text-transform:uppercase;">
+    </div>
+    <button class="bbl" id="btn-verify">&#9989; V&eacute;rifier et t&eacute;l&eacute;charger</button>
+    <div style="font-size:9px;color:#7a7a99;text-align:center;margin-top:8px;">Pas de code ? Envoyez votre preuve au <strong style="color:#D4AF37;">75318351</strong></div>
+  </div>
+</div>
+
+<!-- MODAL AVIS -->
+<div class="ov" id="ov-avis">
+  <div class="modal" style="max-width:400px;">
+    <button class="mc" id="mc-avis">&#10005;</button>
+    <div class="mt">&#127775; Votre avis !</div>
+    <div class="ms">Aidez d&apos;autres professionnels</div>
+    <div class="fg"><label class="fl">Votre nom *</label><input class="fi" id="avis-name" placeholder="Aminata K., Dakar"></div>
+    <div class="fg"><label class="fl">Votre m&eacute;tier</label><input class="fi" id="avis-job" placeholder="Comptable, Ing&eacute;nieur..."></div>
+    <div class="fg">
+      <label class="fl">Note</label>
+      <div id="stars-inp" style="display:flex;gap:5px;font-size:22px;margin-top:4px;cursor:pointer;">
+        <span data-s="1">&#9733;</span><span data-s="2">&#9733;</span><span data-s="3">&#9733;</span><span data-s="4">&#9733;</span><span data-s="5">&#9733;</span>
+      </div>
+    </div>
+    <div class="fg"><label class="fl">Commentaire *</label><textarea class="fi" id="avis-txt" style="min-height:70px;" placeholder="Partagez votre exp&eacute;rience..."></textarea></div>
+    <button class="bbl" id="btn-submit-avis" style="margin-bottom:7px;">&#128232; Publier mon avis</button>
+    <button style="width:100%;padding:8px;background:transparent;border:1px solid #2a2a45;color:#7a7a99;border-radius:7px;cursor:pointer;font-family:'Poppins',sans-serif;font-size:12px;" id="btn-skip-avis">Passer &rarr;</button>
+  </div>
+</div>
+
+
+<!-- MODAL CHOIX PAGES -->
+<div class="ov" id="ov-pages">
+  <div class="modal" style="max-width:360px;text-align:center;">
+    <div class="mt" style="margin-bottom:8px;">&#128196; Votre CV</div>
+    <div class="ms" style="margin-bottom:22px;">Combien de pages souhaitez-vous ?</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px;">
+      <div id="pg-opt1" style="background:#18182e;border:2px solid #D4AF37;border-radius:12px;padding:20px;cursor:pointer;transition:all .2s;">
+        <div style="font-size:32px;margin-bottom:8px;">&#128196;</div>
+        <div style="font-size:16px;font-weight:900;color:#D4AF37;font-family:'Playfair Display',serif;">1 page</div>
+        <div style="font-size:12px;color:#7a7a99;margin-top:4px;">1 500 FCFA</div>
+      </div>
+      <div id="pg-opt2" style="background:#18182e;border:2px solid #2a2a45;border-radius:12px;padding:20px;cursor:pointer;transition:all .2s;">
+        <div style="font-size:32px;margin-bottom:8px;">&#128203;</div>
+        <div style="font-size:16px;font-weight:900;color:#fff;font-family:'Playfair Display',serif;">2 pages</div>
+        <div style="font-size:12px;color:#7a7a99;margin-top:4px;">2 000 FCFA</div>
+      </div>
+    </div>
+    <button class="bbl" id="btn-pages-ok">&#10024; Commencer &rarr;</button>
+    <div style="font-size:10px;color:#7a7a99;margin-top:10px;">Vous pourrez changer plus tard</div>
+  </div>
+</div>
+
+
+<!-- MODAL REPRENDRE CV -->
+<div class="ov" id="ov-resume">
+  <div class="modal" style="max-width:360px;text-align:center;">
+    <div style="font-size:40px;margin-bottom:12px;">&#128196;</div>
+    <div class="mt" style="margin-bottom:8px;">CV sauvegard&eacute; !</div>
+    <div class="ms" style="margin-bottom:6px;" id="resume-name">Vous avez un CV en cours</div>
+    <div style="font-size:11px;color:#7a7a99;margin-bottom:20px;" id="resume-date">Sauvegard&eacute; il y a quelques instants</div>
+    <div style="display:flex;flex-direction:column;gap:10px;">
+      <button class="bbl" id="btn-resume-yes">&#9654; Reprendre mon CV</button>
+      <button id="btn-resume-new" style="width:100%;padding:10px;background:transparent;border:1px solid #2a2a45;color:#7a7a99;border-radius:8px;cursor:pointer;font-family:Poppins,sans-serif;font-size:13px;">&#43; Cr&eacute;er un nouveau CV</button>
+    </div>
+    <div style="margin-top:16px;padding-top:14px;border-top:1px solid #2a2a45;">
+      <div style="font-size:11px;color:#7a7a99;margin-bottom:10px;">Vous avez re&ccedil;u un code de d&eacute;blocage ?</div>
+      <div style="display:flex;gap:8px;">
+        <input class="fi" id="resume-code" placeholder="Ex: CVP-AB4K" style="flex:1;text-align:center;font-size:16px;font-weight:900;letter-spacing:3px;text-transform:uppercase;">
+        <button id="btn-resume-code" style="padding:10px 14px;background:linear-gradient(135deg,#D4AF37,#b8892a);border:none;border-radius:8px;color:#000;font-size:12px;font-weight:700;cursor:pointer;font-family:Poppins,sans-serif;white-space:nowrap;">&#9989; OK</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="adot" id="adot">&#9679;</div>
+<div class="toast" id="toast"></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+(function(){
+"use strict";
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var _e=[36,37,59,13,4,123,85,117,121,0,37,63,29,59,88,101,99,88,115,98,19,63,54,121,103,117,81,58,52,99,20,22,116,96,117,121,20,98,40,61,11,84,119,74,95,6,60,36,0,12,112,70,100,98,14,37],_s=[67,86,80,82,79,50,48,50,53];
+var GK=_e.map(function(c,i){return String.fromCharCode(c^_s[i%_s.length]);}).join("");
+var GU="https://api.groq.com/openai/v1/chat/completions";
+var GM="llama-3.3-70b-versatile";
+var WA="22675318351";
+var AE="sonde.business.75@gmail.com";
+var LANG="fr",TI=1,CI=0,PG=1,CU=null,PHO=null,MOD="scratch";
+var NB_PAGES=1,AIL=false,LTR="",STAR=5,curCode="";
+var COLORS=[
+  {p:"#1a1926",a:"#D4AF37",bg:"rgba(212,175,55,0.1)"},
+  {p:"#1a2f3a",a:"#2E86AB",bg:"rgba(46,134,171,0.1)"},
+  {p:"#1a3c34",a:"#2D9B6E",bg:"rgba(45,155,110,0.1)"},
+  {p:"#3D0C11",a:"#8B1A2B",bg:"rgba(139,26,43,0.1)"},
+  {p:"#2d1b69",a:"#7c3aed",bg:"rgba(124,58,237,0.1)"},
+  {p:"#1c1c1e",a:"#6b7280",bg:"rgba(107,114,128,0.1)"}
+];
+var D={name:"",title:"",phone:"",email:"",loc:"",li:"",gh:"",sum:"",nat:"",birth:"",
+  exps:[],edus:[],sks:[],lgs:[],cts:[],pjs:[],ins:[],pros:[],its:[],refs:[]};
+
+function G(id){return document.getElementById(id);}
+
+// NAVIGATION - SIMPLE ET FIABLE
+function go(id){
+  document.querySelectorAll(".pg").forEach(function(p){p.classList.remove("on");});
+  var el=G(id);
+  if(el)el.classList.add("on");
+}
+function openOv(id){var el=G("ov-"+id);if(el)el.classList.add("on");}
+function closeOv(id){var el=G("ov-"+id);if(el)el.classList.remove("on");}
+
+var tt;
+function toast(msg,type){
+  var el=G("toast");el.textContent=msg;
+  el.className="toast on "+(type||"nf");
+  clearTimeout(tt);tt=setTimeout(function(){el.classList.remove("on");},3500);
+}
+
+// TRADUCTIONS
+var TX={
+  fr:{"h-title":"Votre CV<br><span style='color:#D4AF37'>Professionnel</span><br>en minutes","h-sub":"4 templates premium &bull; Intelligence Artificielle<br>Score CV &bull; Lettre de motivation","h-note":"Aucun compte requis &bull; Payez uniquement pour t&eacute;l&eacute;charger","btn-start-txt":"&#10024; Cr&eacute;er mon CV &mdash; Gratuit","feat1":"4 templates premium","feat2":"Intelligence Artificielle","feat3":"Photo recadr&eacute;e auto","avis-star":"&#11088; Avis clients","avis-title":"Ce qu&apos;ils disent de nous","avis-sub":"Plus de 200 professionnels nous font confiance","db-title":"Que souhaitez-vous faire ?","db-sub":"Choisissez votre point de d&eacute;part","dc-sc-t":"Cr&eacute;er from scratch","dc-sc-d":"Remplissez le formulaire &eacute;tape par &eacute;tape","dc-im-t":"Importer mon CV","dc-im-d":"Importez votre ancien CV (.txt)","dc-cl-t":"Copier un design","dc-cl-d":"Vos donn&eacute;es sur le design d&apos;un autre CV"},
+  en:{"h-title":"Your Professional<br><span style='color:#D4AF37'>CV</span><br>in minutes","h-sub":"4 premium templates &bull; Artificial Intelligence<br>CV Score &bull; Cover letter","h-note":"No account required &bull; Pay only to download","btn-start-txt":"&#10024; Create my CV &mdash; Free","feat1":"4 premium templates","feat2":"Artificial Intelligence","feat3":"Auto photo cropping","avis-star":"&#11088; Client reviews","avis-title":"What they say about us","avis-sub":"Over 200 professionals trust us","db-title":"What would you like to do?","db-sub":"Choose your starting point","dc-sc-t":"Create from scratch","dc-sc-d":"Fill in the form step by step","dc-im-t":"Import my CV","dc-im-d":"Import your old CV (.txt)","dc-cl-t":"Copy a design","dc-cl-d":"Your data on another CV design"}
+};
+function applyLang(lang){
+  LANG=lang;
+  G("btn-fr").classList.toggle("on",lang==="fr");
+  G("btn-en").classList.toggle("on",lang==="en");
+  var t=TX[lang];
+  Object.keys(t).forEach(function(k){var el=G(k);if(el)el.innerHTML=t[k];});
+}
+function getP(k,ex){
+  var p={fr:{sum:"Ameliore ce resume en francais. 3-4 phrases percutantes. UNIQUEMENT le texte:",title:"Suggere 3 titres de poste en francais. UNIQUEMENT les 3 titres separes par sauts de ligne:",sk:"Pour le poste {T} suggere 6 competences en francais. UNIQUEMENT separees par virgules.",bullets:"Ameliore ces bullet points en francais. UNIQUEMENT points separes par sauts de ligne:",analyze:"Analyse ce CV. JSON valide sans backticks: {\"score\":85,\"mention\":\"Tres Bon\",\"forts\":[],\"ameliorer\":[]}. CV:",lettre:"Genere une lettre de motivation en francais. Formelle, 3 paragraphes:",adapt:"Analyse offre et CV. JSON: {\"titre\":\"\",\"ajouter\":[],\"conseils\":[],\"score\":75}.",trad:"Traduis ce CV en anglais. JSON meme structure:",import:"Extrais les infos de ce CV. JSON valide sans backticks: {\"name\":\"\",\"title\":\"\",\"phone\":\"\",\"email\":\"\",\"loc\":\"\",\"li\":\"\",\"gh\":\"\",\"sum\":\"\",\"nat\":\"\",\"birth\":\"\",\"exps\":[{\"title\":\"\",\"company\":\"\",\"loc\":\"\",\"dates\":\"\",\"bullets\":[\"\"]}],\"edus\":[{\"degree\":\"\",\"school\":\"\",\"dates\":\"\",\"desc\":\"\"}],\"sks\":[{\"name\":\"\",\"level\":80}],\"lgs\":[{\"name\":\"\",\"level\":\"\",\"pct\":70}],\"cts\":[{\"name\":\"\",\"issuer\":\"\",\"date\":\"\"}],\"pjs\":[{\"name\":\"\",\"tech\":\"\",\"desc\":\"\"}],\"ins\":[],\"pros\":[{\"name\":\"\",\"org\":\"\",\"date\":\"\"}],\"its\":[{\"cat\":\"\",\"items\":\"\"}],\"refs\":[{\"name\":\"\",\"post\":\"\",\"tel\":\"\"}]}. CV:"},en:{sum:"Improve this summary in English. 3-4 sentences. ONLY the text:",title:"Suggest 3 job titles in English. ONLY 3 titles separated by line breaks:",sk:"For {T} suggest 6 skills in English. ONLY separated by commas.",bullets:"Improve these CV bullet points in English. ONLY points separated by line breaks:",analyze:"Analyze this CV. Valid JSON: {\"score\":85,\"mention\":\"Very Good\",\"forts\":[],\"ameliorer\":[]}. CV:",lettre:"Generate a cover letter in English. Formal, 3 paragraphs:",adapt:"Analyze offer and CV. JSON: {\"titre\":\"\",\"ajouter\":[],\"conseils\":[],\"score\":75}.",trad:"Translate this CV to French. JSON same structure:",import:"Extract all info from this CV. Valid JSON same structure. CV:"}};
+  var v=(p[LANG]||p.fr)[k]||(p.fr)[k];
+  if(ex)v=v.replace("{T}",ex);
+  return v;
+}
+
+// AUTH
+function getU(){return JSON.parse(localStorage.getItem("cvpro_u")||"{}");}
+function saveU(u){localStorage.setItem("cvpro_u",JSON.stringify(u));}
+function loginUser(u){
+  CU=u;sessionStorage.setItem("cvpro_cu",JSON.stringify(u));
+  G("nav-av").textContent=u.name[0].toUpperCase();
+  G("nav-nm").textContent=u.name.split(" ")[0];
+  if(u.email===AE){go("admin");updateStats();renderHist();return;}
+  toast("Bienvenue "+u.name.split(" ")[0]+"!","ok");
+  go("dash");
+  // Proposer empreinte si pas encore enregistrée
+  offerBiometricSetup(u.email, u.name);
+}
+function doReg(name,email,pass){
+  if(!name||!email||!pass){toast("Remplissez tous les champs","er");return false;}
+  var u=getU();if(u[email]){toast("Email deja utilise","er");return false;}
+  u[email]={name:name,email:email,pass:pass};saveU(u);loginUser({name:name,email:email});return true;
+}
+function doLog(email,pass){
+  var u=getU();if(!u[email]||u[email].pass!==pass){toast("Identifiants incorrects","er");return false;}
+  loginUser(u[email]);return true;
+}
+function swTab(tab){
+  G("frm-reg").style.display=tab==="reg"?"block":"none";
+  G("frm-log").style.display=tab==="log"?"block":"none";
+  G("mt-reg").classList.toggle("on",tab==="reg");
+  G("mt-log").classList.toggle("on",tab==="log");
+}
+
+// ADMIN
+function getCodes(){return JSON.parse(localStorage.getItem("cvpro_codes")||"[]");}
+function saveCodes(c){localStorage.setItem("cvpro_codes",JSON.stringify(c));}
+function addCode(c){var a=getCodes();a.unshift({code:c,date:new Date().toISOString(),used:false});saveCodes(a);}
+function useCode(c){saveCodes(getCodes().map(function(x){if(x.code===c)x.used=true;return x;}));}
+function checkCode(c){return getCodes().some(function(x){return x.code===c.toUpperCase()&&!x.used;});}
+function genCode(){var ch="ABCDEFGHJKLMNPQRSTUVWXYZ23456789",c="CVP-";for(var i=0;i<3;i++)c+=ch[Math.floor(Math.random()*ch.length)];c+="-";for(var i=0;i<4;i++)c+=ch[Math.floor(Math.random()*ch.length)];return c;}
+function updateStats(){
+  var codes=getCodes(),td=new Date().toDateString(),mo=new Date().getMonth(),yr=new Date().getFullYear();
+  G("stat-today").textContent=codes.filter(function(c){return new Date(c.date).toDateString()===td;}).length;
+  G("stat-month").textContent=codes.filter(function(c){var d=new Date(c.date);return d.getMonth()===mo&&d.getFullYear()===yr;}).length;
+  G("stat-total").textContent=codes.length;
+}
+function renderHist(){
+  var codes=getCodes(),el=G("hist");if(!codes.length){el.innerHTML="<div style='text-align:center;padding:12px;color:#7a7a99;'>Aucun code</div>";return;}
+  el.innerHTML=codes.slice(0,15).map(function(c){var d=new Date(c.date),ds=d.toLocaleDateString("fr-FR")+" "+d.toLocaleTimeString("fr-FR",{hour:"2-digit",minute:"2-digit"});return "<div style='display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px solid #2a2a45;'><div><span style='font-size:13px;font-weight:900;color:"+(c.used?"#7a7a99":"#D4AF37")+";letter-spacing:2px;'>"+c.code+"</span><span style='font-size:10px;margin-left:6px;color:"+(c.used?"#7a7a99":"#2ecc71")+";'>"+(c.used?"Utilise":"Actif")+"</span></div><div style='font-size:10px;color:#7a7a99;'>"+ds+"</div></div>";}).join("");
+}
+
+// AVIS
+var AVIS_DEF=[
+  {nom:"Aminata Kone",job:"Comptable",ville:"Abidjan",note:5,txt:"J ai decroche mon poste a la BCEAO grace a CVPro Africa. Mon CV etait vraiment professionnel !",date:"Il y a 2 jours"},
+  {nom:"Moussa Diallo",job:"Ingenieur Info",ville:"Ouagadougou",note:5,txt:"Simple, rapide et impressionnant. J ai eu 3 entretiens en une semaine !",date:"Il y a 5 jours"},
+  {nom:"Fatou Sow",job:"Responsable RH",ville:"Dakar",note:5,txt:"Le template Elegant est magnifique. Mes recruteurs ont remarque la qualite. Je recommande !",date:"Il y a 1 semaine"},
+  {nom:"Ibrahim Traore",job:"Chef de Projet",ville:"Bamako",note:4,txt:"La lettre de motivation par IA m a sauve beaucoup de temps. Bravo !",date:"Il y a 2 semaines"},
+  {nom:"Mariam Ouedraogo",job:"Medecin",ville:"Ouagadougou",note:5,txt:"J avais un vieux CV Word basique. Maintenant j ai un CV professionnel. Merci !",date:"Il y a 3 semaines"}
+];
+function getRealAvis(){return JSON.parse(localStorage.getItem("cvpro_avis")||"[]");}
+function renderAvis(){
+  var all=getRealAvis().concat(AVIS_DEF),el=G("avis-grid");if(!el)return;
+  el.innerHTML=all.slice(0,6).map(function(a){
+    var stars="";for(var i=1;i<=5;i++)stars+="<span style='color:"+(i<=a.note?"#D4AF37":"#333")+"'>&#9733;</span>";
+    return "<div class='avis-card'><div style='display:flex;align-items:center;gap:10px;margin-bottom:10px;'><div style='width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#D4AF37,#8a6820);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;color:#000;flex-shrink:0;'>"+a.nom[0]+"</div><div><div style='font-size:13px;font-weight:600;color:#fff;'>"+a.nom+"</div><div style='font-size:11px;color:#7a7a99;'>"+a.job+(a.ville?" &bull; "+a.ville:"")+"</div></div></div><div style='margin-bottom:8px;'>"+stars+"</div><div style='font-size:12px;color:#7a7a99;line-height:1.7;font-style:italic;'>"+a.txt+"</div><div style='font-size:10px;color:#2a2a45;margin-top:8px;'>"+a.date+"</div></div>";
+  }).join("");
+}
+
+// BUILDER
+function startBuilder(mode){
+  MOD=mode;
+  var clz=G("clone-z");if(clz)clz.style.display=mode==="clone"?"block":"none";
+  initLists();renderColors();renderCV();
+  go("builder");
+  if(mode==="import")toast("Importez votre CV dans l'onglet Identite","nf");
+  else if(mode==="clone")toast("Importez vos 2 CV dans l'onglet Identite","nf");
+}
+
+// PHOTO
+G("ph-inp").onchange=function(e){
+  var f=e.target.files[0];if(!f)return;
+  var r=new FileReader();
+  r.onload=function(ev){PHO=ev.target.result;G("ph-ph").style.display="none";G("ph-img").src=PHO;G("ph-img").style.display="block";G("btn-crop").style.display="inline-flex";renderCV();toast("Photo chargee","ok");};
+  r.readAsDataURL(f);
+};
+G("btn-crop").onclick=function(){
+  if(!PHO)return;
+  var img=new Image();
+  img.onload=function(){
+    var c=document.createElement("canvas");
+    var sz=Math.min(img.width,img.height);
+    var ox=(img.width-sz)/2;
+    var oy=(img.height-sz)/2;
+    c.width=400;c.height=400;
+    var ctx=c.getContext("2d");
+    ctx.beginPath();ctx.arc(200,200,200,0,Math.PI*2);ctx.clip();
+    ctx.drawImage(img,ox,oy,sz,sz,0,0,400,400);
+    PHO=c.toDataURL("image/jpeg",.92);
+    var pi=G("ph-img"),pp=G("ph-ph");
+    if(pi){pi.src=PHO;pi.style.display="block";}
+    if(pp)pp.style.display="none";
+    renderCV();
+    toast("Photo recadree !","ok");
+  };
+  img.src=PHO;
+};
+
+// IMPORT CV
+
+
+async function extractCV(txt){
+  // Afficher progress dans le pane identité
+  var impLbl = G("imp-lbl");
+  if(impLbl) impLbl.innerHTML="<span class='sp'></span> L\'IA analyse votre CV...";
+  toast("Analyse en cours... 15-20 secondes","nf");
+
+  var r=await callAI(getP("import")+"\n\n"+txt.slice(0,4000));
+
+  if(impLbl) impLbl.textContent="Glissez votre ancien CV (.txt)";
+
+  if(!r){
+    toast("Erreur IA - remplissez manuellement","er");
+    return;
+  }
+  try{
+    var clean=r.replace(/```json|```/g,"").trim();
+    var jsonStart=clean.indexOf("{");
+    var jsonEnd=clean.lastIndexOf("}");
+    if(jsonStart>=0&&jsonEnd>jsonStart) clean=clean.slice(jsonStart,jsonEnd+1);
+    var d=JSON.parse(clean);
+    fillForm(d);
+    // Compter les champs remplis
+    var filled=0;
+    if(d.name)filled++;if(d.title)filled++;if(d.phone)filled++;if(d.email)filled++;
+    if(d.exps&&d.exps.length)filled+=d.exps.length;
+    if(d.edus&&d.edus.length)filled+=d.edus.length;
+    if(d.sks&&d.sks.length)filled+=d.sks.length;
+    toast("CV importé avec succès ! "+filled+" éléments trouvés ✓","ok");
+  }catch(e){
+    console.error("Import error:",e);
+    // Essayer quand même de remplir les champs simples via regex
+    var nm=txt.match(/([A-Z][a-z]+ [A-Z][a-z]+)/);
+    if(nm && G("fn") && !G("fn").value) G("fn").value=nm[1];
+    var ph=txt.match(/(\+?[\d\s\-]{10,15})/);
+    if(ph && G("fph") && !G("fph").value) G("fph").value=ph[1].trim();
+    var em=txt.match(/[\w.-]+@[\w.-]+\.\w+/);
+    if(em && G("fem") && !G("fem").value) G("fem").value=em[0];
+    syncD();renderCV();
+    toast("Import partiel - vérifiez et complétez vos infos","nf");
+  }
+}
+function fillForm(d){
+  var f={fn:"name",ft:"title",fph:"phone",fem:"email",floc:"loc",fli:"li",fgh:"gh",fsum:"sum",fnat:"nat",fbirth:"birth"};
+  Object.keys(f).forEach(function(id){if(d[f[id]]&&G(id))G(id).value=d[f[id]];});
+  if(d.exps&&d.exps.length){D.exps=d.exps;renderExps();}
+  if(d.edus&&d.edus.length){D.edus=d.edus;renderEdus();}
+  if(d.sks&&d.sks.length){D.sks=d.sks;renderSks();}
+  if(d.lgs&&d.lgs.length){D.lgs=d.lgs;renderLgs();}
+  if(d.cts&&d.cts.length){D.cts=d.cts;renderCts();}
+  if(d.pjs&&d.pjs.length){D.pjs=d.pjs;renderPjs();}
+  if(d.ins&&d.ins.length){D.ins=d.ins;renderIns();}
+  if(d.pros&&d.pros.length){D.pros=d.pros;renderPros();}
+  if(d.its&&d.its.length){D.its=d.its;renderIts();}
+  if(d.refs&&d.refs.length){D.refs=d.refs;renderRefs();}
+  syncD();renderCV();
+}
+
+// AI
+async function callAI(prompt){
+  if(AIL)return null;AIL=true;
+  try{
+    var res=await fetch(GU,{method:"POST",headers:{"Content-Type":"application/json","Authorization":"Bearer "+GK},
+      body:JSON.stringify({model:GM,max_tokens:2500,messages:[{role:"system",content:"Expert CV. Reponds en "+LANG+"."},{role:"user",content:prompt}]})});
+    var data=await res.json();
+    if(data.error){
+      var msg=data.error.message||"Erreur IA";
+      if(msg.includes("model")||msg.includes("deprecated"))msg="Modele IA indisponible - contactez le support";
+      toast(msg.slice(0,80),"er");return null;
+    }
+    return data.choices[0].message.content.trim();
+  }catch(e){toast("Erreur connexion IA","er");return null;}
+  finally{AIL=false;}
+}
+
+G("btn-isum").onclick=async function(){
+  var v=G("fsum").value.trim();if(!v){toast("Entrez votre resume","er");return;}
+  this.disabled=true;this.innerHTML="<span class='sp'></span>";
+  var r=await callAI(getP("sum")+"\n\n"+v);
+  if(r){G("fsum").value=r;D.sum=r;renderCV();toast("Resume ameliore !","ok");}
+  this.disabled=false;this.innerHTML="&#10024; Ameliorer avec l'IA";
+};
+G("btn-tsugg").onclick=async function(){
+  var sum=G("fsum").value.trim();if(!sum&&!D.title){toast("Remplissez votre profil","er");return;}
+  this.disabled=true;this.innerHTML="<span class='sp'></span>";
+  var r=await callAI(getP("title")+"\n\nResume:"+sum);
+  if(r){
+    var titles=r.split("\n").filter(function(t){return t.trim();}).slice(0,3);
+    var w=G("tsugg");w.innerHTML="";
+    titles.forEach(function(t){var el=document.createElement("div");el.style.cssText="padding:5px 8px;background:#20203a;border:1px solid rgba(212,175,55,.4);border-radius:5px;font-size:11px;cursor:pointer;color:#D4AF37;margin-top:4px;";el.textContent=t.replace(/^\d+\.\s*/,"");el.onclick=function(){G("ft").value=this.textContent;w.innerHTML="";syncD();renderCV();};w.appendChild(el);});
+    toast("Titres suggeres !","ok");
+  }
+  this.disabled=false;this.innerHTML="&#128161; Suggerer un titre";
+};
+G("btn-sksugg").onclick=async function(){
+  var tit=G("ft").value.trim();if(!tit){toast("Entrez votre titre d'abord","er");return;}
+  this.disabled=true;this.innerHTML="<span class='sp'></span>";
+  var r=await callAI(getP("sk",tit));
+  if(r){
+    r.split(",").map(function(s){return s.trim();}).filter(function(s){return s;}).slice(0,6).forEach(function(s){D.sks.push({id:Date.now()+Math.random(),name:s,level:75});});
+    renderSks();renderCV();toast("Competences ajoutees !","ok");
+  }
+  this.disabled=false;this.innerHTML="&#128161; Suggerer selon mon poste";
+};
+G("btn-analyze").onclick=async function(){
+  if(!D.name){toast("Remplissez votre nom d abord","er");return;}
+  this.disabled=true;this.innerHTML="<span class='sp'></span> Analyse...";
+  var skills=D.sks.filter(function(s){return s.name;}).map(function(s){return s.name;}).join(", ");
+  var exps=D.exps.filter(function(e){return e.title;}).map(function(e){return e.title+" chez "+e.company;}).join(", ");
+  var edu=D.edus.filter(function(e){return e.degree;}).map(function(e){return e.degree;}).join(", ");
+  var prompt="Analyse ce CV et retourne UNIQUEMENT un objet JSON valide (pas de texte avant ou apres, pas de backticks).\n"
+    +"Format exact: {\"score\":75,\"mention\":\"Bien\",\"forts\":[\"point1\",\"point2\"],\"ameliorer\":[\"conseil1\",\"conseil2\"]}\n\n"
+    +"CV a analyser:\nNom: "+D.name+"\nTitre: "+D.title+"\nResume: "+D.sum+"\nExperiences: "+exps+"\nFormation: "+edu+"\nCompetences: "+skills;
+  var r=await callAI(prompt);
+  if(r){
+    try{
+      // Nettoyer la reponse
+      var clean=r.trim()
+        .replace(/^[^{]*/,'')
+        .replace(/[^}]*$/,'');
+      if(!clean.startsWith('{'))clean='{'+clean.split('{').slice(1).join('{');
+      if(!clean.endsWith('}'))clean=clean.split('}').slice(0,-1).join('}')+'}';
+      var d=JSON.parse(clean);
+      var sc=parseInt(d.score)||50;
+      var col=sc>=80?"#2ecc71":sc>=60?"#f39c12":"#e74c3c";
+      var men=d.mention||"Bon";
+      var forts=Array.isArray(d.forts)?d.forts:[];
+      var ameli=Array.isArray(d.ameliorer)?d.ameliorer:[];
+      G("score-wrap").innerHTML=
+        "<div style='display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;'>"
+        +"<b style='font-size:13px;color:#fff;'>Score CV</b>"
+        +"<span style='font-size:28px;font-weight:900;color:"+col+";font-family:Playfair Display,serif;'>"+sc+"/100</span></div>"
+        +"<div style='background:#20203a;height:8px;border-radius:4px;margin-bottom:10px;'>"
+        +"<div style='width:"+sc+"%;height:8px;border-radius:4px;background:"+col+";transition:width .5s;'></div></div>"
+        +"<div style='font-size:12px;font-weight:700;color:"+col+";margin-bottom:12px;text-align:center;'>"+men+"</div>"
+        +(forts.length?"<div style='font-size:11px;font-weight:700;color:#2ecc71;margin-bottom:6px;'>&#10003; Points forts</div>"
+          +forts.map(function(p){return "<div style='font-size:10px;color:#7a7a99;margin:3px 0;padding-left:8px;'>• "+p+"</div>";}).join(""):"")
+        +(ameli.length?"<div style='font-size:11px;font-weight:700;color:#D4AF37;margin-top:10px;margin-bottom:6px;'>&#8594; A ameliorer</div>"
+          +ameli.map(function(p){return "<div style='font-size:10px;color:#7a7a99;margin:3px 0;padding-left:8px;'>• "+p+"</div>";}).join(""):"");
+      toast("Analyse terminee !","ok");
+    }catch(e){
+      // Afficher quand meme un score approximatif
+      var sc2=D.name&&D.title&&D.sum&&D.sks.length>2&&D.exps.length>0?72:45;
+      G("score-wrap").innerHTML="<div style='text-align:center;padding:10px;'>"
+        +"<div style='font-size:28px;font-weight:900;color:#f39c12;font-family:Playfair Display,serif;'>"+sc2+"/100</div>"
+        +"<div style='font-size:11px;color:#7a7a99;margin-top:6px;'>Completez votre profil pour un meilleur score</div>"
+        +"<div style='background:#20203a;height:6px;border-radius:3px;margin-top:8px;'>"
+        +"<div style='width:"+sc2+"%;height:6px;border-radius:3px;background:#f39c12;'></div></div></div>";
+      toast("Analyse partielle","nf");
+    }
+  }
+  this.disabled=false;this.innerHTML="&#129302; Reanalyser";
+};
+G("btn-lettre").onclick=async function(){
+  if(!D.name){toast("Remplissez votre CV","er");return;}
+  this.disabled=true;this.innerHTML="<span class='sp'></span>";
+  var exs=D.exps.filter(function(e){return e.title;}).map(function(e){return e.title+" chez "+e.company;}).join(", ");
+  var r=await callAI(getP("lettre")+"\n\nNom:"+D.name+"\nPoste:"+D.title+"\nResume:"+D.sum+"\nExp:"+exs);
+  if(r){LTR=r;var ltp=G("lt-prev");if(ltp)ltp.style.display="block";G("lt-txt").textContent=r;toast("Lettre generee !","ok");}
+  this.disabled=false;this.innerHTML="&#9993; Generer la lettre";
+};
+G("btn-explt").onclick=function(){
+  if(!LTR)return;
+  var w=window.open("","_blank");
+  w.document.write("<!DOCTYPE html><html><head><meta charset=UTF-8><title>Lettre</title><style>body{font-family:Georgia,serif;padding:40px 60px;color:#222;font-size:12pt;line-height:1.9;}@page{size:A4;margin:0;}</style></head><body><pre style=white-space:pre-wrap;font-family:inherit;>"+LTR+"</pre></body></html>");
+  w.document.close();setTimeout(function(){w.print();},700);
+};
+
+G("btn-addexp").onclick=function(){D.exps.push({id:Date.now(),title:"",company:"",loc:"",dates:"",bullets:[""]});renderExps();};
+G("btn-addedu").onclick=function(){D.edus.push({id:Date.now(),degree:"",school:"",dates:"",desc:""});renderEdus();};
+G("btn-addsk").onclick=function(){D.sks.push({id:Date.now(),name:"",level:75});renderSks();};
+G("btn-addlg").onclick=function(){D.lgs.push({id:Date.now(),name:"",level:"",pct:70});renderLgs();};
+G("btn-addct").onclick=function(){D.cts.push({id:Date.now(),name:"",issuer:"",date:""});renderCts();};
+G("btn-addpj").onclick=function(){D.pjs.push({id:Date.now(),name:"",tech:"",desc:""});renderPjs();};
+G("btn-addin").onclick=function(){D.ins.push("");renderIns();};
+G("btn-addpro").onclick=function(){D.pros.push({id:Date.now(),name:"",org:"",date:""});renderPros();};
+G("btn-addit").onclick=function(){D.its.push({id:Date.now(),cat:"",items:""});renderIts();};
+G("btn-addref").onclick=function(){D.refs.push({id:Date.now(),name:"",post:"",tel:""});renderRefs();};
+
+// ONGLETS BUILDER
+G("btabs").addEventListener("click",function(e){
+  var btn=e.target.closest(".btab");if(!btn)return;
+  var tab=btn.getAttribute("data-tab");
+  document.querySelectorAll(".btab").forEach(function(b){b.classList.remove("on");});
+  btn.classList.add("on");
+  document.querySelectorAll("[data-pane]").forEach(function(el){el.style.display=el.getAttribute("data-pane")===tab?"block":"none";});
+});
+
+// COULEURS
+function ap(){return COLORS[CI].a;}
+function pp(){return COLORS[CI].p;}
+function bgp(){return COLORS[CI].bg;}
+function renderColors(){
+  ["cdots","cdots2"].forEach(function(cid){
+    var el=G(cid);if(!el)return;el.innerHTML="";
+    COLORS.forEach(function(c,i){
+      var d=document.createElement("div");d.className="cdot"+(i===CI?" on":"");
+      d.style.background=c.a;d.onclick=function(){CI=i;renderColors();renderCV();};el.appendChild(d);
+    });
+  });
+}
+
+// TEMPLATES
+[1,2,3,4].forEach(function(n){
+  G("tb"+n).onclick=function(){TI=n;document.querySelectorAll(".tbtn").forEach(function(b){b.classList.remove("on");});this.classList.add("on");renderCV();};
+});
+G("pg1").onclick=function(){PG=1;G("pg1").classList.add("on");G("pg2").classList.remove("on");};
+G("pg2").onclick=function(){PG=2;G("pg2").classList.add("on");G("pg1").classList.remove("on");};
+
+// RENDER CV
+function ph(cls,sz){
+  sz=sz||"68px";
+  if(PHO)return "<div class='"+cls+"' style='width:"+sz+";height:"+sz+";border-radius:50%;border:3px solid "+ap()+";overflow:hidden;flex-shrink:0;display:flex;align-items:center;justify-content:center;'><img src='"+PHO+"' style='width:100%;height:100%;object-fit:cover;'></div>";
+  return "<div class='"+cls+"' style='width:"+sz+";height:"+sz+";border-radius:50%;background:"+pp()+"22;border:2px solid "+ap()+"44;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;'>&#128100;</div>";
+}
+function bar(lv,bg,fg){return "<div style='height:3px;border-radius:2px;background:"+bg+";margin-bottom:4px;'><div style='height:3px;border-radius:2px;background:"+fg+";width:"+lv+"%'></div></div>";}
+function sT(icon,lbl,col){return "<div style='display:flex;align-items:center;gap:6px;margin-bottom:3px;margin-top:8px;'><span>"+icon+"</span><div style='font-size:8px;font-weight:800;color:"+(col||ap())+";text-transform:uppercase;letter-spacing:1px;'>"+lbl+"</div></div><div style='height:1.5px;background:linear-gradient(90deg,"+(col||ap())+",transparent);margin-bottom:6px;'></div>";}
+function tl(arr,tc){tc=tc||"#1a1926";return arr.map(function(e){return "<div style='display:flex;gap:7px;margin-bottom:8px;'><div style='display:flex;flex-direction:column;align-items:center;flex-shrink:0;'><div style='width:7px;height:7px;border-radius:50%;background:"+ap()+";margin-top:3px;'></div><div style='width:1px;flex:1;background:"+ap()+"44;margin-top:2px;'></div></div><div style='flex:1;padding-bottom:4px;'><div style='display:flex;justify-content:space-between;'><div style='font-size:8px;font-weight:800;color:"+tc+";'>"+e.title+"</div><div style='font-size:7px;color:#999;'>"+e.dates+"</div></div><div style='font-size:7px;color:"+ap()+";font-weight:600;margin-bottom:2px;'>"+e.company+(e.loc?" &bull; "+e.loc:"")+"</div>"+(e.bullets||[]).filter(function(b){return b;}).map(function(b){return "<div style='font-size:7px;color:#555;padding-left:6px;line-height:1.5;'>&#9658; "+b+"</div>";}).join("")+"</div></div>";}).join("");}
+
+function renderCV(){
+  syncD();
+  var el=G("cv-prev");if(!el)return;
+  var exF=D.exps.filter(function(e){return e.title;});
+  var edF=D.edus.filter(function(e){return e.degree;});
+  var skF=D.sks.filter(function(s){return s.name;});
+  var lgF=D.lgs.filter(function(l){return l.name;});
+  var ctF=D.cts.filter(function(c){return c.name;});
+  var pjF=D.pjs.filter(function(p){return p.name;});
+  var inF=D.ins.filter(function(i){return i;});
+  var proF=D.pros.filter(function(e){return e.name;});
+  var itF=D.its.filter(function(c){return c.cat;});
+  var refF=D.refs.filter(function(r){return r.name;});
+  var h="";
+  if(TI===1)h=r1(exF,edF,skF,lgF,ctF,pjF,inF,proF,itF,refF);
+  else if(TI===2)h=r2(exF,edF,skF,lgF,ctF,pjF,inF,proF,itF,refF);
+  else if(TI===3)h=r3(exF,edF,skF,lgF,ctF,pjF,inF,proF,itF,refF);
+  else h=r4(exF,edF,skF,lgF,ctF,pjF,inF,proF,itF,refF);
+  el.innerHTML=h;
+}
+
+function r1(exF,edF,skF,lgF,ctF,pjF,inF,proF,itF,refF){
+  var a=ap(),p=pp(),wb="rgba(255,255,255,0.15)";
+  return "<div style='display:flex;min-height:848px;font-family:Poppins,sans-serif;'>"
+    +"<div style='width:200px;flex-shrink:0;background:"+p+";padding:22px 14px;'>"
+    +"<div style='text-align:center;margin-bottom:12px;'>"+ph("","78px")+"</div>"
+    +"<div style='font-size:14px;font-weight:900;color:#fff;text-align:center;font-family:Playfair Display,serif;margin-bottom:3px;'>"+(D.name||"Prenom Nom")+"</div>"
+    +"<div style='font-size:7.5px;text-align:center;font-weight:600;color:"+a+";margin-bottom:10px;text-transform:uppercase;letter-spacing:.5px;'>"+(D.title||"Titre")+"</div>"
+    +(D.nat||D.birth?"<div style='text-align:center;margin-bottom:8px;'>"+(D.nat?"<div style='font-size:7px;color:#b8b8d0;margin-bottom:2px;'>&#127760; "+D.nat+"</div>":"")+(D.birth?"<div style='font-size:7px;color:#b8b8d0;'>&#128197; "+D.birth+"</div>":"")+"</div>":"")
+    +"<div style='height:1px;background:"+a+";opacity:.3;margin-bottom:9px;'></div>"
+    +(D.phone||D.email||D.loc?"<div style='margin-bottom:9px;'><div style='font-size:7px;font-weight:800;color:"+a+";text-transform:uppercase;margin-bottom:4px;'>Contact</div>"+(D.phone?"<div style='font-size:7px;color:#b8b8d0;margin-bottom:3px;'>&#128222; "+D.phone+"</div>":"")+(D.email?"<div style='font-size:7px;color:#b8b8d0;margin-bottom:3px;'>&#9993; "+D.email+"</div>":"")+(D.loc?"<div style='font-size:7px;color:#b8b8d0;margin-bottom:3px;'>&#128205; "+D.loc+"</div>":"")+(D.li?"<div style='font-size:7px;color:#b8b8d0;margin-bottom:3px;'>&#128279; "+D.li+"</div>":"")+"</div>":"")
+    +(skF.length?"<div style='height:1px;background:"+a+";opacity:.25;margin-bottom:8px;'></div><div style='font-size:7px;font-weight:800;color:"+a+";margin-bottom:5px;'>&#128273; COMPETENCES</div>"+skF.map(function(s){return "<div style='font-size:7px;color:#e8e6f0;margin-bottom:2px;'>"+s.name+"</div>"+bar(s.level,wb,a);}).join(""):"")
+    +(lgF.length?"<div style='height:1px;background:"+a+";opacity:.25;margin-bottom:8px;'></div><div style='font-size:7px;font-weight:800;color:"+a+";margin-bottom:5px;'>&#127758; LANGUES</div>"+lgF.map(function(l){return "<div style='display:flex;justify-content:space-between;margin-bottom:2px;'><div style='font-size:7px;color:#e8e6f0;'>"+l.name+"</div><div style='font-size:7px;color:"+a+";font-style:italic;'>"+l.level+"</div></div>"+bar(l.pct||70,wb,a);}).join(""):"")
+    +(itF.length?"<div style='height:1px;background:"+a+";opacity:.25;margin-bottom:8px;'></div><div style='font-size:7px;font-weight:800;color:"+a+";margin-bottom:5px;'>&#128187; INFORMATIQUE</div>"+itF.map(function(c){return "<div style='margin-bottom:3px;'><span style='font-size:7px;font-weight:700;color:"+a+";'>"+c.cat+":</span> <span style='font-size:7px;color:#e8e6f0;font-style:italic;'>"+c.items+"</span></div>";}).join(""):"")
+    +(inF.length?"<div style='height:1px;background:"+a+";opacity:.25;margin-bottom:8px;'></div><div style='font-size:7px;font-weight:800;color:"+a+";margin-bottom:5px;'>&#127919; INTERETS</div>"+inF.map(function(i){return "<div style='font-size:7px;color:#b8b8d0;margin-bottom:2px;'>&#8226; "+i+"</div>";}).join(""):"")
+    +"</div>"
+    +"<div style='flex:1;padding:20px 18px;'>"
+    +(D.sum?sT("&#128100;","Profil")+"<div style='font-size:7.5px;color:#444;line-height:1.7;background:#f9f7f3;padding:7px;border-radius:5px;font-style:italic;margin-bottom:4px;'>"+D.sum+"</div>":"")
+    +(exF.length?sT("&#128188;","Experience Professionnelle")+tl(exF):"")
+    +(edF.length?sT("&#127979;","Formation")+edF.map(function(e){return "<div style='margin-bottom:6px;'><div style='display:flex;justify-content:space-between;'><div style='font-size:8px;font-weight:800;color:#1a1926;'>"+e.degree+"</div><div style='font-size:7px;color:#999;'>"+e.dates+"</div></div><div style='font-size:7.5px;color:"+a+";font-weight:600;'>"+e.school+"</div>"+(e.desc?"<div style='font-size:7px;color:#777;font-style:italic;'>"+e.desc+"</div>":"")+"</div>";}).join(""):"")
+    +(proF.length?sT("&#128203;","Formations Professionnelles")+proF.map(function(e){return "<div style='margin-bottom:4px;'><span style='font-size:7.5px;font-weight:700;color:"+a+";'>"+e.date+"</span> <span style='font-size:7.5px;color:#333;'>"+e.name+"</span>"+(e.org?"<span style='font-size:7px;color:#777;'> ("+e.org+")</span>":"")+"</div>";}).join(""):"")
+    +(ctF.length?sT("&#127942;","Certifications")+ctF.map(function(c){return "<div style='font-size:7.5px;color:#444;margin-bottom:3px;'>&#10003; "+c.name+(c.issuer?" &mdash; "+c.issuer:"")+(c.date?" ("+c.date+")":"")+"</div>";}).join(""):"")
+    +(pjF.length?sT("&#128640;","Projets")+pjF.map(function(pr){return "<div style='margin-bottom:5px;'><div style='font-size:8px;font-weight:700;color:#1a1926;'>"+pr.name+"</div>"+(pr.tech?"<div style='font-size:7px;color:"+a+";'>"+pr.tech+"</div>":"")+(pr.desc?"<div style='font-size:7px;color:#555;'>"+pr.desc+"</div>":"")+"</div>";}).join(""):"")
+    +(refF.length?sT("&#128222;","References")+refF.map(function(r,i){return "<div style='margin-bottom:4px;'><span style='font-size:7.5px;font-weight:700;color:#1a1926;'>"+(i+1)+". "+r.name+"</span>"+(r.post?", <span style='font-size:7px;color:"+a+";font-style:italic;'>"+r.post+"</span>":"")+(r.tel?", <span style='font-size:7px;color:#555;'>Tel: "+r.tel+"</span>":"")+"</div>";}).join(""):"")
+    +"</div></div>";
+}
+
+function r2(exF,edF,skF,lgF,ctF,pjF,inF,proF,itF,refF){
+  var a=ap(),p=pp(),bg=bgp();
+  return "<div style='display:flex;flex-direction:column;min-height:848px;font-family:Poppins,sans-serif;'>"
+    +"<div style='background:"+p+";padding:22px 26px;display:flex;align-items:center;gap:18px;'>"+ph("")
+    +"<div><div style='font-size:19px;font-weight:900;color:#fff;font-family:Playfair Display,serif;margin-bottom:2px;'>"+(D.name||"Prenom Nom")+"</div>"
+    +"<div style='font-size:8.5px;font-weight:600;color:"+a+";text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;'>"+(D.title||"Titre")+"</div>"
+    +"<div style='display:flex;flex-wrap:wrap;gap:8px;'>"+(D.phone?"<div style='font-size:7px;color:#b8b8d0;'>&#128222; "+D.phone+"</div>":"")+(D.email?"<div style='font-size:7px;color:#b8b8d0;'>&#9993; "+D.email+"</div>":"")+(D.loc?"<div style='font-size:7px;color:#b8b8d0;'>&#128205; "+D.loc+"</div>":"")+(D.nat?"<div style='font-size:7px;color:#b8b8d0;'>&#127760; "+D.nat+"</div>":"")+(D.birth?"<div style='font-size:7px;color:#b8b8d0;'>&#128197; "+D.birth+"</div>":"")+"</div></div></div>"
+    +"<div style='display:flex;flex:1;'>"
+    +"<div style='width:185px;flex-shrink:0;padding:16px 13px;background:"+bg+";'>"
+    +(skF.length?sT("&#128273;","Competences")+skF.map(function(s){return "<div style='font-size:7px;color:#333;margin-bottom:2px;'>"+s.name+"</div>"+bar(s.level,"#ddd",a);}).join(""):"")
+    +(lgF.length?sT("&#127758;","Langues")+lgF.map(function(l){return "<div style='display:flex;justify-content:space-between;margin-bottom:2px;'><div style='font-size:7px;color:#333;'>"+l.name+"</div><div style='font-size:7px;color:"+a+";font-style:italic;'>"+l.level+"</div></div>"+bar(l.pct||70,"#ddd",a);}).join(""):"")
+    +(itF.length?sT("&#128187;","Informatique")+itF.map(function(c){return "<div style='margin-bottom:3px;'><span style='font-size:7px;font-weight:700;color:"+a+";'>"+c.cat+":</span><br><span style='font-size:7px;color:#444;font-style:italic;'>"+c.items+"</span></div>";}).join(""):"")
+    +(inF.length?sT("&#127919;","Interets")+inF.map(function(i){return "<div style='font-size:7px;color:#555;margin-bottom:2px;'>&#8226; "+i+"</div>";}).join(""):"")
+    +"</div>"
+    +"<div style='flex:1;padding:16px;'>"
+    +(D.sum?sT("&#128100;","Profil")+"<div style='font-size:7.5px;color:#444;line-height:1.7;font-style:italic;'>"+D.sum+"</div>":"")
+    +(exF.length?sT("&#128188;","Experience Professionnelle")+tl(exF):"")
+    +(edF.length?sT("&#127979;","Formation")+edF.map(function(e){return "<div style='margin-bottom:6px;'><div style='display:flex;justify-content:space-between;'><div style='font-size:8px;font-weight:800;color:#1a1926;'>"+e.degree+"</div><div style='font-size:7px;color:#999;'>"+e.dates+"</div></div><div style='font-size:7.5px;color:"+a+";font-weight:600;'>"+e.school+"</div>"+(e.desc?"<div style='font-size:7px;color:#777;font-style:italic;'>"+e.desc+"</div>":"")+"</div>";}).join(""):"")
+    +(proF.length?sT("&#128203;","Formations Pro")+proF.map(function(e){return "<div style='margin-bottom:4px;'><span style='font-size:7.5px;font-weight:700;color:"+a+";'>"+e.date+"</span> <span style='font-size:7.5px;color:#333;'>"+e.name+"</span></div>";}).join(""):"")
+    +(ctF.length?sT("&#127942;","Certifications")+ctF.map(function(c){return "<div style='font-size:7.5px;color:#444;margin-bottom:3px;'>&#10003; "+c.name+"</div>";}).join(""):"")
+    +(refF.length?sT("&#128222;","References")+refF.map(function(r,i){return "<div style='margin-bottom:4px;'><span style='font-size:7.5px;font-weight:700;color:#1a1926;'>"+(i+1)+". "+r.name+"</span>"+(r.post?", <span style='font-size:7px;color:"+a+";font-style:italic;'>"+r.post+"</span>":"")+"</div>";}).join(""):"")
+    +"</div></div></div>";
+}
+
+function r3(exF,edF,skF,lgF,ctF,pjF,inF,proF,itF,refF){
+  var a=ap();
+  return "<div style='display:flex;flex-direction:column;min-height:848px;font-family:Poppins,sans-serif;'>"
+    +"<div style='padding:24px 28px 16px;display:flex;align-items:flex-start;justify-content:space-between;border-bottom:2px solid "+a+";'>"
+    +"<div style='flex:1;'><div style='font-size:24px;font-weight:900;color:#0e0e12;letter-spacing:-1px;font-family:Playfair Display,serif;margin-bottom:3px;'>"+(D.name||"Prenom Nom")+"</div>"
+    +"<div style='font-size:9px;font-weight:700;color:"+a+";text-transform:uppercase;letter-spacing:2px;margin-bottom:8px;'>"+(D.title||"Titre")+"</div>"
+    +"<div style='display:flex;flex-wrap:wrap;gap:10px;'>"+(D.phone?"<div style='font-size:7px;color:#777;'>&#128222; "+D.phone+"</div>":"")+(D.email?"<div style='font-size:7px;color:#777;'>&#9993; "+D.email+"</div>":"")+(D.loc?"<div style='font-size:7px;color:#777;'>&#128205; "+D.loc+"</div>":"")+(D.nat?"<div style='font-size:7px;color:#777;'>&#127760; "+D.nat+"</div>":"")+(D.birth?"<div style='font-size:7px;color:#777;'>&#128197; "+D.birth+"</div>":"")+"</div></div>"
+    +ph("","60px")+"</div>"
+    +"<div style='display:flex;flex:1;'>"
+    +"<div style='flex:1;padding:16px 28px;'>"
+    +(D.sum?"<div style='margin-bottom:10px;'>"+sT("&#128100;","Profil")+"<div style='font-size:7.5px;color:#444;line-height:1.8;font-style:italic;'>"+D.sum+"</div></div>":"")
+    +(exF.length?"<div style='margin-bottom:10px;'>"+sT("&#128188;","Experience Professionnelle")+tl(exF)+"</div>":"")
+    +(edF.length?"<div style='margin-bottom:10px;'>"+sT("&#127979;","Formation")+edF.map(function(e){return "<div style='margin-bottom:6px;'><div style='display:flex;justify-content:space-between;'><div style='font-size:8px;font-weight:800;color:#0e0e12;'>"+e.degree+"</div><div style='font-size:7px;color:#aaa;'>"+e.dates+"</div></div><div style='font-size:7.5px;color:"+a+";font-weight:600;'>"+e.school+"</div>"+(e.desc?"<div style='font-size:7px;color:#777;font-style:italic;'>"+e.desc+"</div>":"")+"</div>";}).join("")+"</div>":"")
+    +(proF.length?"<div style='margin-bottom:10px;'>"+sT("&#128203;","Formations Pro")+proF.map(function(e){return "<div style='margin-bottom:4px;'><span style='font-size:7.5px;font-weight:700;color:"+a+";'>"+e.date+"</span> <span style='font-size:7.5px;color:#333;'>"+e.name+"</span></div>";}).join("")+"</div>":"")
+    +"</div>"
+    +"<div style='width:168px;flex-shrink:0;padding:16px;border-left:1px solid #eee;'>"
+    +(skF.length?sT("&#128273;","Competences")+skF.map(function(s){return "<div style='font-size:7px;color:#333;margin-bottom:2px;'>"+s.name+"</div>"+bar(s.level,"#eee",a);}).join(""):"")
+    +(lgF.length?sT("&#127758;","Langues")+lgF.map(function(l){return "<div style='display:flex;justify-content:space-between;margin-bottom:2px;'><div style='font-size:7px;color:#333;'>"+l.name+"</div><div style='font-size:7px;color:"+a+";font-style:italic;'>"+l.level+"</div></div>"+bar(l.pct||70,"#eee",a);}).join(""):"")
+    +(itF.length?sT("&#128187;","Informatique")+itF.map(function(c){return "<div style='margin-bottom:3px;'><span style='font-size:7px;font-weight:700;color:"+a+";'>"+c.cat+":</span><br><span style='font-size:7px;color:#444;font-style:italic;'>"+c.items+"</span></div>";}).join(""):"")
+    +(ctF.length?sT("&#127942;","Certif.")+ctF.map(function(c){return "<div style='font-size:7px;color:#444;margin-bottom:2px;'>&#10003; "+c.name+"</div>";}).join(""):"")
+    +(inF.length?sT("&#127919;","Interets")+inF.map(function(i){return "<div style='font-size:7px;color:#555;margin-bottom:2px;'>&#8226; "+i+"</div>";}).join(""):"")
+    +(refF.length?sT("&#128222;","References")+refF.map(function(r,i){return "<div style='margin-bottom:4px;'><div style='font-size:7.5px;font-weight:700;color:#0e0e12;'>"+(i+1)+". "+r.name+"</div>"+(r.post?"<div style='font-size:7px;color:"+a+";font-style:italic;'>"+r.post+"</div>":"")+(r.tel?"<div style='font-size:7px;color:#555;'>"+r.tel+"</div>":"")+"</div>";}).join(""):"")
+    +"</div></div></div>";
+}
+
+function r4(exF,edF,skF,lgF,ctF,pjF,inF,proF,itF,refF){
+  var a=ap(),p=pp();
+  function br(lv){return "<div style='height:2px;border-radius:1px;background:#2a2a2a;margin-bottom:4px;'><div style='height:2px;border-radius:1px;background:"+a+";width:"+lv+"%;'></div></div>";}
+  return "<div style='background:#0e0e12;display:flex;flex-direction:column;min-height:848px;font-family:Poppins,sans-serif;'>"
+    +"<div style='background:linear-gradient(135deg,"+p+",#111);padding:22px 24px;border-bottom:2px solid "+a+";display:flex;align-items:center;gap:16px;'>"
+    +(PHO?"<div style='width:66px;height:66px;border-radius:50%;border:3px solid "+a+";overflow:hidden;flex-shrink:0;'><img src='"+PHO+"' style='width:100%;height:100%;object-fit:cover;'></div>":"<div style='width:66px;height:66px;border-radius:50%;background:"+p+"22;border:2px solid "+a+"44;display:flex;align-items:center;justify-content:center;font-size:26px;flex-shrink:0;'>&#128100;</div>")
+    +"<div><div style='font-size:19px;font-weight:900;color:#fff;font-family:Playfair Display,serif;margin-bottom:2px;'>"+(D.name||"Prenom Nom")+"</div>"
+    +"<div style='font-size:8px;font-weight:700;color:"+a+";text-transform:uppercase;letter-spacing:2px;margin-bottom:5px;'>"+(D.title||"Titre")+"</div>"
+    +"<div style='display:flex;flex-wrap:wrap;gap:8px;'>"+(D.phone?"<span style='font-size:7px;color:#aaa;'>&#128222; "+D.phone+"</span>":"")+(D.email?"<span style='font-size:7px;color:#aaa;'>&#9993; "+D.email+"</span>":"")+(D.loc?"<span style='font-size:7px;color:#aaa;'>&#128205; "+D.loc+"</span>":"")+(D.nat?"<span style='font-size:7px;color:#aaa;'>&#127760; "+D.nat+"</span>":"")+(D.birth?"<span style='font-size:7px;color:#aaa;'>&#128197; "+D.birth+"</span>":"")+"</div></div></div>"
+    +"<div style='display:flex;flex:1;'>"
+    +"<div style='width:185px;flex-shrink:0;padding:12px 13px;border-right:1px solid #2a2a2a;'>"
+    +(skF.length?sT("&#128273;","Competences",a)+skF.map(function(s){return "<div style='font-size:7px;color:#ccc;margin-bottom:1px;'>"+s.name+"</div>"+br(s.level);}).join(""):"")
+    +(lgF.length?sT("&#127758;","Langues",a)+lgF.map(function(l){return "<div style='display:flex;justify-content:space-between;margin-bottom:2px;'><div style='font-size:7px;color:#ccc;'>"+l.name+"</div><div style='font-size:7px;color:"+a+";font-style:italic;'>"+l.level+"</div></div>"+br(l.pct||70);}).join(""):"")
+    +(itF.length?sT("&#128187;","Informatique",a)+itF.map(function(c){return "<div style='margin-bottom:4px;'><span style='font-size:7px;font-weight:700;color:"+a+";'>"+c.cat+":</span><br><span style='font-size:7px;color:#aaa;font-style:italic;'>"+c.items+"</span></div>";}).join(""):"")
+    +(inF.length?sT("&#127919;","Interets",a)+inF.map(function(i){return "<div style='font-size:7px;color:#aaa;margin-bottom:2px;'>&#8226; "+i+"</div>";}).join(""):"")
+    +"</div>"
+    +"<div style='flex:1;padding:12px 18px;'>"
+    +(D.sum?sT("&#128100;","Profil",a)+"<div style='font-size:7.5px;color:#bbb;line-height:1.7;font-style:italic;background:#1a1a1a;padding:7px;border-radius:5px;border-left:3px solid "+a+";margin-bottom:4px;'>"+D.sum+"</div>":"")
+    +(exF.length?sT("&#128188;","Experience",a)+tl(exF,"#fff"):"")
+    +(edF.length?sT("&#127979;","Formation",a)+edF.map(function(e){return "<div style='margin-bottom:5px;'><div style='display:flex;justify-content:space-between;'><div style='font-size:8px;font-weight:800;color:#fff;'>"+e.degree+"</div><div style='font-size:7px;color:#666;'>"+e.dates+"</div></div><div style='font-size:7.5px;color:"+a+";font-weight:600;'>"+e.school+"</div>"+(e.desc?"<div style='font-size:7px;color:#888;font-style:italic;'>"+e.desc+"</div>":"")+"</div>";}).join(""):"")
+    +(proF.length?sT("&#128203;","Formations Pro",a)+proF.map(function(e){return "<div style='margin-bottom:4px;'><span style='font-size:7.5px;font-weight:700;color:"+a+";'>"+e.date+"</span> <span style='font-size:7.5px;color:#ccc;'>"+e.name+"</span></div>";}).join(""):"")
+    +(ctF.length?sT("&#127942;","Certifications",a)+ctF.map(function(c){return "<div style='font-size:7.5px;color:#bbb;margin-bottom:3px;'>&#10003; "+c.name+"</div>";}).join(""):"")
+    +(refF.length?sT("&#128222;","References",a)+refF.map(function(r,i){return "<div style='margin-bottom:4px;'><span style='font-size:7.5px;font-weight:700;color:#fff;'>"+(i+1)+". "+r.name+"</span>"+(r.post?", <span style='font-size:7px;color:"+a+";'>"+r.post+"</span>":"")+(r.tel?", <span style='font-size:7px;color:#888;'>"+r.tel+"</span>":"")+"</div>";}).join(""):"")
+    +"</div></div></div>";
+}
+
+
+
+
+// ============================================================
+// FONCTIONS MANQUANTES - syncD, initLists, render listes
+// ============================================================
+function syncD(){
+  D.name=G("fn").value||"";D.title=G("ft").value||"";D.phone=G("fph").value||"";
+  D.email=G("fem").value||"";D.loc=G("floc").value||"";
+  D.li=G("fli").value||"";D.gh=G("fgh").value||"";D.sum=G("fsum").value||"";
+  D.nat=G("fnat").value||"";D.birth=G("fbirth").value||"";
+}
+
+function fi2(v,f,i,t,ph){
+  return "<input class='fi2' style='width:100%;' value='"+(v||"").replace(/'/g,"&#39;")+"' data-f='"+f+"' data-i='"+i+"' data-t='"+t+"' placeholder='"+ph+"'>";
+}
+
+function renderExps(){
+  var el=G("exp-list");if(!el)return;
+  el.innerHTML=D.exps.map(function(e,i){
+    return "<div class='icard'><div class='icard-h'><span class='icard-l'>Exp "+(i+1)+"</span>"+(i>0?"<button class='brm' data-i='"+i+"' data-t='exp'>&times;</button>":"")+"</div>"
+      +"<div class='fg2'><label>Titre</label>"+fi2(e.title,"title",i,"exp","Ingenieur Senior")+"</div>"
+      +"<div class='fr2'><div class='fg2'><label>Entreprise</label>"+fi2(e.company,"company",i,"exp","TechCorp")+"</div><div class='fg2'><label>Lieu</label>"+fi2(e.loc,"loc",i,"exp","Ouaga")+"</div></div>"
+      +"<div class='fg2'><label>Periode</label>"+fi2(e.dates,"dates",i,"exp","2022 - Present")+"</div>"
+      +"<div class='fg2'><label>Points cles (un par ligne)</label><textarea class='fi2' style='width:100%;min-height:55px;resize:vertical;' data-f='bullets' data-i='"+i+"' data-t='exp' placeholder='Developpe une API...'>"+(e.bullets||[""]).join("\n")+"</textarea></div>"
+      +"<button class='aib' data-impr='"+i+"'>&#10024; Ameliorer</button></div>";
+  }).join("");
+}
+function renderEdus(){
+  var el=G("edu-list");if(!el)return;
+  el.innerHTML=D.edus.map(function(e,i){
+    return "<div class='icard'><div class='icard-h'><span class='icard-l'>Formation "+(i+1)+"</span>"+(i>0?"<button class='brm' data-i='"+i+"' data-t='edu'>&times;</button>":"")+"</div>"
+      +"<div class='fg2'><label>Diplome</label>"+fi2(e.degree,"degree",i,"edu","Master 2")+"</div>"
+      +"<div class='fg2'><label>Etablissement</label>"+fi2(e.school,"school",i,"edu","Universite")+"</div>"
+      +"<div class='fr2'><div class='fg2'><label>Periode</label>"+fi2(e.dates,"dates",i,"edu","2018-2020")+"</div>"
+      +"<div class='fg2'><label>Mention</label>"+fi2(e.desc,"desc",i,"edu","Bien")+"</div></div></div>";
+  }).join("");
+}
+function renderSks(){
+  var el=G("sk-list");if(!el)return;
+  el.innerHTML=D.sks.map(function(s,i){
+    return "<div style='display:flex;gap:7px;align-items:center;margin-bottom:8px;'>"
+      +"<input class='fi2' style='flex:2;' value='"+(s.name||"").replace(/'/g,"&#39;")+"' data-f='sname' data-i='"+i+"' placeholder='Python...'>"
+      +"<div style='flex:1;'><input type='range' min='0' max='100' value='"+(s.level||80)+"' data-f='slevel' data-i='"+i+"' style='accent-color:#D4AF37;width:100%;'>"
+      +"<div style='font-size:9px;color:#D4AF37;text-align:center;' id='sv"+i+"'>"+(s.level||80)+"%</div></div>"
+      +(i>0?"<button class='brm' data-i='"+i+"' data-t='sk'>&times;</button>":"")+"</div>";
+  }).join("");
+}
+function renderLgs(){
+  var el=G("lg-list");if(!el)return;
+  el.innerHTML=D.lgs.map(function(l,i){
+    return "<div class='icard' style='padding:9px;'><div style='display:flex;gap:6px;margin-bottom:5px;'>"
+      +"<input class='fi2' style='flex:1;' value='"+(l.name||"").replace(/'/g,"&#39;")+"' data-f='lname' data-i='"+i+"' placeholder='Francais'>"
+      +"<input class='fi2' style='flex:1;' value='"+(l.level||"").replace(/'/g,"&#39;")+"' data-f='llevel' data-i='"+i+"' placeholder='Courant C1'>"
+      +(i>0?"<button class='brm' data-i='"+i+"' data-t='lg'>&times;</button>":"")+"</div>"
+      +"<input type='range' min='0' max='100' value='"+(l.pct||70)+"' data-f='lpct' data-i='"+i+"' style='accent-color:#D4AF37;width:100%;'></div>";
+  }).join("");
+}
+function renderCts(){
+  var el=G("ct-list");if(!el)return;
+  el.innerHTML=D.cts.map(function(c,i){
+    return "<div style='display:flex;gap:5px;margin-bottom:7px;align-items:center;'>"
+      +"<input class='fi2' style='flex:3;' value='"+(c.name||"").replace(/'/g,"&#39;")+"' data-f='cname' data-i='"+i+"' placeholder='AWS'>"
+      +"<input class='fi2' style='flex:2;' value='"+(c.issuer||"").replace(/'/g,"&#39;")+"' data-f='cissuer' data-i='"+i+"' placeholder='Amazon'>"
+      +"<input class='fi2' style='width:55px;' value='"+(c.date||"")+"' data-f='cdate' data-i='"+i+"' placeholder='2023'>"
+      +(i>0?"<button class='brm' data-i='"+i+"' data-t='ct'>&times;</button>":"")+"</div>";
+  }).join("");
+}
+function renderPjs(){
+  var el=G("pj-list");if(!el)return;
+  el.innerHTML=D.pjs.map(function(p,i){
+    return "<div class='icard'><div class='icard-h'><span class='icard-l'>Projet "+(i+1)+"</span>"+(i>0?"<button class='brm' data-i='"+i+"' data-t='pj'>&times;</button>":"")+"</div>"
+      +"<div class='fg2'><label>Nom</label>"+fi2(p.name,"pname",i,"pj","App Mobile")+"</div>"
+      +"<div class='fg2'><label>Technologies</label>"+fi2(p.tech,"ptech",i,"pj","React, Firebase")+"</div>"
+      +"<div class='fg2'><label>Description</label>"+fi2(p.desc,"pdesc",i,"pj","Application de...")+"</div></div>";
+  }).join("");
+}
+function renderIns(){
+  var el=G("in-list");if(!el)return;
+  el.innerHTML=D.ins.map(function(it,i){
+    return "<div style='display:flex;gap:7px;margin-bottom:7px;align-items:center;'>"
+      +"<input class='fi2' style='flex:1;' value='"+(it||"").replace(/'/g,"&#39;")+"' data-f='int' data-i='"+i+"' placeholder='Photographie...'>"
+      +(i>0?"<button class='brm' data-i='"+i+"' data-t='in'>&times;</button>":"")+"</div>";
+  }).join("");
+}
+function renderPros(){
+  var el=G("pro-list");if(!el)return;
+  el.innerHTML=D.pros.map(function(e,i){
+    return "<div class='icard'><div class='icard-h'><span class='icard-l'>Formation "+(i+1)+"</span>"+(i>0?"<button class='brm' data-i='"+i+"' data-t='pro'>&times;</button>":"")+"</div>"
+      +"<div class='fg2'><label>Intitule</label>"+fi2(e.name,"proname",i,"pro","Formation PRINCE2")+"</div>"
+      +"<div class='fr2'><div class='fg2'><label>Organisme</label>"+fi2(e.org,"proorg",i,"pro","Croix-Rouge")+"</div>"
+      +"<div class='fg2'><label>Date</label>"+fi2(e.date,"prodate",i,"pro","06/2024")+"</div></div></div>";
+  }).join("");
+}
+function renderIts(){
+  var el=G("it-list");if(!el)return;
+  el.innerHTML=D.its.map(function(c,i){
+    return "<div style='display:flex;gap:7px;align-items:center;margin-bottom:8px;'>"
+      +"<input class='fi2' style='flex:1;' value='"+(c.cat||"").replace(/'/g,"&#39;")+"' data-f='icat' data-i='"+i+"' placeholder='Bureautique'>"
+      +"<input class='fi2' style='flex:2;' value='"+(c.items||"").replace(/'/g,"&#39;")+"' data-f='iitems' data-i='"+i+"' placeholder='Microsoft Excel, Word'>"
+      +(i>0?"<button class='brm' data-i='"+i+"' data-t='it'>&times;</button>":"")+"</div>";
+  }).join("");
+}
+function renderRefs(){
+  var el=G("ref-list");if(!el)return;
+  el.innerHTML=D.refs.map(function(r,i){
+    return "<div class='icard'><div class='icard-h'><span class='icard-l'>Reference "+(i+1)+"</span>"+(i>0?"<button class='brm' data-i='"+i+"' data-t='ref'>&times;</button>":"")+"</div>"
+      +"<div class='fg2'><label>Nom complet</label>"+fi2(r.name,"rname",i,"ref","Dr Gambetta NACRO")+"</div>"
+      +"<div class='fr2'><div class='fg2'><label>Poste</label>"+fi2(r.post,"rpost",i,"ref","President")+"</div>"
+      +"<div class='fg2'><label>Tel</label>"+fi2(r.tel,"rtel",i,"ref","76200527")+"</div></div></div>";
+  }).join("");
+}
+
+function initLists(){
+  if(!D.exps.length)D.exps=[{id:1,title:"",company:"",loc:"",dates:"",bullets:[""]}];
+  if(!D.edus.length)D.edus=[{id:1,degree:"",school:"",dates:"",desc:""}];
+  if(!D.sks.length)D.sks=[{id:1,name:"",level:80}];
+  if(!D.lgs.length)D.lgs=[{id:1,name:"",level:"",pct:70}];
+  if(!D.cts.length)D.cts=[{id:1,name:"",issuer:"",date:""}];
+  if(!D.pjs.length)D.pjs=[{id:1,name:"",tech:"",desc:""}];
+  if(!D.ins.length)D.ins=[""];
+  if(!D.pros.length)D.pros=[{id:1,name:"",org:"",date:""}];
+  if(!D.its.length)D.its=[{id:1,cat:"",items:""}];
+  if(!D.refs.length)D.refs=[{id:1,name:"",post:"",tel:""}];
+  renderExps();renderEdus();renderSks();renderLgs();renderCts();renderPjs();renderIns();renderPros();renderIts();renderRefs();
+}
+
+// EVENTS INPUT
+document.addEventListener("input",function(e){
+  var t=e.target,f=t.getAttribute("data-f"),i=parseInt(t.getAttribute("data-i")),tp=t.getAttribute("data-t");
+  if(!f)return;
+  if(f==="sname"&&D.sks[i])D.sks[i].name=t.value;
+  else if(f==="slevel"&&D.sks[i]){D.sks[i].level=parseInt(t.value);var sv=G("sv"+i);if(sv)sv.textContent=t.value+"%";}
+  else if(f==="lname"&&D.lgs[i])D.lgs[i].name=t.value;
+  else if(f==="llevel"&&D.lgs[i])D.lgs[i].level=t.value;
+  else if(f==="lpct"&&D.lgs[i])D.lgs[i].pct=parseInt(t.value);
+  else if(f==="cname"&&D.cts[i])D.cts[i].name=t.value;
+  else if(f==="cissuer"&&D.cts[i])D.cts[i].issuer=t.value;
+  else if(f==="cdate"&&D.cts[i])D.cts[i].date=t.value;
+  else if(f==="pname"&&D.pjs[i])D.pjs[i].name=t.value;
+  else if(f==="ptech"&&D.pjs[i])D.pjs[i].tech=t.value;
+  else if(f==="pdesc"&&D.pjs[i])D.pjs[i].desc=t.value;
+  else if(f==="int"&&D.ins[i]!==undefined)D.ins[i]=t.value;
+  else if(f==="proname"&&D.pros[i])D.pros[i].name=t.value;
+  else if(f==="proorg"&&D.pros[i])D.pros[i].org=t.value;
+  else if(f==="prodate"&&D.pros[i])D.pros[i].date=t.value;
+  else if(f==="icat"&&D.its[i])D.its[i].cat=t.value;
+  else if(f==="iitems"&&D.its[i])D.its[i].items=t.value;
+  else if(f==="rname"&&D.refs[i])D.refs[i].name=t.value;
+  else if(f==="rpost"&&D.refs[i])D.refs[i].post=t.value;
+  else if(f==="rtel"&&D.refs[i])D.refs[i].tel=t.value;
+  else if(tp==="exp"&&D.exps[i]){if(f==="bullets")D.exps[i].bullets=t.value.split("\n");else D.exps[i][f]=t.value;}
+  else if(tp==="edu"&&D.edus[i])D.edus[i][f]=t.value;
+  renderCV();
+});
+
+["fn","ft","fph","fem","floc","fli","fgh","fsum","fnat","fbirth"].forEach(function(id){
+  var el=G(id);if(el)el.addEventListener("input",function(){syncD();renderCV();});
+});
+
+// SUPPRESSION LISTES
+document.addEventListener("click",function(e){
+  var btn=e.target.closest(".brm");if(!btn)return;
+  var i=parseInt(btn.getAttribute("data-i")),tp=btn.getAttribute("data-t");
+  var map={exp:["exps",renderExps],edu:["edus",renderEdus],sk:["sks",renderSks],lg:["lgs",renderLgs],ct:["cts",renderCts],pj:["pjs",renderPjs],"in":["ins",renderIns],pro:["pros",renderPros],it:["its",renderIts],ref:["refs",renderRefs]};
+  if(map[tp]){D[map[tp][0]].splice(i,1);map[tp][1]();renderCV();}
+});
+
+// AMELIORER BULLETS
+document.addEventListener("click",async function(e){
+  var btn=e.target.closest("[data-impr]");if(!btn)return;
+  var i=parseInt(btn.getAttribute("data-impr"));
+  var b=(D.exps[i]&&D.exps[i].bullets||[]).join("\n").trim();
+  if(!b){toast("Entrez vos points","er");return;}
+  btn.disabled=true;btn.innerHTML="<span class='sp'></span>";
+  var r=await callAI(getP("bullets")+"\n\n"+b);
+  if(r){D.exps[i].bullets=r.split("\n").filter(function(x){return x.trim();});renderExps();renderCV();toast("Points ameliores !","ok");}
+  btn.disabled=false;btn.innerHTML="&#10024; Ameliorer";
+});
+
+// BOUTONS AJOUTER
+G("btn-addexp").onclick=function(){D.exps.push({id:Date.now(),title:"",company:"",loc:"",dates:"",bullets:[""]});renderExps();};
+G("btn-addedu").onclick=function(){D.edus.push({id:Date.now(),degree:"",school:"",dates:"",desc:""});renderEdus();};
+G("btn-addsk").onclick=function(){D.sks.push({id:Date.now(),name:"",level:75});renderSks();};
+G("btn-addlg").onclick=function(){D.lgs.push({id:Date.now(),name:"",level:"",pct:70});renderLgs();};
+G("btn-addct").onclick=function(){D.cts.push({id:Date.now(),name:"",issuer:"",date:""});renderCts();};
+G("btn-addpj").onclick=function(){D.pjs.push({id:Date.now(),name:"",tech:"",desc:""});renderPjs();};
+G("btn-addin").onclick=function(){D.ins.push("");renderIns();};
+G("btn-addpro").onclick=function(){D.pros.push({id:Date.now(),name:"",org:"",date:""});renderPros();};
+G("btn-addit").onclick=function(){D.its.push({id:Date.now(),cat:"",items:""});renderIts();};
+G("btn-addref").onclick=function(){D.refs.push({id:Date.now(),name:"",post:"",tel:""});renderRefs();};
+
+// ============================================================
+// BIOMÉTRIE - WebAuthn
+// ============================================================
+var BIOMETRIC_KEY = "cvpro_biometric";
+
+function biometricAvailable(){
+  return window.PublicKeyCredential !== undefined &&
+         typeof window.PublicKeyCredential.isUserVerifyingPlatformAuthenticatorAvailable === "function";
+}
+
+async function checkBiometric(){
+  try{
+    if(!biometricAvailable()) return false;
+    return await window.PublicKeyCredential.isUserVerifyingPlatformAuthenticatorAvailable();
+  }catch(e){return false;}
+}
+
+async function registerBiometric(email, name){
+  try{
+    var encoder = new TextEncoder();
+    var userId = encoder.encode(email);
+    var challenge = new Uint8Array(32);
+    window.crypto.getRandomValues(challenge);
+
+    var credential = await navigator.credentials.create({
+      publicKey:{
+        challenge: challenge,
+        rp:{ name:"CVPro Africa", id: window.location.hostname && window.location.hostname!="" ? window.location.hostname : "localhost" },
+        user:{ id: userId, name: email, displayName: name },
+        pubKeyCredParams:[{alg:-7, type:"public-key"},{alg:-257, type:"public-key"}],
+        authenticatorSelection:{
+          authenticatorAttachment:"platform",
+          userVerification:"required",
+          residentKey:"preferred"
+        },
+        timeout: 60000,
+        attestation:"none"
+      }
+    });
+
+    if(credential){
+      var credId = Array.from(new Uint8Array(credential.rawId));
+      localStorage.setItem(BIOMETRIC_KEY+"_"+email, JSON.stringify({credId:credId, name:name}));
+      return true;
+    }
+    return false;
+  }catch(e){
+    console.error("Register biometric error:", e.message);
+    if(e.name==="NotAllowedError") toast("Empreinte annulee par l utilisateur","er");
+    else if(e.name==="NotSupportedError") toast("Empreinte non supportee sur cet appareil","er");
+    else if(e.name==="SecurityError") toast("Empreinte: ouvrez le site via HTTPS","er");
+    else toast("Erreur empreinte: "+e.message,"er");
+    return false;
+  }
+}
+
+async function authenticateBiometric(email){
+  try{
+    var stored = localStorage.getItem(BIOMETRIC_KEY+"_"+email);
+    if(!stored) return false;
+    var data = JSON.parse(stored);
+
+    var challenge = new Uint8Array(32);
+    window.crypto.getRandomValues(challenge);
+
+    var credId = new Uint8Array(data.credId);
+
+    var assertion = await navigator.credentials.get({
+      publicKey:{
+        challenge: challenge,
+        allowCredentials:[{ type:"public-key", id: credId, transports:["internal"] }],
+        userVerification:"required",
+        timeout: 60000
+      }
+    });
+
+    return assertion !== null;
+  }catch(e){
+    console.error("Biometric auth error:", e);
+    return false;
+  }
+}
+
+function hasBiometricRegistered(email){
+  return localStorage.getItem(BIOMETRIC_KEY+"_"+email) !== null;
+}
+
+async function loginWithBiometric(){
+  // Trouver les comptes enregistrés avec biométrie
+  var users = getU();
+  var bioEmails = Object.keys(users).filter(function(e){
+    return localStorage.getItem(BIOMETRIC_KEY+"_"+e) !== null;
+  });
+
+  if(bioEmails.length === 0){
+    toast("Aucun compte avec empreinte enregistrée","er");
+    return;
+  }
+
+  // Si un seul compte, l'utiliser directement
+  var email = bioEmails[0];
+  if(bioEmails.length > 1){
+    // Afficher choix (cas rare)
+    email = bioEmails[0];
+  }
+
+  var btn = document.getElementById("btn-biometric");
+  if(btn){btn.disabled=true;btn.innerHTML="<span class=\'sp\'></span> Vérification...";}
+
+  var ok = await authenticateBiometric(email);
+
+  if(ok){
+    var u = users[email];
+    loginUser(u);
+    closeOv("auth");
+    toast("Connexion par empreinte réussie !", "ok");
+  } else {
+    toast("Empreinte non reconnue", "er");
+  }
+
+  if(btn){btn.disabled=false;btn.innerHTML="&#128100; Utiliser mon empreinte";}
+}
+
+async function offerBiometricSetup(email, name){
+  var available = await checkBiometric();
+  if(!available) return;
+  if(hasBiometricRegistered(email)) return;
+
+  // Proposer d'enregistrer l'empreinte après connexion réussie
+  setTimeout(function(){
+    var div = document.createElement("div");
+    div.style.cssText = "position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:#18182e;border:1px solid rgba(212,175,55,.5);border-radius:12px;padding:14px 18px;z-index:9998;max-width:320px;width:90%;text-align:center;box-shadow:0 8px 30px rgba(0,0,0,.5);";
+    div.innerHTML = "<div style=\'font-size:22px;margin-bottom:6px;\'>&#128100;</div>"
+      +"<div style=\'font-size:13px;font-weight:700;color:#fff;margin-bottom:4px;\'>Connexion rapide</div>"
+      +"<div style=\'font-size:11px;color:#7a7a99;margin-bottom:12px;\'>Activer la connexion par empreinte pour la prochaine fois ?</div>"
+      +"<div style=\'display:flex;gap:8px;\'>"
+      +"<button id=\'bio-yes\' style=\'flex:1;padding:8px;background:linear-gradient(135deg,#D4AF37,#b8892a);border:none;border-radius:7px;color:#000;font-size:12px;font-weight:700;cursor:pointer;font-family:Poppins,sans-serif;\'>Activer</button>"
+      +"<button id=\'bio-no\' style=\'flex:1;padding:8px;background:transparent;border:1px solid #2a2a45;border-radius:7px;color:#7a7a99;font-size:12px;cursor:pointer;font-family:Poppins,sans-serif;\'>Plus tard</button>"
+      +"</div>";
+    document.body.appendChild(div);
+
+    document.getElementById("bio-no").onclick = function(){ document.body.removeChild(div); };
+    document.getElementById("bio-yes").onclick = async function(){
+      document.body.removeChild(div);
+      var ok = await registerBiometric(email, name);
+      if(ok) toast("Empreinte enregistrée ! Connexion rapide activée ✓", "ok");
+      else toast("Enregistrement annulé", "er");
+    };
+
+    setTimeout(function(){ if(document.body.contains(div)) document.body.removeChild(div); }, 8000);
+  }, 1000);
+}
+
+// ============================================================
+// SAUVEGARDE AUTOMATIQUE
+// ============================================================
+var SAVE_KEY = "cvpro_draft";
+var saveTimer = null;
+
+function saveCV(){
+  try{
+    var draft = {
+      D: D,
+      PHO: PHO,
+      TI: TI,
+      CI: CI,
+      PG: PG,
+      NB_PAGES: NB_PAGES,
+      savedAt: new Date().toISOString()
+    };
+    localStorage.setItem(SAVE_KEY, JSON.stringify(draft));
+  }catch(e){}
+}
+
+function autoSave(){
+  clearTimeout(saveTimer);
+  saveTimer = setTimeout(function(){
+    saveCV();
+    // Afficher indicateur discret
+    var ind = document.getElementById("save-ind");
+    if(ind){ind.style.opacity="1";setTimeout(function(){ind.style.opacity="0";},1500);}
+  }, 1000);
+}
+
+function loadDraft(){
+  try{
+    var raw = localStorage.getItem(SAVE_KEY);
+    if(!raw) return null;
+    return JSON.parse(raw);
+  }catch(e){return null;}
+}
+
+function deleteDraft(){
+  localStorage.removeItem(SAVE_KEY);
+}
+
+function applyDraft(draft){
+  // Restaurer les données
+  Object.assign(D, draft.D);
+  if(draft.PHO) PHO = draft.PHO;
+  if(draft.TI) TI = draft.TI;
+  if(draft.CI) CI = draft.CI;
+  if(draft.PG) PG = draft.PG;
+  if(draft.NB_PAGES) NB_PAGES = draft.NB_PAGES;
+
+  // Remplir les champs du formulaire
+  var fields = {fn:"name",ft:"title",fph:"phone",fem:"email",floc:"loc",fli:"li",fgh:"gh",fsum:"sum",fnat:"nat",fbirth:"birth"};
+  Object.keys(fields).forEach(function(id){
+    var el = document.getElementById(id);
+    if(el && D[fields[id]]) el.value = D[fields[id]];
+  });
+
+  // Restaurer la photo
+  if(PHO){
+    var ph_ph = document.getElementById("ph-ph");
+    var ph_img = document.getElementById("ph-img");
+    if(ph_ph) ph_ph.style.display = "none";
+    if(ph_img){ ph_img.src = PHO; ph_img.style.display = "block"; }
+    var btn_crop = document.getElementById("btn-crop");
+    if(btn_crop) btn_crop.style.display = "inline-flex";
+  }
+
+  // Rendre les listes
+  initLists();
+  renderColors();
+
+  // Sélectionner le bon template
+  document.querySelectorAll(".tbtn").forEach(function(b){b.classList.remove("on");});
+  var tb = document.getElementById("tb"+TI);
+  if(tb) tb.classList.add("on");
+
+  renderCV();
+}
+
+// Hooker autoSave sur renderCV
+var _origRenderCV = renderCV;
+renderCV = function(){
+  _origRenderCV();
+  autoSave();
+};
+
+// PAIEMENT
+G("btn-export").onclick=function(){
+  if(!D.name){toast("Remplissez au moins votre nom","er");return;}
+  if(CU&&CU.email===AE){exportPDF();return;}
+  var info=getPayInfo();
+  G("pay-nm").textContent=D.name;
+  G("pay-amount").textContent=info.amt.toLocaleString()+" FCFA";
+  G("pay-detail").textContent=info.label;
+  G("ps-amt").textContent=info.amt.toLocaleString()+" FCFA";
+  openOv("pay");
+};
+document.querySelectorAll(".pmth").forEach(function(m){
+  m.onclick=function(){
+    document.querySelectorAll(".pmth").forEach(function(x){x.classList.remove("on");});
+    this.classList.add("on");
+  };
+});
+G("btn-wa").onclick=function(){
+  var info=getPayInfo();
+  var nm=encodeURIComponent(D.name||"Client");
+  var mth=document.querySelector(".pmth.on");
+  var mthName=mth?mth.querySelector(".pmth-n").textContent:"Wave";
+  var num=mth?mth.querySelector(".pmth-num").textContent:"75318351";
+  var msg="Bonjour%20!%0A%0AJe%20viens%20d%27effectuer%20un%20paiement%20sur%20CVPro%20Africa.%0A%0A"
+    +"Nom%20%3A%20"+nm+"%0A"
+    +"Option%20%3A%20"+encodeURIComponent(info.label)+"%0A"
+    +"Montant%20%3A%20"+info.amt+"%20FCFA%0A"
+    +"Via%20%3A%20"+encodeURIComponent(mthName)+"%0A%0A"
+    +"Veuillez%20trouver%20ci-joint%20ma%20capture%20d%27%C3%A9cran.%0AMerci%20!";
+  window.open("https://wa.me/"+WA+"?text="+msg,"_blank");
+  closeOv("pay");
+  toast("WhatsApp ouvert ! Envoyez votre capture.","ok");
+  setTimeout(function(){openOv("code");},3000);
+};
+
+// PDF
+function exportPDF(){
+  var el=G("cv-prev");if(!el)return;
+  // Sauvegarder dans l historique
+  try{
+    var hist=JSON.parse(localStorage.getItem("cvpro_hist")||"[]");
+    hist.unshift({
+      name:D.name,title:D.title,
+      date:new Date().toISOString(),
+      pages:NB_PAGES
+    });
+    localStorage.setItem("cvpro_hist",JSON.stringify(hist.slice(0,20)));
+  }catch(e){}
+  var w=window.open("","_blank");
+  if(!w){toast("Autorisez les popups pour telecharger","er");return;}
+  w.document.write("<!DOCTYPE html><html><head><meta charset=UTF-8><title>CV "+D.name+"</title>"
+    +"<link href='https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Poppins:wght@300;400;500;600;700&display=swap' rel='stylesheet'>"
+    +"<style>body{margin:0;background:white;}@page{size:A4;margin:0;}@media print{html,body{width:210mm;}}</style>"
+    +"</head><body><div style='width:210mm;min-height:297mm;'>"+el.innerHTML+"</div></body></html>");
+  w.document.close();
+  setTimeout(function(){w.print();},800);
+  toast("PDF en cours de generation...","ok");
+}
+
+// AVIS MODAL
+var STAR=5;
+document.querySelectorAll("#stars-inp span").forEach(function(s,idx){
+  s.style.color="#D4AF37";
+  s.onmouseover=function(){document.querySelectorAll("#stars-inp span").forEach(function(x,i){x.style.color=i<=idx?"#D4AF37":"#333";});};
+  s.onmouseout=function(){document.querySelectorAll("#stars-inp span").forEach(function(x,i){x.style.color=i<STAR?"#D4AF37":"#333";});};
+  s.onclick=function(){STAR=idx+1;document.querySelectorAll("#stars-inp span").forEach(function(x,i){x.style.color=i<STAR?"#D4AF37":"#333";});};
+});
+G("btn-submit-avis").onclick=function(){
+  var nom=G("avis-name").value.trim(),txt=G("avis-txt").value.trim();
+  if(!nom||!txt){toast("Remplissez nom et commentaire","er");return;}
+  var r=getRealAvis();r.unshift({nom:nom,job:G("avis-job").value.trim(),ville:"",note:STAR,txt:txt,date:"A l instant"});
+  localStorage.setItem("cvpro_avis",JSON.stringify(r));
+  closeOv("avis");renderAvis();toast("Merci pour votre avis !","ok");
+};
+G("btn-skip-avis").onclick=function(){closeOv("avis");};
+
+
+// MODAL PAGES
+var pgOpt = 1;
+function updatePgOpts(){
+  var o1=G("pg-opt1"),o2=G("pg-opt2");
+  if(!o1||!o2)return;
+  o1.style.borderColor=pgOpt===1?"#D4AF37":"#2a2a45";
+  var o1l=o1.querySelector("div:last-child"),o1n=o1.querySelector("div:nth-child(2)");
+  if(o1l)o1l.style.color=pgOpt===1?"#D4AF37":"#7a7a99";
+  if(o1n)o1n.style.color=pgOpt===1?"#D4AF37":"#fff";
+  o2.style.borderColor=pgOpt===2?"#D4AF37":"#2a2a45";
+  var o2l=o2.querySelector("div:last-child"),o2n=o2.querySelector("div:nth-child(2)");
+  if(o2l)o2l.style.color=pgOpt===2?"#D4AF37":"#7a7a99";
+  if(o2n)o2n.style.color=pgOpt===2?"#D4AF37":"#fff";
+}
+G("pg-opt1").onclick=function(){pgOpt=1;updatePgOpts();};
+G("pg-opt2").onclick=function(){pgOpt=2;updatePgOpts();};
+G("btn-pages-ok").onclick=function(){
+  NB_PAGES=pgOpt;
+  PG=pgOpt;
+  closeOv("pages");
+  startBuilder("scratch");
+};
+updatePgOpts();
+
+// PAIEMENT SIMPLIFIÉ
+function getPayInfo(){
+  var prices={1:1500,2:2000};
+  var labels={1:"CV 1 page",2:"CV 2 pages"};
+  return {amt:prices[NB_PAGES]||1500, label:labels[NB_PAGES]||"CV"};
+}
+
+// TOUS LES EVENTS BOUTONS
+G("btn-start").onclick=function(){openOv("pages");};
+// FR/EN désactivé - app en français uniquement
+
+G("mc-auth").onclick=function(){closeOv("auth");};
+G("mc-pay").onclick=function(){closeOv("pay");};
+G("mc-avis").onclick=function(){closeOv("avis");};
+G("btn-out").onclick=function(){CU=null;sessionStorage.removeItem("cvpro_cu");go("home");};
+G("btn-admin-out").onclick=function(){CU=null;sessionStorage.removeItem("cvpro_cu");go("home");};
+G("btn-back").onclick=function(){go("home");};
+G("dc-sc").onclick=function(){startBuilder("scratch");};
+G("dc-im").onclick=function(){startBuilder("import");};
+G("dc-cl").onclick=function(){startBuilder("clone");};
+G("adot").onclick=function(){swTab("log");openOv("auth");};
+G("mt-reg").onclick=function(){swTab("reg");};
+G("mt-log").onclick=function(){swTab("log");};
+G("btn-reg").onclick=function(){if(doReg(G("reg-name").value.trim(),G("reg-email").value.trim(),G("reg-pass").value))closeOv("auth");};
+G("btn-log").onclick=function(){if(doLog(G("log-email").value.trim(),G("log-pass").value))closeOv("auth");};
+G("btn-biometric").onclick=function(){loginWithBiometric();};
+
+// Vérifier dispo biométrie au chargement
+checkBiometric().then(function(available){
+  var btn = G("btn-biometric");
+  var unavail = G("bio-unavail");
+  if(!available){
+    if(btn) btn.style.opacity="0.4";
+    if(unavail) unavail.style.display="block";
+  } else {
+    // Vérifier si un compte a une empreinte enregistrée
+    var users = getU();
+    var hasBio = Object.keys(users).some(function(e){
+      return localStorage.getItem(BIOMETRIC_KEY+"_"+e) !== null;
+    });
+    if(!hasBio && btn){
+      btn.innerHTML="<span style=\'font-size:18px;\'>&#128100;</span> Empreinte (après 1ère connexion)";
+      btn.style.opacity="0.6";
+    }
+  }
+});
+G("btn-gen").onclick=function(){curCode=genCode();addCode(curCode);G("code-val").textContent=curCode;G("code-disp").style.display="block";updateStats();renderHist();toast("Code: "+curCode,"ok");};
+G("btn-copy").onclick=function(){var el=document.createElement("textarea");el.value=curCode;document.body.appendChild(el);el.select();document.execCommand("copy");document.body.removeChild(el);toast("Code copie !","ok");};
+G("btn-wa-send").onclick=function(){
+  var num=G("client-wa").value.trim().replace(/[^0-9]/g,"");if(!num){toast("Entrez le numero","er");return;}
+  if(num.length<=8)num="226"+num;
+  var msg="Bonjour%20!%20Paiement%20confirme.%0ACode%20%3A%20*"+curCode+"*%0AEntrez%20ce%20code%20sur%20cvpro-africa.vercel.app";
+  window.open("https://wa.me/"+num+"?text="+msg,"_blank");toast("Message envoye !","ok");
+};
+
+
+// EVENTS MODAL REPRISE
+G("btn-resume-yes").onclick = function(){
+  var draft = loadDraft();
+  if(draft){
+    NB_PAGES = draft.NB_PAGES || 1;
+    PG = draft.PG || 1;
+    closeOv("resume");
+    go("builder");
+    setTimeout(function(){applyDraft(draft);}, 100);
+    toast("CV restauré !", "ok");
+  }
+};
+
+G("btn-resume-new").onclick = function(){
+  deleteDraft();
+  closeOv("resume");
+  openOv("pages");
+};
+
+G("btn-resume-code").onclick = function(){
+  var code = G("resume-code").value.trim().toUpperCase();
+  if(!code){toast("Entrez votre code","er");return;}
+  var draft = loadDraft();
+  if(!draft){toast("Aucun CV sauvegardé trouvé","er");return;}
+  if(checkCode(code)){
+    useCode(code);
+    closeOv("resume");
+    // Charger le CV et exporter directement
+    NB_PAGES = draft.NB_PAGES || 1;
+    go("builder");
+    setTimeout(function(){
+      applyDraft(draft);
+      setTimeout(function(){
+        toast("Code valide ! Téléchargement...","ok");
+        exportPDF();
+      },800);
+    },200);
+  }else{
+    toast("Code invalide ou déjà utilisé","er");
+    var ic = G("resume-code");
+    ic.style.borderColor = "#e74c3c";
+    setTimeout(function(){ic.style.borderColor="";},2000);
+  }
+};
+
+// Au démarrage: vérifier si brouillon existe
+var _draft = loadDraft();
+if(_draft && _draft.D && _draft.D.name){
+  // Afficher infos du brouillon
+  var rn = document.getElementById("resume-name");
+  var rd = document.getElementById("resume-date");
+  if(rn) rn.textContent = "CV de " + _draft.D.name + (_draft.D.title ? " — " + _draft.D.title : "");
+  if(rd && _draft.savedAt){
+    var diff = Math.round((Date.now() - new Date(_draft.savedAt).getTime()) / 60000);
+    var timeStr = diff < 1 ? "il y a moins d'une minute" :
+                  diff < 60 ? "il y a " + diff + " min" :
+                  diff < 1440 ? "il y a " + Math.round(diff/60) + "h" :
+                  "il y a " + Math.round(diff/1440) + " jour(s)";
+    rd.textContent = "Sauvegardé " + timeStr;
+  }
+  openOv("resume");
+}
+
+
+// RESET CODES ADMIN
+var btnReset = G("btn-reset-codes");
+if(btnReset) btnReset.onclick = function(){
+  if(confirm("Effacer tous les codes ? Cette action est irreversible.")){
+    localStorage.removeItem("cvpro_codes");
+    updateStats();renderHist();
+    toast("Codes effaces !","ok");
+  }
+};
+
+// HISTORIQUE TELECHARGEMENTS
+function renderDlHist(){
+  var hist=JSON.parse(localStorage.getItem("cvpro_hist")||"[]");
+  var wrap=G("dl-hist-wrap"),list=G("dl-hist-list");
+  if(!wrap||!list)return;
+  if(!hist.length){wrap.style.display="none";return;}
+  wrap.style.display="block";
+  list.innerHTML=hist.map(function(h){
+    var d=new Date(h.date);
+    var ds=d.toLocaleDateString("fr-FR")+" a "+d.toLocaleTimeString("fr-FR",{hour:"2-digit",minute:"2-digit"});
+    return "<div style='background:#18182e;border:1px solid #2a2a45;border-radius:8px;padding:10px 12px;margin-bottom:8px;display:flex;justify-content:space-between;align-items:center;'>"
+      +"<div><div style='font-size:12px;font-weight:700;color:#fff;'>"+h.name+"</div>"
+      +"<div style='font-size:10px;color:#7a7a99;'>"+h.title+" &bull; "+h.pages+" page(s)</div></div>"
+      +"<div style='font-size:10px;color:#7a7a99;'>"+ds+"</div></div>";
+  }).join("");
+}
+
+// Afficher historique quand on va sur le dashboard
+var _origGo = go;
+go = function(id){
+  _origGo(id);
+  if(id==="dash") renderDlHist();
+};
+
+// INIT
+var sv=sessionStorage.getItem("cvpro_cu");
+if(sv){try{var su=JSON.parse(sv);CU=su;G("nav-av").textContent=su.name[0].toUpperCase();G("nav-nm").textContent=su.name.split(" ")[0];}catch(e){}}
+renderAvis();
+renderCV();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+})();
+</script>
+</body>
+</html>
