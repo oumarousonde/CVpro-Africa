@@ -625,9 +625,11 @@ textarea.fi2{resize:vertical;min-height:58px;}
 
 
 
+
 <script>
 (function(){
 "use strict";
+
 
 
 
@@ -734,9 +736,49 @@ function swTab(tab){
 function getCodes(){return JSON.parse(localStorage.getItem("cvpro_codes")||"[]");}
 function saveCodes(c){localStorage.setItem("cvpro_codes",JSON.stringify(c));}
 function addCode(c){var a=getCodes();a.unshift({code:c,date:new Date().toISOString(),used:false});saveCodes(a);}
-function useCode(c){saveCodes(getCodes().map(function(x){if(x.code===c)x.used=true;return x;}));}
-function checkCode(c){return getCodes().some(function(x){return x.code===c.toUpperCase()&&!x.used;});}
-function genCode(){var ch="ABCDEFGHJKLMNPQRSTUVWXYZ23456789",c="CVP-";for(var i=0;i<3;i++)c+=ch[Math.floor(Math.random()*ch.length)];c+="-";for(var i=0;i<4;i++)c+=ch[Math.floor(Math.random()*ch.length)];return c;}
+function useCode(c){
+  // Marquer comme utilisé localement (côté client)
+  var used=JSON.parse(localStorage.getItem("cvpro_used")||"[]");
+  if(!used.includes(c))used.push(c);
+  localStorage.setItem("cvpro_used",JSON.stringify(used));
+  // Aussi marquer dans la liste admin si on est admin
+  saveCodes(getCodes().map(function(x){if(x.code===c)x.used=true;return x;}));
+}
+function checkCode(c){
+  c=c.toUpperCase().trim();
+  // Vérification format: CVP-XXXX-XXX
+  if(!c.match(/^CVP-[A-Z0-9]{4}-[A-Z0-9]{3}$/))return false;
+  var parts=c.split("-");
+  if(parts.length!==3)return false;
+  var part1=parts[1];
+  var checksum=parts[2];
+  // Recalculer checksum
+  var ch="ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+  var sum=0;
+  for(var i=0;i<part1.length;i++)sum+=part1.charCodeAt(i);
+  var salt="CVPRO2025";
+  for(var i=0;i<salt.length;i++)sum+=salt.charCodeAt(i);
+  var expected=ch[sum%32]+ch[(sum*7+13)%32]+ch[(sum*3+17)%32];
+  if(checksum!==expected)return false;
+  // Vérifier pas déjà utilisé (dans localStorage local)
+  var used=JSON.parse(localStorage.getItem("cvpro_used")||"[]");
+  return !used.includes(c);
+}
+function genCode(){
+  var ch="ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+  var part1="";
+  for(var i=0;i<4;i++)part1+=ch[Math.floor(Math.random()*ch.length)];
+  // Checksum: somme des codes ASCII % 32 -> char dans ch
+  var sum=0;
+  for(var i=0;i<part1.length;i++)sum+=part1.charCodeAt(i);
+  // Ajouter salt secret
+  var salt="CVPRO2025";
+  for(var i=0;i<salt.length;i++)sum+=salt.charCodeAt(i);
+  var ck1=ch[sum%32];
+  var ck2=ch[(sum*7+13)%32];
+  var ck3=ch[(sum*3+17)%32];
+  return "CVP-"+part1+"-"+ck1+ck2+ck3;
+}
 function updateStats(){
   var codes=getCodes(),td=new Date().toDateString(),mo=new Date().getMonth(),yr=new Date().getFullYear();
   G("stat-today").textContent=codes.filter(function(c){return new Date(c.date).toDateString()===td;}).length;
@@ -980,7 +1022,7 @@ G("btn-addsk").onclick=function(){D.sks.unshift({id:Date.now(),name:"",level:75}
 G("btn-addlg").onclick=function(){D.lgs.unshift({id:Date.now(),name:"",level:"",pct:70});renderLgs();};
 G("btn-addct").onclick=function(){D.cts.unshift({id:Date.now(),name:"",issuer:"",date:""});renderCts();};
 G("btn-addpj").onclick=function(){D.pjs.unshift({id:Date.now(),name:"",tech:"",desc:""});renderPjs();};
-G("btn-addin").onclick=function(){D.ins.push("");renderIns();};
+G("btn-addin").onclick=function(){D.ins.unshift("");renderIns();};
 G("btn-addpro").onclick=function(){D.pros.unshift({id:Date.now(),name:"",org:"",date:""});renderPros();};
 G("btn-addit").onclick=function(){D.its.unshift({id:Date.now(),cat:"",items:""});renderIts();};
 G("btn-addref").onclick=function(){D.refs.unshift({id:Date.now(),name:"",post:"",tel:""});renderRefs();};
@@ -1334,7 +1376,7 @@ G("btn-addsk").onclick=function(){D.sks.unshift({id:Date.now(),name:"",level:75}
 G("btn-addlg").onclick=function(){D.lgs.unshift({id:Date.now(),name:"",level:"",pct:70});renderLgs();};
 G("btn-addct").onclick=function(){D.cts.unshift({id:Date.now(),name:"",issuer:"",date:""});renderCts();};
 G("btn-addpj").onclick=function(){D.pjs.unshift({id:Date.now(),name:"",tech:"",desc:""});renderPjs();};
-G("btn-addin").onclick=function(){D.ins.push("");renderIns();};
+G("btn-addin").onclick=function(){D.ins.unshift("");renderIns();};
 G("btn-addpro").onclick=function(){D.pros.unshift({id:Date.now(),name:"",org:"",date:""});renderPros();};
 G("btn-addit").onclick=function(){D.its.unshift({id:Date.now(),cat:"",items:""});renderIts();};
 G("btn-addref").onclick=function(){D.refs.unshift({id:Date.now(),name:"",post:"",tel:""});renderRefs();};
@@ -1889,6 +1931,7 @@ var sv=sessionStorage.getItem("cvpro_cu");
 if(sv){try{var su=JSON.parse(sv);CU=su;G("nav-av").textContent=su.name[0].toUpperCase();G("nav-nm").textContent=su.name.split(" ")[0];}catch(e){}}
 renderAvis();
 renderCV();
+
 
 
 
