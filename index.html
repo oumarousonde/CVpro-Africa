@@ -160,7 +160,7 @@ textarea.fi2{resize:vertical;min-height:58px;}
         <div style="display:inline-flex;padding:5px 14px;background:rgba(212,175,55,.1);border:1px solid rgba(212,175,55,.35);border-radius:50px;font-size:11px;color:#D4AF37;font-weight:600;letter-spacing:1px;text-transform:uppercase;margin-bottom:20px;">&#127462;&#127467; &#127481;&#127475; &#127474;&#127273; &#127474;&#127462; &#127464;&#127470; CVPro Africa</div>
         <h1 class="htitle" id="h-title">Votre CV<br><span>Professionnel</span><br>en minutes</h1>
         <p style="font-size:13px;color:#7a7a99;margin-bottom:8px;font-style:italic;letter-spacing:1px;">Votre CV. Votre futur.</p>
-        <p id="h-sub" style="font-size:13px;color:#7a7a99;line-height:1.7;margin-bottom:24px;">4 templates premium &bull; Intelligence Artificielle<br>Score CV &bull; Lettre de motivation</p>
+        <p id="h-sub" style="font-size:13px;color:#7a7a99;line-height:1.7;margin-bottom:24px;">4 templates premium &bull; Intelligence Artificielle<br>Score CV &bull; CV professionnel</p>
         <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px;">
           <div style="padding:5px 14px;border-radius:50px;font-size:11px;font-weight:600;border:1px solid rgba(212,175,55,.4);background:rgba(212,175,55,.1);color:#D4AF37;">&#128196; CV 1 page &mdash; 1 500 FCFA</div>
           <div style="padding:5px 14px;border-radius:50px;font-size:11px;font-weight:600;border:1px solid rgba(212,175,55,.4);background:rgba(212,175,55,.1);color:#D4AF37;">&#128196; 2 pages &mdash; 2 000 FCFA</div>
@@ -317,7 +317,7 @@ textarea.fi2{resize:vertical;min-height:58px;}
       <button class="btab" data-tab="edu">&#127979; Formation</button>
       <button class="btab" data-tab="sk">&#9889; Comp&eacute;tences</button>
       <button class="btab" data-tab="ext">&#127775; Compl&eacute;ments</button>
-      <button class="btab" data-tab="pro">&#128203; Form.Pro</button>
+      
       <button class="btab" data-tab="it">&#128187; Informatique</button>
       <button class="btab" data-tab="ref">&#128222; R&eacute;f&eacute;rences</button>
       <button class="btab" data-tab="sc">&#128202; Score</button>
@@ -379,7 +379,7 @@ textarea.fi2{resize:vertical;min-height:58px;}
         <button class="badd" id="btn-addlg">+ Ajouter</button>
       </div>
       <div data-pane="ext" style="display:none">
-        <div class="fsec">&#127942; Certifications</div>
+        <div class="fsec">&#127942; Formations &amp; Certifications</div>
         <div id="ct-list"></div>
         <button class="badd" id="btn-addct">+ Ajouter</button>
         <div class="fsec" style="margin-top:14px;">&#128640; Projets</div>
@@ -389,11 +389,7 @@ textarea.fi2{resize:vertical;min-height:58px;}
         <div id="in-list"></div>
         <button class="badd" id="btn-addin">+ Ajouter</button>
       </div>
-      <div data-pane="pro" style="display:none">
-        <div class="fsec">&#128203; Formations Professionnelles</div>
-        <div id="pro-list"></div>
-        <button class="badd" id="btn-addpro">+ Ajouter</button>
-      </div>
+      
       <div data-pane="it" style="display:none">
         <div class="fsec">&#128187; Informatique / Logiciels</div>
         <div style="font-size:10px;color:#7a7a99;margin-bottom:8px;background:#18182e;padding:7px;border-radius:6px;">Ex: <b>Bureautique</b> &rarr; Microsoft Excel, Word</div>
@@ -629,9 +625,13 @@ textarea.fi2{resize:vertical;min-height:58px;}
 
 
 
+
+
 <script>
 (function(){
 "use strict";
+
+
 
 
 
@@ -670,7 +670,7 @@ var COLORS=[
   {p:"#1c1c1e",a:"#6b7280",bg:"rgba(107,114,128,0.1)"}
 ];
 var D={name:"",title:"",phone:"",email:"",loc:"",li:"",gh:"",sum:"",nat:"",birth:"",
-  exps:[],edus:[],sks:[],lgs:[],cts:[],pjs:[],ins:[],pros:[],its:[],refs:[]};
+  exps:[],edus:[],sks:[],lgs:[],cts:[],pjs:[],ins:[],its:[],refs:[]};
 
 function G(id){return document.getElementById(id);}
 
@@ -692,7 +692,7 @@ function toast(msg,type){
 
 // TRADUCTIONS
 var TX={
-  fr:{"h-title":"Votre CV<br><span style='color:#D4AF37'>Professionnel</span><br>en minutes","h-sub":"4 templates premium &bull; Intelligence Artificielle<br>Score CV &bull; Lettre de motivation","h-note":"Aucun compte requis &bull; Payez uniquement pour t&eacute;l&eacute;charger","btn-start-txt":"&#10024; Cr&eacute;er mon CV &mdash; Gratuit","feat1":"4 templates premium","feat2":"Intelligence Artificielle","feat3":"Photo recadr&eacute;e auto","avis-star":"&#11088; Avis clients","avis-title":"Ce qu&apos;ils disent de nous","avis-sub":"Plus de 200 professionnels nous font confiance","db-title":"Que souhaitez-vous faire ?","db-sub":"Choisissez votre point de d&eacute;part","dc-sc-t":"Cr&eacute;er from scratch","dc-sc-d":"Remplissez le formulaire &eacute;tape par &eacute;tape",},
+  fr:{"h-title":"Votre CV<br><span style='color:#D4AF37'>Professionnel</span><br>en minutes","h-sub":"4 templates premium &bull; Intelligence Artificielle<br>Score CV &bull; CV professionnel","h-note":"Aucun compte requis &bull; Payez uniquement pour t&eacute;l&eacute;charger","btn-start-txt":"&#10024; Cr&eacute;er mon CV &mdash; Gratuit","feat1":"4 templates premium","feat2":"Intelligence Artificielle","feat3":"Photo recadr&eacute;e auto","avis-star":"&#11088; Avis clients","avis-title":"Ce qu&apos;ils disent de nous","avis-sub":"Plus de 200 professionnels nous font confiance","db-title":"Que souhaitez-vous faire ?","db-sub":"Choisissez votre point de d&eacute;part","dc-sc-t":"Cr&eacute;er from scratch","dc-sc-d":"Remplissez le formulaire &eacute;tape par &eacute;tape",},
   en:{"h-title":"Your Professional<br><span style='color:#D4AF37'>CV</span><br>in minutes","h-sub":"4 premium templates &bull; Artificial Intelligence<br>CV Score &bull; Cover letter","h-note":"No account required &bull; Pay only to download","btn-start-txt":"&#10024; Create my CV &mdash; Free","feat1":"4 premium templates","feat2":"Artificial Intelligence","feat3":"Auto photo cropping","avis-star":"&#11088; Client reviews","avis-title":"What they say about us","avis-sub":"Over 200 professionals trust us","db-title":"What would you like to do?","db-sub":"Choose your starting point","dc-sc-t":"Create from scratch","dc-sc-d":"Fill in the form step by step",}
 };
 function applyLang(lang){
@@ -788,7 +788,7 @@ var AVIS_DEF=[
   {nom:"Aminata Kone",job:"Comptable",ville:"Abidjan",note:5,txt:"J ai decroche mon poste a la BCEAO grace a CVPro Africa. Mon CV etait vraiment professionnel !",date:"Il y a 2 jours"},
   {nom:"Moussa Diallo",job:"Ingenieur Info",ville:"Ouagadougou",note:5,txt:"Simple, rapide et impressionnant. J ai eu 3 entretiens en une semaine !",date:"Il y a 5 jours"},
   {nom:"Fatou Sow",job:"Responsable RH",ville:"Dakar",note:5,txt:"Le template Elegant est magnifique. Mes recruteurs ont remarque la qualite. Je recommande !",date:"Il y a 1 semaine"},
-  {nom:"Ibrahim Traore",job:"Chef de Projet",ville:"Bamako",note:4,txt:"La lettre de motivation par IA m a sauve beaucoup de temps. Bravo !",date:"Il y a 2 semaines"},
+  {nom:"Ibrahim Traore",job:"Chef de Projet",ville:"Bamako",note:4,txt:"Le score IA m a aide a ameliorer mon CV avant de l envoyer. Bravo !",date:"Il y a 2 semaines"},
   {nom:"Mariam Ouedraogo",job:"Medecin",ville:"Ouagadougou",note:5,txt:"J avais un vieux CV Word basique. Maintenant j ai un CV professionnel. Merci !",date:"Il y a 3 semaines"}
 ];
 function getRealAvis(){return JSON.parse(localStorage.getItem("cvpro_avis")||"[]");}
@@ -893,7 +893,6 @@ function fillForm(d){
   if(d.cts&&d.cts.length){D.cts=d.cts;renderCts();}
   if(d.pjs&&d.pjs.length){D.pjs=d.pjs;renderPjs();}
   if(d.ins&&d.ins.length){D.ins=d.ins;renderIns();}
-  if(d.pros&&d.pros.length){D.pros=d.pros;renderPros();}
   if(d.its&&d.its.length){D.its=d.its;renderIts();}
   if(d.refs&&d.refs.length){D.refs=d.refs;renderRefs();}
   syncD();renderCV();
@@ -1004,7 +1003,6 @@ G("btn-addlg").onclick=function(){D.lgs.unshift({id:Date.now(),name:"",level:"",
 G("btn-addct").onclick=function(){D.cts.unshift({id:Date.now(),name:"",issuer:"",date:""});renderCts();};
 G("btn-addpj").onclick=function(){D.pjs.unshift({id:Date.now(),name:"",tech:"",desc:""});renderPjs();};
 G("btn-addin").onclick=function(){D.ins.unshift("");renderIns();};
-G("btn-addpro").onclick=function(){D.pros.unshift({id:Date.now(),name:"",org:"",date:""});renderPros();};
 G("btn-addit").onclick=function(){D.its.unshift({id:Date.now(),cat:"",items:""});renderIts();};
 G("btn-addref").onclick=function(){D.refs.unshift({id:Date.now(),name:"",post:"",tel:""});renderRefs();};
 
@@ -1064,18 +1062,17 @@ function renderCV(){
   var ctF=D.cts.filter(function(c){return c.name;});
   var pjF=D.pjs.filter(function(p){return p.name;});
   var inF=D.ins.filter(function(i){return i;});
-  var proF=D.pros.filter(function(e){return e.name;});
   var itF=D.its.filter(function(c){return c.cat;});
   var refF=D.refs.filter(function(r){return r.name;});
   var h="";
-  if(TI===1)h=r1(exF,edF,skF,lgF,ctF,pjF,inF,proF,itF,refF);
-  else if(TI===2)h=r2(exF,edF,skF,lgF,ctF,pjF,inF,proF,itF,refF);
-  else if(TI===3)h=r3(exF,edF,skF,lgF,ctF,pjF,inF,proF,itF,refF);
-  else h=r4(exF,edF,skF,lgF,ctF,pjF,inF,proF,itF,refF);
+  if(TI===1)h=r1(exF,edF,skF,lgF,ctF,pjF,inF,itF,refF);
+  else if(TI===2)h=r2(exF,edF,skF,lgF,ctF,pjF,inF,itF,refF);
+  else if(TI===3)h=r3(exF,edF,skF,lgF,ctF,pjF,inF,itF,refF);
+  else h=r4(exF,edF,skF,lgF,ctF,pjF,inF,itF,refF);
   el.innerHTML=h;
 }
 
-function r1(exF,edF,skF,lgF,ctF,pjF,inF,proF,itF,refF){
+function r1(exF,edF,skF,lgF,ctF,pjF,inF,itF,refF){
   var a=ap(),p=pp(),wb="rgba(255,255,255,0.15)";
   return "<div style='display:flex;min-height:848px;font-family:Poppins,sans-serif;'>"
     +"<div style='width:200px;flex-shrink:0;background:"+p+";padding:22px 14px;'>"
@@ -1094,14 +1091,13 @@ function r1(exF,edF,skF,lgF,ctF,pjF,inF,proF,itF,refF){
     +(D.sum?sT("&#128100;","Profil")+"<div style='font-size:7.5px;color:#444;line-height:1.7;background:#f9f7f3;padding:7px;border-radius:5px;font-style:italic;margin-bottom:4px;'>"+boldifyProfile(D.sum,a)+"</div>":"")
     +(exF.length?sT("&#128188;","Experience Professionnelle")+tl(exF):"")
     +(edF.length?sT("&#127979;","Formation")+edF.map(function(e){return "<div style='margin-bottom:6px;'><div style='display:flex;justify-content:space-between;'><div style='font-size:8px;font-weight:800;color:#1a1926;'>"+e.degree+"</div><div style='font-size:7px;color:#999;'>"+e.dates+"</div></div><div style='font-size:7.5px;color:"+a+";font-weight:600;'>"+e.school+"</div>"+(e.desc?"<div style='font-size:7px;color:#777;font-style:italic;'>"+e.desc+"</div>":"")+"</div>";}).join(""):"")
-    +(proF.length?sT("&#128203;","Formations Professionnelles")+proF.map(function(e){return "<div style='margin-bottom:4px;'><span style='font-size:7.5px;font-weight:700;color:"+a+";'>"+e.date+"</span> <span style='font-size:7.5px;color:#333;'>"+e.name+"</span>"+(e.org?"<span style='font-size:7px;color:#777;'> ("+e.org+")</span>":"")+"</div>";}).join(""):"")
-    +(ctF.length?sT("&#127942;","Certifications")+ctF.map(function(c){return "<div style='font-size:7.5px;color:#444;margin-bottom:3px;'>&#10003; "+c.name+(c.issuer?" &mdash; "+c.issuer:"")+(c.date?" ("+c.date+")":"")+"</div>";}).join(""):"")
+    +(ctF.length?sT("&#127942;","Formations &amp; Certifications")+ctF.map(function(c){return "<div style='font-size:7.5px;color:#444;margin-bottom:3px;'>&#10003; "+c.name+(c.issuer?" &mdash; "+c.issuer:"")+(c.date?" ("+c.date+")":"")+"</div>";}).join(""):"")
     +(pjF.length?sT("&#128640;","Projets")+pjF.map(function(pr){return "<div style='margin-bottom:5px;'><div style='font-size:8px;font-weight:700;color:#1a1926;'>"+pr.name+"</div>"+(pr.tech?"<div style='font-size:7px;color:"+a+";'>"+pr.tech+"</div>":"")+(pr.desc?"<div style='font-size:7px;color:#555;'>"+pr.desc+"</div>":"")+"</div>";}).join(""):"")
     +(refF.length?sT("&#128222;","References")+refF.map(function(r,i){return "<div style='margin-bottom:4px;'><span style='font-size:7.5px;font-weight:700;color:#1a1926;'>"+(i+1)+". "+r.name+"</span>"+(r.post?", <span style='font-size:7px;color:"+a+";font-style:italic;'>"+r.post+"</span>":"")+(r.tel?", <span style='font-size:7px;color:#555;'>Tel: "+r.tel+"</span>":"")+"</div>";}).join(""):"")
     +"</div></div>";
 }
 
-function r2(exF,edF,skF,lgF,ctF,pjF,inF,proF,itF,refF){
+function r2(exF,edF,skF,lgF,ctF,pjF,inF,itF,refF){
   var a=ap(),p=pp(),bg=bgp();
   return "<div style='display:flex;flex-direction:column;min-height:848px;font-family:Poppins,sans-serif;'>"
     +"<div style='background:"+p+";padding:22px 26px;display:flex;align-items:center;gap:18px;'>"+ph("")
@@ -1119,14 +1115,13 @@ function r2(exF,edF,skF,lgF,ctF,pjF,inF,proF,itF,refF){
     +(D.sum?sT("&#128100;","Profil")+"<div style='font-size:7.5px;color:#444;line-height:1.7;font-style:italic;'>"+boldifyProfile(D.sum,a)+"</div>":"")
     +(exF.length?sT("&#128188;","Experience Professionnelle")+tl(exF):"")
     +(edF.length?sT("&#127979;","Formation")+edF.map(function(e){return "<div style='margin-bottom:6px;'><div style='display:flex;justify-content:space-between;'><div style='font-size:8px;font-weight:800;color:#1a1926;'>"+e.degree+"</div><div style='font-size:7px;color:#999;'>"+e.dates+"</div></div><div style='font-size:7.5px;color:"+a+";font-weight:600;'>"+e.school+"</div>"+(e.desc?"<div style='font-size:7px;color:#777;font-style:italic;'>"+e.desc+"</div>":"")+"</div>";}).join(""):"")
-    +(proF.length?sT("&#128203;","Formations Pro")+proF.map(function(e){return "<div style='margin-bottom:4px;'><span style='font-size:7.5px;font-weight:700;color:"+a+";'>"+e.date+"</span> <span style='font-size:7.5px;color:#333;'>"+e.name+"</span></div>";}).join(""):"")
-    +(ctF.length?sT("&#127942;","Certifications")+ctF.map(function(c){return "<div style='font-size:7.5px;color:#444;margin-bottom:3px;'>&#10003; "+c.name+"</div>";}).join(""):"")
+    +(ctF.length?sT("&#127942;","Formations &amp; Certifications")+ctF.map(function(c){return "<div style='font-size:7.5px;color:#444;margin-bottom:3px;'>&#10003; "+c.name+"</div>";}).join(""):"")
     +(pjF.length?sT("&#128640;","Projets")+pjF.map(function(pr){return "<div style='margin-bottom:5px;'><div style='font-size:8px;font-weight:700;color:#1a1926;'>"+pr.name+"</div>"+(pr.tech?"<div style='font-size:7px;color:"+a+";'>"+pr.tech+"</div>":"")+(pr.desc?"<div style='font-size:7px;color:#555;'>"+pr.desc+"</div>":"")+"</div>";}).join(""):"")
 +(refF.length?sT("&#128222;","References")+refF.map(function(r,i){return "<div style='margin-bottom:4px;'><span style='font-size:7.5px;font-weight:700;color:#1a1926;'>"+(i+1)+". "+r.name+"</span>"+(r.post?", <span style='font-size:7px;color:"+a+";font-style:italic;'>"+r.post+"</span>":"")+"</div>";}).join(""):"")
     +"</div></div></div>";
 }
 
-function r3(exF,edF,skF,lgF,ctF,pjF,inF,proF,itF,refF){
+function r3(exF,edF,skF,lgF,ctF,pjF,inF,itF,refF){
   var a=ap();
   return "<div style='display:flex;flex-direction:column;min-height:848px;font-family:Poppins,sans-serif;'>"
     +"<div style='padding:24px 28px 16px;display:flex;align-items:flex-start;justify-content:space-between;border-bottom:2px solid "+a+";'>"
@@ -1139,20 +1134,19 @@ function r3(exF,edF,skF,lgF,ctF,pjF,inF,proF,itF,refF){
     +(D.sum?"<div style='margin-bottom:10px;'>"+sT("&#128100;","Profil")+"<div style='font-size:7.5px;color:#444;line-height:1.8;font-style:italic;'>"+boldifyProfile(D.sum,a)+"</div></div>":"")
     +(exF.length?"<div style='margin-bottom:10px;'>"+sT("&#128188;","Experience Professionnelle")+tl(exF)+"</div>":"")
     +(edF.length?"<div style='margin-bottom:10px;'>"+sT("&#127979;","Formation")+edF.map(function(e){return "<div style='margin-bottom:6px;'><div style='display:flex;justify-content:space-between;'><div style='font-size:8px;font-weight:800;color:#0e0e12;'>"+e.degree+"</div><div style='font-size:7px;color:#aaa;'>"+e.dates+"</div></div><div style='font-size:7.5px;color:"+a+";font-weight:600;'>"+e.school+"</div>"+(e.desc?"<div style='font-size:7px;color:#777;font-style:italic;'>"+e.desc+"</div>":"")+"</div>";}).join("")+"</div>":"")
-    +(proF.length?"<div style='margin-bottom:10px;'>"+sT("&#128203;","Formations Pro")+proF.map(function(e){return "<div style='margin-bottom:4px;'><span style='font-size:7.5px;font-weight:700;color:"+a+";'>"+e.date+"</span> <span style='font-size:7.5px;color:#333;'>"+e.name+"</span></div>";}).join("")+"</div>":"")
     +"</div>"
     +"<div style='width:168px;flex-shrink:0;padding:16px;border-left:1px solid #eee;'>"
     +(skF.length?sT("&#128273;","Competences")+skF.map(function(s){return "<div style='margin-bottom:5px;'><div style='font-size:7px;color:#0e0e12;font-weight:700;'>"+s.name+"</div>"+(s.detail?"<div style='font-size:6.5px;color:#777;font-style:italic;line-height:1.4;'>"+s.detail+"</div>":"")+"</div>";}).join(""):"")
     +(lgF.length?sT("&#127758;","Langues")+lgF.map(function(l){return "<div style='display:flex;justify-content:space-between;margin-bottom:2px;'><div style='font-size:7px;color:#333;'>"+l.name+"</div><div style='font-size:7px;color:"+a+";font-style:italic;'>"+l.level+"</div></div>"+bar(l.pct||70,"#eee",a);}).join(""):"")
     +(itF.length?sT("&#128187;","Informatique")+itF.map(function(c){return "<div style='margin-bottom:3px;'><span style='font-size:7px;font-weight:700;color:"+a+";'>"+c.cat+":</span><br><span style='font-size:7px;color:#444;font-style:italic;'>"+c.items+"</span></div>";}).join(""):"")
-    +(ctF.length?sT("&#127942;","Certif.")+ctF.map(function(c){return "<div style='font-size:7px;color:#444;margin-bottom:2px;'>&#10003; "+c.name+"</div>";}).join(""):"")
+    +(ctF.length?sT("&#127942;","Formations &amp; Certif.")+ctF.map(function(c){return "<div style='font-size:7px;color:#444;margin-bottom:2px;'>&#10003; "+c.name+"</div>";}).join(""):"")
     +(inF.length?sT("&#127919;","Interets")+inF.map(function(i){return "<div style='font-size:7px;color:#555;margin-bottom:2px;'>&#8226; "+i+"</div>";}).join(""):"")
     +(pjF.length?sT("&#128640;","Projets")+pjF.map(function(pr){return "<div style='margin-bottom:5px;'><div style='font-size:8px;font-weight:700;color:#1a1926;'>"+pr.name+"</div>"+(pr.tech?"<div style='font-size:7px;color:"+a+";'>"+pr.tech+"</div>":"")+(pr.desc?"<div style='font-size:7px;color:#555;'>"+pr.desc+"</div>":"")+"</div>";}).join(""):"")
 +(refF.length?sT("&#128222;","References")+refF.map(function(r,i){return "<div style='margin-bottom:4px;'><div style='font-size:7.5px;font-weight:700;color:#0e0e12;'>"+(i+1)+". "+r.name+"</div>"+(r.post?"<div style='font-size:7px;color:"+a+";font-style:italic;'>"+r.post+"</div>":"")+(r.tel?"<div style='font-size:7px;color:#555;'>"+r.tel+"</div>":"")+"</div>";}).join(""):"")
     +"</div></div></div>";
 }
 
-function r4(exF,edF,skF,lgF,ctF,pjF,inF,proF,itF,refF){
+function r4(exF,edF,skF,lgF,ctF,pjF,inF,itF,refF){
   var a=ap(),p=pp();
   function br(lv){return "<div style='height:2px;border-radius:1px;background:#2a2a2a;margin-bottom:4px;'><div style='height:2px;border-radius:1px;background:"+a+";width:"+lv+"%;'></div></div>";}
   return "<div style='background:#0e0e12;display:flex;flex-direction:column;min-height:848px;font-family:Poppins,sans-serif;'>"
@@ -1172,8 +1166,7 @@ function r4(exF,edF,skF,lgF,ctF,pjF,inF,proF,itF,refF){
     +(D.sum?sT("&#128100;","Profil",a)+"<div style='font-size:7.5px;color:#bbb;line-height:1.7;font-style:italic;background:#1a1a1a;padding:7px;border-radius:5px;border-left:3px solid "+a+";margin-bottom:4px;'>"+boldifyProfile(D.sum,a)+"</div>":"")
     +(exF.length?sT("&#128188;","Experience",a)+tl(exF,"#fff"):"")
     +(edF.length?sT("&#127979;","Formation",a)+edF.map(function(e){return "<div style='margin-bottom:5px;'><div style='display:flex;justify-content:space-between;'><div style='font-size:8px;font-weight:800;color:#fff;'>"+e.degree+"</div><div style='font-size:7px;color:#666;'>"+e.dates+"</div></div><div style='font-size:7.5px;color:"+a+";font-weight:600;'>"+e.school+"</div>"+(e.desc?"<div style='font-size:7px;color:#888;font-style:italic;'>"+e.desc+"</div>":"")+"</div>";}).join(""):"")
-    +(proF.length?sT("&#128203;","Formations Pro",a)+proF.map(function(e){return "<div style='margin-bottom:4px;'><span style='font-size:7.5px;font-weight:700;color:"+a+";'>"+e.date+"</span> <span style='font-size:7.5px;color:#ccc;'>"+e.name+"</span></div>";}).join(""):"")
-    +(ctF.length?sT("&#127942;","Certifications",a)+ctF.map(function(c){return "<div style='font-size:7.5px;color:#bbb;margin-bottom:3px;'>&#10003; "+c.name+"</div>";}).join(""):"")
+    +(ctF.length?sT("&#127942;","Formations &amp; Certifications",a)+ctF.map(function(c){return "<div style='font-size:7.5px;color:#bbb;margin-bottom:3px;'>&#10003; "+c.name+"</div>";}).join(""):"")
     +(pjF.length?sT("&#128640;","Projets",a)+pjF.map(function(pr){return "<div style='margin-bottom:5px;'><div style='font-size:8px;font-weight:700;color:#fff;'>"+pr.name+"</div>"+(pr.tech?"<div style='font-size:7px;color:"+a+";'>"+pr.tech+"</div>":"")+(pr.desc?"<div style='font-size:7px;color:#aaa;'>"+pr.desc+"</div>":"")+"</div>";}).join(""):"")
 +(refF.length?sT("&#128222;","References",a)+refF.map(function(r,i){return "<div style='margin-bottom:4px;'><span style='font-size:7.5px;font-weight:700;color:#fff;'>"+(i+1)+". "+r.name+"</span>"+(r.post?", <span style='font-size:7px;color:"+a+";'>"+r.post+"</span>":"")+(r.tel?", <span style='font-size:7px;color:#888;'>"+r.tel+"</span>":"")+"</div>";}).join(""):"")
     +"</div></div></div>";
@@ -1258,8 +1251,8 @@ function renderCts(){
   var el=G("ct-list");if(!el)return;
   el.innerHTML=D.cts.map(function(c,i){
     return "<div style='display:flex;gap:5px;margin-bottom:7px;align-items:center;'>"
-      +"<input class='fi2' style='flex:3;' value='"+(c.name||"").replace(/'/g,"&#39;")+"' data-f='cname' data-i='"+i+"' placeholder='AWS'>"
-      +"<input class='fi2' style='flex:2;' value='"+(c.issuer||"").replace(/'/g,"&#39;")+"' data-f='cissuer' data-i='"+i+"' placeholder='Amazon'>"
+      +"<input class='fi2' style='flex:3;' value='"+(c.name||"").replace(/'/g,"&#39;")+"' data-f='cname' data-i='"+i+"' placeholder='Ex: Formation PRINCE2'>"
+      +"<input class='fi2' style='flex:2;' value='"+(c.issuer||"").replace(/'/g,"&#39;")+"' data-f='cissuer' data-i='"+i+"' placeholder='Organisme'>"
       +"<input class='fi2' style='width:55px;' value='"+(c.date||"")+"' data-f='cdate' data-i='"+i+"' placeholder='2023'>"
       +(i>0?"<button class='brm' data-i='"+i+"' data-t='ct'>&times;</button>":"")+"</div>";
   }).join("");
@@ -1281,15 +1274,7 @@ function renderIns(){
       +(i>0?"<button class='brm' data-i='"+i+"' data-t='in'>&times;</button>":"")+"</div>";
   }).join("");
 }
-function renderPros(){
-  var el=G("pro-list");if(!el)return;
-  el.innerHTML=D.pros.map(function(e,i){
-    return "<div class='icard'><div class='icard-h'><span class='icard-l'>Formation "+(i+1)+"</span>"+(i>0?"<button class='brm' data-i='"+i+"' data-t='pro'>&times;</button>":"")+"</div>"
-      +"<div class='fg2'><label>Intitule</label>"+fi2(e.name,"proname",i,"pro","Formation PRINCE2")+"</div>"
-      +"<div class='fr2'><div class='fg2'><label>Organisme</label>"+fi2(e.org,"proorg",i,"pro","Croix-Rouge")+"</div>"
-      +"<div class='fg2'><label>Date</label>"+fi2(e.date,"prodate",i,"pro","06/2024")+"</div></div></div>";
-  }).join("");
-}
+
 function renderIts(){
   var el=G("it-list");if(!el)return;
   el.innerHTML=D.its.map(function(c,i){
@@ -1303,7 +1288,7 @@ function renderRefs(){
   var el=G("ref-list");if(!el)return;
   el.innerHTML=D.refs.map(function(r,i){
     return "<div class='icard'><div class='icard-h'><span class='icard-l'>Reference "+(i+1)+"</span>"+(i>0?"<button class='brm' data-i='"+i+"' data-t='ref'>&times;</button>":"")+"</div>"
-      +"<div class='fg2'><label>Nom complet</label>"+fi2(r.name,"rname",i,"ref","Dr Gambetta NACRO")+"</div>"
+      +"<div class='fg2'><label>Nom complet</label>"+fi2(r.name,"rname",i,"ref","Moussa Sawadogo")+"</div>"
       +"<div class='fr2'><div class='fg2'><label>Poste</label>"+fi2(r.post,"rpost",i,"ref","President")+"</div>"
       +"<div class='fg2'><label>Tel</label>"+fi2(r.tel,"rtel",i,"ref","76200527")+"</div></div></div>";
   }).join("");
@@ -1317,10 +1302,9 @@ function initLists(){
   if(!D.cts.length)D.cts=[{id:1,name:"",issuer:"",date:""}];
   if(!D.pjs.length)D.pjs=[{id:1,name:"",tech:"",desc:""}];
   if(!D.ins.length)D.ins=[""];
-  if(!D.pros.length)D.pros=[{id:1,name:"",org:"",date:""}];
   if(!D.its.length)D.its=[{id:1,cat:"",items:""}];
   if(!D.refs.length)D.refs=[{id:1,name:"",post:"",tel:""}];
-  renderExps();renderEdus();renderSks();renderLgs();renderCts();renderPjs();renderIns();renderPros();renderIts();renderRefs();
+  renderExps();renderEdus();renderSks();renderLgs();renderCts();renderPjs();renderIns();renderIts();renderRefs();
 }
 
 // EVENTS INPUT
@@ -1345,9 +1329,6 @@ document.addEventListener("input",function(e){
   else if(f==="ptech"&&D.pjs[i])D.pjs[i].tech=t.value;
   else if(f==="pdesc"&&D.pjs[i])D.pjs[i].desc=t.value;
   else if(f==="int"&&D.ins[i]!==undefined)D.ins[i]=t.value;
-  else if(f==="proname"&&D.pros[i])D.pros[i].name=t.value;
-  else if(f==="proorg"&&D.pros[i])D.pros[i].org=t.value;
-  else if(f==="prodate"&&D.pros[i])D.pros[i].date=t.value;
   else if(f==="icat"&&D.its[i])D.its[i].cat=t.value;
   else if(f==="iitems"&&D.its[i])D.its[i].items=t.value;
   else if(f==="rname"&&D.refs[i])D.refs[i].name=t.value;
@@ -1366,7 +1347,7 @@ document.addEventListener("input",function(e){
 document.addEventListener("click",function(e){
   var btn=e.target.closest(".brm");if(!btn)return;
   var i=parseInt(btn.getAttribute("data-i")),tp=btn.getAttribute("data-t");
-  var map={exp:["exps",renderExps],edu:["edus",renderEdus],sk:["sks",renderSks],lg:["lgs",renderLgs],ct:["cts",renderCts],pj:["pjs",renderPjs],"in":["ins",renderIns],pro:["pros",renderPros],it:["its",renderIts],ref:["refs",renderRefs]};
+  var map={exp:["exps",renderExps],edu:["edus",renderEdus],sk:["sks",renderSks],lg:["lgs",renderLgs],ct:["cts",renderCts],pj:["pjs",renderPjs],"in":["ins",renderIns],it:["its",renderIts],ref:["refs",renderRefs]};
   if(map[tp]){D[map[tp][0]].splice(i,1);map[tp][1]();renderCV();}
 });
 
@@ -1390,7 +1371,6 @@ G("btn-addlg").onclick=function(){D.lgs.unshift({id:Date.now(),name:"",level:"",
 G("btn-addct").onclick=function(){D.cts.unshift({id:Date.now(),name:"",issuer:"",date:""});renderCts();};
 G("btn-addpj").onclick=function(){D.pjs.unshift({id:Date.now(),name:"",tech:"",desc:""});renderPjs();};
 G("btn-addin").onclick=function(){D.ins.unshift("");renderIns();};
-G("btn-addpro").onclick=function(){D.pros.unshift({id:Date.now(),name:"",org:"",date:""});renderPros();};
 G("btn-addit").onclick=function(){D.its.unshift({id:Date.now(),cat:"",items:""});renderIts();};
 G("btn-addref").onclick=function(){D.refs.unshift({id:Date.now(),name:"",post:"",tel:""});renderRefs();};
 
@@ -2053,6 +2033,8 @@ var sv=sessionStorage.getItem("cvpro_cu");
 if(sv){try{var su=JSON.parse(sv);CU=su;G("nav-av").textContent=su.name[0].toUpperCase();G("nav-nm").textContent=su.name.split(" ")[0];}catch(e){}}
 renderAvis();
 renderCV();
+
+
 
 
 
