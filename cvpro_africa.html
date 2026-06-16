@@ -533,7 +533,7 @@ textarea.fi2{resize:vertical;min-height:58px;}
     <div class="ms">Entrez le code re&ccedil;u par WhatsApp</div>
     <div class="fg" style="margin-bottom:14px;">
       <label class="fl">Votre code</label>
-      <input class="fi" id="input-code" placeholder="Ex: CVP-AB4K" style="text-align:center;font-size:18px;font-weight:900;letter-spacing:4px;text-transform:uppercase;">
+      <input class="fi" id="input-code" placeholder="Ex: CVP-AB4KR7" style="text-align:center;font-size:18px;font-weight:900;letter-spacing:4px;text-transform:uppercase;">
     </div>
     <button class="bbl" id="btn-verify">&#9989; V&eacute;rifier et t&eacute;l&eacute;charger</button>
     <div style="font-size:9px;color:#7a7a99;text-align:center;margin-top:8px;">Pas de code ? Envoyez votre preuve au <strong style="color:#D4AF37;">75318351</strong></div>
@@ -598,7 +598,7 @@ textarea.fi2{resize:vertical;min-height:58px;}
     <div style="margin-top:16px;padding-top:14px;border-top:1px solid #2a2a45;">
       <div style="font-size:11px;color:#7a7a99;margin-bottom:10px;">Vous avez re&ccedil;u un code de d&eacute;blocage ?</div>
       <div style="display:flex;gap:8px;">
-        <input class="fi" id="resume-code" placeholder="Ex: CVP-AB4K" style="flex:1;text-align:center;font-size:16px;font-weight:900;letter-spacing:3px;text-transform:uppercase;">
+        <input class="fi" id="resume-code" placeholder="Ex: CVP-AB4KR7" style="flex:1;text-align:center;font-size:16px;font-weight:900;letter-spacing:3px;text-transform:uppercase;">
         <button id="btn-resume-code" style="padding:10px 14px;background:linear-gradient(135deg,#D4AF37,#b8892a);border:none;border-radius:8px;color:#000;font-size:12px;font-weight:700;cursor:pointer;font-family:Poppins,sans-serif;white-space:nowrap;">&#9989; OK</button>
       </div>
     </div>
@@ -626,9 +626,11 @@ textarea.fi2{resize:vertical;min-height:58px;}
 
 
 
+
 <script>
 (function(){
 "use strict";
+
 
 
 
@@ -745,39 +747,26 @@ function useCode(c){
   saveCodes(getCodes().map(function(x){if(x.code===c)x.used=true;return x;}));
 }
 function checkCode(c){
-  c=c.toUpperCase().trim();
-  // Vérification format: CVP-XXXX-XXX
-  if(!c.match(/^CVP-[A-Z0-9]{4}-[A-Z0-9]{3}$/))return false;
-  var parts=c.split("-");
-  if(parts.length!==3)return false;
-  var part1=parts[1];
-  var checksum=parts[2];
-  // Recalculer checksum
-  var ch="ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
-  var sum=0;
-  for(var i=0;i<part1.length;i++)sum+=part1.charCodeAt(i);
-  var salt="CVPRO2025";
+  c=c.toUpperCase().trim().replace(/\s/g,"");
+  if(!c.match(/^CVP-[A-Z0-9]{6}$/))return false;
+  var body=c.slice(4,8),ck=c.slice(8);
+  var ch="ABCDEFGHJKLMNPQRSTUVWXYZ23456789",salt="CVPRO2025",sum=0;
+  for(var i=0;i<body.length;i++)sum+=body.charCodeAt(i);
   for(var i=0;i<salt.length;i++)sum+=salt.charCodeAt(i);
-  var expected=ch[sum%32]+ch[(sum*7+13)%32]+ch[(sum*3+17)%32];
-  if(checksum!==expected)return false;
-  // Vérifier pas déjà utilisé (dans localStorage local)
+  var expected=ch[sum%32]+ch[(sum*7+13)%32];
+  if(ck!==expected)return false;
   var used=JSON.parse(localStorage.getItem("cvpro_used")||"[]");
   return !used.includes(c);
 }
 function genCode(){
   var ch="ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
-  var part1="";
-  for(var i=0;i<4;i++)part1+=ch[Math.floor(Math.random()*ch.length)];
-  // Checksum: somme des codes ASCII % 32 -> char dans ch
-  var sum=0;
-  for(var i=0;i<part1.length;i++)sum+=part1.charCodeAt(i);
-  // Ajouter salt secret
-  var salt="CVPRO2025";
+  var body="";
+  for(var i=0;i<4;i++)body+=ch[Math.floor(Math.random()*ch.length)];
+  var salt="CVPRO2025";var sum=0;
+  for(var i=0;i<body.length;i++)sum+=body.charCodeAt(i);
   for(var i=0;i<salt.length;i++)sum+=salt.charCodeAt(i);
-  var ck1=ch[sum%32];
-  var ck2=ch[(sum*7+13)%32];
-  var ck3=ch[(sum*3+17)%32];
-  return "CVP-"+part1+"-"+ck1+ck2+ck3;
+  var ck=ch[sum%32]+ch[(sum*7+13)%32];
+  return "CVP-"+body+ck;
 }
 function updateStats(){
   var codes=getCodes(),td=new Date().toDateString(),mo=new Date().getMonth(),yr=new Date().getFullYear();
@@ -947,7 +936,7 @@ G("btn-sksugg").onclick=async function(){
   this.disabled=true;this.innerHTML="<span class='sp'></span>";
   var r=await callAI(getP("sk",tit));
   if(r){
-    r.split(",").map(function(s){return s.trim();}).filter(function(s){return s;}).slice(0,6).forEach(function(s){D.sks.push({id:Date.now()+Math.random(),name:s,level:75});});
+    r.split(",").map(function(s){return s.trim();}).filter(function(s){return s;}).slice(0,6).forEach(function(s){D.sks.unshift({id:Date.now()+Math.random(),name:s,level:75});});
     renderSks();renderCV();toast("Competences ajoutees !","ok");
   }
   this.disabled=false;this.innerHTML="&#128161; Suggerer selon mon poste";
@@ -1120,7 +1109,7 @@ function r2(exF,edF,skF,lgF,ctF,pjF,inF,proF,itF,refF){
     +"<div style='background:"+p+";padding:22px 26px;display:flex;align-items:center;gap:18px;'>"+ph("")
     +"<div><div style='font-size:19px;font-weight:900;color:#fff;font-family:Playfair Display,serif;margin-bottom:2px;'>"+(D.name||"Prenom Nom")+"</div>"
     +"<div style='font-size:8.5px;font-weight:600;color:"+a+";text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;'>"+(D.title||"Titre")+"</div>"
-    +"<div style='display:flex;flex-wrap:wrap;gap:8px;'>"+(D.phone?"<div style='font-size:7px;color:#b8b8d0;'>&#128222; "+D.phone+"</div>":"")+(D.email?"<div style='font-size:7px;color:#b8b8d0;'>&#9993; "+D.email+"</div>":"")+(D.loc?"<div style='font-size:7px;color:#b8b8d0;'>&#128205; "+D.loc+"</div>":"")+(D.nat?"<div style='font-size:7px;color:#b8b8d0;'>&#127760; "+D.nat+"</div>":"")+(D.birth?"<div style='font-size:7px;color:#b8b8d0;'>&#128197; "+D.birth+"</div>":"")+"</div></div></div>"
+    +"<div style='display:flex;flex-wrap:wrap;gap:8px;'>"+(D.phone?"<div style='font-size:7px;color:#b8b8d0;'>&#128222; "+D.phone+"</div>":"")+(D.email?"<div style='font-size:7px;color:#b8b8d0;'>&#9993; "+D.email+"</div>":"")+(D.loc?"<div style='font-size:7px;color:#b8b8d0;'>&#128205; "+D.loc+"</div>":"")+(D.nat?"<div style='font-size:7px;color:#b8b8d0;'>&#127760; "+D.nat+"</div>":"")+(D.birth?"<div style='font-size:7px;color:#b8b8d0;'>&#128197; "+D.birth+"</div>":"")+(D.li?"<div style='font-size:7px;color:#b8b8d0;'>&#128279; "+D.li+"</div>":"")+(D.gh?"<div style='font-size:7px;color:#b8b8d0;'>&#128187; "+D.gh+"</div>":"")+"</div></div></div>"
     +"<div style='display:flex;flex:1;'>"
     +"<div style='width:185px;flex-shrink:0;padding:16px 13px;background:"+bg+";'>"
     +(skF.length?sT("&#128273;","Competences")+skF.map(function(s){return "<div style='font-size:7px;color:#333;margin-bottom:2px;'>"+s.name+"</div>"+bar(s.level,"#ddd",a);}).join(""):"")
@@ -1134,7 +1123,8 @@ function r2(exF,edF,skF,lgF,ctF,pjF,inF,proF,itF,refF){
     +(edF.length?sT("&#127979;","Formation")+edF.map(function(e){return "<div style='margin-bottom:6px;'><div style='display:flex;justify-content:space-between;'><div style='font-size:8px;font-weight:800;color:#1a1926;'>"+e.degree+"</div><div style='font-size:7px;color:#999;'>"+e.dates+"</div></div><div style='font-size:7.5px;color:"+a+";font-weight:600;'>"+e.school+"</div>"+(e.desc?"<div style='font-size:7px;color:#777;font-style:italic;'>"+e.desc+"</div>":"")+"</div>";}).join(""):"")
     +(proF.length?sT("&#128203;","Formations Pro")+proF.map(function(e){return "<div style='margin-bottom:4px;'><span style='font-size:7.5px;font-weight:700;color:"+a+";'>"+e.date+"</span> <span style='font-size:7.5px;color:#333;'>"+e.name+"</span></div>";}).join(""):"")
     +(ctF.length?sT("&#127942;","Certifications")+ctF.map(function(c){return "<div style='font-size:7.5px;color:#444;margin-bottom:3px;'>&#10003; "+c.name+"</div>";}).join(""):"")
-    +(refF.length?sT("&#128222;","References")+refF.map(function(r,i){return "<div style='margin-bottom:4px;'><span style='font-size:7.5px;font-weight:700;color:#1a1926;'>"+(i+1)+". "+r.name+"</span>"+(r.post?", <span style='font-size:7px;color:"+a+";font-style:italic;'>"+r.post+"</span>":"")+"</div>";}).join(""):"")
+    +(pjF.length?sT("&#128640;","Projets")+pjF.map(function(pr){return "<div style='margin-bottom:5px;'><div style='font-size:8px;font-weight:700;color:#1a1926;'>"+pr.name+"</div>"+(pr.tech?"<div style='font-size:7px;color:"+a+";'>"+pr.tech+"</div>":"")+(pr.desc?"<div style='font-size:7px;color:#555;'>"+pr.desc+"</div>":"")+"</div>";}).join(""):"")
++(refF.length?sT("&#128222;","References")+refF.map(function(r,i){return "<div style='margin-bottom:4px;'><span style='font-size:7.5px;font-weight:700;color:#1a1926;'>"+(i+1)+". "+r.name+"</span>"+(r.post?", <span style='font-size:7px;color:"+a+";font-style:italic;'>"+r.post+"</span>":"")+"</div>";}).join(""):"")
     +"</div></div></div>";
 }
 
@@ -1144,7 +1134,7 @@ function r3(exF,edF,skF,lgF,ctF,pjF,inF,proF,itF,refF){
     +"<div style='padding:24px 28px 16px;display:flex;align-items:flex-start;justify-content:space-between;border-bottom:2px solid "+a+";'>"
     +"<div style='flex:1;'><div style='font-size:24px;font-weight:900;color:#0e0e12;letter-spacing:-1px;font-family:Playfair Display,serif;margin-bottom:3px;'>"+(D.name||"Prenom Nom")+"</div>"
     +"<div style='font-size:9px;font-weight:700;color:"+a+";text-transform:uppercase;letter-spacing:2px;margin-bottom:8px;'>"+(D.title||"Titre")+"</div>"
-    +"<div style='display:flex;flex-wrap:wrap;gap:10px;'>"+(D.phone?"<div style='font-size:7px;color:#777;'>&#128222; "+D.phone+"</div>":"")+(D.email?"<div style='font-size:7px;color:#777;'>&#9993; "+D.email+"</div>":"")+(D.loc?"<div style='font-size:7px;color:#777;'>&#128205; "+D.loc+"</div>":"")+(D.nat?"<div style='font-size:7px;color:#777;'>&#127760; "+D.nat+"</div>":"")+(D.birth?"<div style='font-size:7px;color:#777;'>&#128197; "+D.birth+"</div>":"")+"</div></div>"
+    +"<div style='display:flex;flex-wrap:wrap;gap:10px;'>"+(D.phone?"<div style='font-size:7px;color:#777;'>&#128222; "+D.phone+"</div>":"")+(D.email?"<div style='font-size:7px;color:#777;'>&#9993; "+D.email+"</div>":"")+(D.loc?"<div style='font-size:7px;color:#777;'>&#128205; "+D.loc+"</div>":"")+(D.nat?"<div style='font-size:7px;color:#777;'>&#127760; "+D.nat+"</div>":"")+(D.birth?"<div style='font-size:7px;color:#777;'>&#128197; "+D.birth+"</div>":"")+(D.li?"<div style='font-size:7px;color:#777;'>&#128279; "+D.li+"</div>":"")+(D.gh?"<div style='font-size:7px;color:#777;'>&#128187; "+D.gh+"</div>":"")+"</div></div>"
     +ph("","60px")+"</div>"
     +"<div style='display:flex;flex:1;'>"
     +"<div style='flex:1;padding:16px 28px;'>"
@@ -1159,7 +1149,8 @@ function r3(exF,edF,skF,lgF,ctF,pjF,inF,proF,itF,refF){
     +(itF.length?sT("&#128187;","Informatique")+itF.map(function(c){return "<div style='margin-bottom:3px;'><span style='font-size:7px;font-weight:700;color:"+a+";'>"+c.cat+":</span><br><span style='font-size:7px;color:#444;font-style:italic;'>"+c.items+"</span></div>";}).join(""):"")
     +(ctF.length?sT("&#127942;","Certif.")+ctF.map(function(c){return "<div style='font-size:7px;color:#444;margin-bottom:2px;'>&#10003; "+c.name+"</div>";}).join(""):"")
     +(inF.length?sT("&#127919;","Interets")+inF.map(function(i){return "<div style='font-size:7px;color:#555;margin-bottom:2px;'>&#8226; "+i+"</div>";}).join(""):"")
-    +(refF.length?sT("&#128222;","References")+refF.map(function(r,i){return "<div style='margin-bottom:4px;'><div style='font-size:7.5px;font-weight:700;color:#0e0e12;'>"+(i+1)+". "+r.name+"</div>"+(r.post?"<div style='font-size:7px;color:"+a+";font-style:italic;'>"+r.post+"</div>":"")+(r.tel?"<div style='font-size:7px;color:#555;'>"+r.tel+"</div>":"")+"</div>";}).join(""):"")
+    +(pjF.length?sT("&#128640;","Projets")+pjF.map(function(pr){return "<div style='margin-bottom:5px;'><div style='font-size:8px;font-weight:700;color:#1a1926;'>"+pr.name+"</div>"+(pr.tech?"<div style='font-size:7px;color:"+a+";'>"+pr.tech+"</div>":"")+(pr.desc?"<div style='font-size:7px;color:#555;'>"+pr.desc+"</div>":"")+"</div>";}).join(""):"")
++(refF.length?sT("&#128222;","References")+refF.map(function(r,i){return "<div style='margin-bottom:4px;'><div style='font-size:7.5px;font-weight:700;color:#0e0e12;'>"+(i+1)+". "+r.name+"</div>"+(r.post?"<div style='font-size:7px;color:"+a+";font-style:italic;'>"+r.post+"</div>":"")+(r.tel?"<div style='font-size:7px;color:#555;'>"+r.tel+"</div>":"")+"</div>";}).join(""):"")
     +"</div></div></div>";
 }
 
@@ -1185,7 +1176,8 @@ function r4(exF,edF,skF,lgF,ctF,pjF,inF,proF,itF,refF){
     +(edF.length?sT("&#127979;","Formation",a)+edF.map(function(e){return "<div style='margin-bottom:5px;'><div style='display:flex;justify-content:space-between;'><div style='font-size:8px;font-weight:800;color:#fff;'>"+e.degree+"</div><div style='font-size:7px;color:#666;'>"+e.dates+"</div></div><div style='font-size:7.5px;color:"+a+";font-weight:600;'>"+e.school+"</div>"+(e.desc?"<div style='font-size:7px;color:#888;font-style:italic;'>"+e.desc+"</div>":"")+"</div>";}).join(""):"")
     +(proF.length?sT("&#128203;","Formations Pro",a)+proF.map(function(e){return "<div style='margin-bottom:4px;'><span style='font-size:7.5px;font-weight:700;color:"+a+";'>"+e.date+"</span> <span style='font-size:7.5px;color:#ccc;'>"+e.name+"</span></div>";}).join(""):"")
     +(ctF.length?sT("&#127942;","Certifications",a)+ctF.map(function(c){return "<div style='font-size:7.5px;color:#bbb;margin-bottom:3px;'>&#10003; "+c.name+"</div>";}).join(""):"")
-    +(refF.length?sT("&#128222;","References",a)+refF.map(function(r,i){return "<div style='margin-bottom:4px;'><span style='font-size:7.5px;font-weight:700;color:#fff;'>"+(i+1)+". "+r.name+"</span>"+(r.post?", <span style='font-size:7px;color:"+a+";'>"+r.post+"</span>":"")+(r.tel?", <span style='font-size:7px;color:#888;'>"+r.tel+"</span>":"")+"</div>";}).join(""):"")
+    +(pjF.length?sT("&#128640;","Projets",a)+pjF.map(function(pr){return "<div style='margin-bottom:5px;'><div style='font-size:8px;font-weight:700;color:#fff;'>"+pr.name+"</div>"+(pr.tech?"<div style='font-size:7px;color:"+a+";'>"+pr.tech+"</div>":"")+(pr.desc?"<div style='font-size:7px;color:#aaa;'>"+pr.desc+"</div>":"")+"</div>";}).join(""):"")
++(refF.length?sT("&#128222;","References",a)+refF.map(function(r,i){return "<div style='margin-bottom:4px;'><span style='font-size:7.5px;font-weight:700;color:#fff;'>"+(i+1)+". "+r.name+"</span>"+(r.post?", <span style='font-size:7px;color:"+a+";'>"+r.post+"</span>":"")+(r.tel?", <span style='font-size:7px;color:#888;'>"+r.tel+"</span>":"")+"</div>";}).join(""):"")
     +"</div></div></div>";
 }
 
@@ -1931,6 +1923,7 @@ var sv=sessionStorage.getItem("cvpro_cu");
 if(sv){try{var su=JSON.parse(sv);CU=su;G("nav-av").textContent=su.name[0].toUpperCase();G("nav-nm").textContent=su.name.split(" ")[0];}catch(e){}}
 renderAvis();
 renderCV();
+
 
 
 
