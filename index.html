@@ -631,9 +631,11 @@ textarea.fi2{resize:vertical;min-height:58px;}
 
 
 
+
 <script>
 (function(){
 "use strict";
+
 
 
 
@@ -750,15 +752,10 @@ function swTab(tab){
 function getCodes(){return JSON.parse(localStorage.getItem("cvpro_codes")||"[]");}
 function saveCodes(c){localStorage.setItem("cvpro_codes",JSON.stringify(c));}
 function addCode(c){var a=getCodes();a.unshift({code:c,date:new Date().toISOString(),used:false});saveCodes(a);}
-function useCode(c){
-  // Marquer comme utilisé localement (côté client)
-  var used=JSON.parse(localStorage.getItem("cvpro_used")||"[]");
-  if(!used.includes(c))used.push(c);
-  localStorage.setItem("cvpro_used",JSON.stringify(used));
-  // Aussi marquer dans la liste admin si on est admin
-  saveCodes(getCodes().map(function(x){if(x.code===c)x.used=true;return x;}));
+async function useCode(c){
+  return await sbUseCode(c);
 }
-function checkCode(c){
+function codeFormatValid(c){
   c=c.toUpperCase().trim().replace(/\s/g,"");
   if(!c.match(/^CVP-[A-Z0-9]{6}$/))return false;
   var body=c.slice(4,8),ck=c.slice(8);
@@ -766,10 +763,70 @@ function checkCode(c){
   for(var i=0;i<body.length;i++)sum+=body.charCodeAt(i);
   for(var i=0;i<salt.length;i++)sum+=salt.charCodeAt(i);
   var expected=ch[sum%32]+ch[(sum*7+13)%32];
-  if(ck!==expected)return false;
-  var used=JSON.parse(localStorage.getItem("cvpro_used")||"[]");
-  return !used.includes(c);
+  return ck===expected;
 }
+async function checkCode(c){
+  c=c.toUpperCase().trim().replace(/\s/g,"");
+  if(!codeFormatValid(c))return false;
+  return await sbCheckCode(c);
+}
+
+// ============================================================
+// SUPABASE - Configuration et fonctions API codes
+// ============================================================
+var SB_URL="https://blwxsyicpnmjokbfvqix.supabase.co/rest/v1";
+var SB_KEY="sb_publishable_U1-_XknkOZ1NW3TwY_hP_g_6dIEQKca";
+
+function sbHeaders(){
+  return {
+    "apikey":SB_KEY,
+    "Authorization":"Bearer "+SB_KEY,
+    "Content-Type":"application/json"
+  };
+}
+async function sbAddCode(code){
+  try{
+    var res=await fetch(SB_URL+"/codes",{
+      method:"POST",
+      headers:Object.assign(sbHeaders(),{"Prefer":"return=minimal"}),
+      body:JSON.stringify({code:code,used:false})
+    });
+    return res.ok;
+  }catch(e){console.error("sbAddCode error:",e);return false;}
+}
+async function sbCheckCode(code){
+  try{
+    var res=await fetch(SB_URL+"/codes?code=eq."+encodeURIComponent(code)+"&select=code,used",{
+      headers:sbHeaders()
+    });
+    if(!res.ok)return false;
+    var data=await res.json();
+    if(!data.length)return false;
+    return data[0].used===false;
+  }catch(e){console.error("sbCheckCode error:",e);return false;}
+}
+async function sbUseCode(code){
+  try{
+    var res=await fetch(SB_URL+"/codes?code=eq."+encodeURIComponent(code)+"&used=eq.false",{
+      method:"PATCH",
+      headers:Object.assign(sbHeaders(),{"Prefer":"return=representation"}),
+      body:JSON.stringify({used:true})
+    });
+    if(!res.ok)return false;
+    var data=await res.json();
+    return data.length>0;
+  }catch(e){console.error("sbUseCode error:",e);return false;}
+}
+async function sbGetCodes(){
+  try{
+    var res=await fetch(SB_URL+"/codes?select=code,used,created_at&order=created_at.desc&limit=50",{
+      headers:sbHeaders()
+    });
+    if(!res.ok)return [];
+    return await res.json();
+  }catch(e){console.error("sbGetCodes error:",e);return [];}
+}
+
 function genCode(){
   var ch="ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
   var body="";
@@ -1012,7 +1069,7 @@ G("btn-addct").onclick=function(){D.cts.unshift({id:Date.now(),name:"",issuer:""
 G("btn-addpj").onclick=function(){D.pjs.unshift({id:Date.now(),name:"",tech:"",desc:""});renderPjs();};
 G("btn-addin").onclick=function(){D.ins.unshift("");renderIns();};
 G("btn-addit").onclick=function(){D.its.unshift({id:Date.now(),cat:"",items:""});renderIts();};
-G("btn-addref").onclick=function(){D.refs.unshift({id:Date.now(),name:"",post:"",tel:""});renderRefs();};
+G("btn-addref").onclick=function(){D.refs.unshift({id:Date.now(),name:"",post:"",tel:"",email:""});renderRefs();};
 
 // ONGLETS BUILDER
 G("btabs").addEventListener("click",function(e){
@@ -1101,7 +1158,7 @@ function r1(exF,edF,skF,lgF,ctF,pjF,inF,itF,refF){
     +(edF.length?sT("&#127979;","Formation")+edF.map(function(e){return "<div style='margin-bottom:6px;'><div style='display:flex;justify-content:space-between;'><div style='font-size:8px;font-weight:800;color:#1a1926;'>"+e.degree+"</div><div style='font-size:7px;color:#666;font-weight:700;'>"+e.dates+"</div></div><div style='font-size:7.5px;color:"+a+";font-weight:600;'>"+e.school+"</div>"+(e.desc?"<div style='font-size:7px;color:#777;font-style:italic;'>"+e.desc+"</div>":"")+"</div>";}).join(""):"")
     +(ctF.length?sT("&#127942;","Formations &amp; Certifications")+ctF.map(function(c){return "<div style='font-size:7.5px;color:#444;margin-bottom:3px;'>&#10003; <b style='color:#1a1926;'>"+c.name+"</b>"+(c.issuer?" &mdash; "+c.issuer:"")+(c.date?" <b>("+c.date+")</b>":"")+"</div>";}).join(""):"")
     +(pjF.length?sT("&#128640;","Projets")+pjF.map(function(pr){return "<div style='margin-bottom:5px;'><div style='font-size:8px;font-weight:700;color:#1a1926;'>"+pr.name+"</div>"+(pr.tech?"<div style='font-size:7px;color:"+a+";'>"+pr.tech+"</div>":"")+(pr.desc?"<div style='font-size:7px;color:#555;'>"+pr.desc+"</div>":"")+"</div>";}).join(""):"")
-    +(refF.length?sT("&#128222;","References")+refF.map(function(r,i){return "<div style='margin-bottom:4px;'><span style='font-size:7.5px;font-weight:700;color:#1a1926;'>"+(i+1)+". "+r.name+"</span>"+(r.post?", <span style='font-size:7px;color:"+a+";font-style:italic;'>"+r.post+"</span>":"")+(r.tel?", <span style='font-size:7px;color:#555;'>Tel: "+r.tel+"</span>":"")+"</div>";}).join(""):"")
+    +(refF.length?sT("&#128222;","References")+refF.map(function(r,i){return "<div style='margin-bottom:4px;'><span style='font-size:7.5px;font-weight:700;color:#1a1926;'>"+(i+1)+". "+r.name+"</span>"+(r.post?", <span style='font-size:7px;color:"+a+";font-style:italic;'>"+r.post+"</span>":"")+(r.tel?", <span style='font-size:7px;color:#555;'>Tel: "+r.tel+"</span>":"")+(r.email?", <span style='font-size:7px;color:#555;'>"+r.email+"</span>":"")+"</div>";}).join(""):"")
     +"</div></div>";
 }
 
@@ -1125,7 +1182,7 @@ function r2(exF,edF,skF,lgF,ctF,pjF,inF,itF,refF){
     +(edF.length?sT("&#127979;","Formation")+edF.map(function(e){return "<div style='margin-bottom:6px;'><div style='display:flex;justify-content:space-between;'><div style='font-size:8px;font-weight:800;color:#1a1926;'>"+e.degree+"</div><div style='font-size:7px;color:#666;font-weight:700;'>"+e.dates+"</div></div><div style='font-size:7.5px;color:"+a+";font-weight:600;'>"+e.school+"</div>"+(e.desc?"<div style='font-size:7px;color:#777;font-style:italic;'>"+e.desc+"</div>":"")+"</div>";}).join(""):"")
     +(ctF.length?sT("&#127942;","Formations &amp; Certifications")+ctF.map(function(c){return "<div style='font-size:7.5px;color:#444;margin-bottom:3px;'>&#10003; <b style='color:#1a1926;'>"+c.name+"</b>"+(c.issuer?" &mdash; "+c.issuer:"")+(c.date?" <b>("+c.date+")</b>":"")+"</div>";}).join(""):"")
     +(pjF.length?sT("&#128640;","Projets")+pjF.map(function(pr){return "<div style='margin-bottom:5px;'><div style='font-size:8px;font-weight:700;color:#1a1926;'>"+pr.name+"</div>"+(pr.tech?"<div style='font-size:7px;color:"+a+";'>"+pr.tech+"</div>":"")+(pr.desc?"<div style='font-size:7px;color:#555;'>"+pr.desc+"</div>":"")+"</div>";}).join(""):"")
-+(refF.length?sT("&#128222;","References")+refF.map(function(r,i){return "<div style='margin-bottom:4px;'><span style='font-size:7.5px;font-weight:700;color:#1a1926;'>"+(i+1)+". "+r.name+"</span>"+(r.post?", <span style='font-size:7px;color:"+a+";font-style:italic;'>"+r.post+"</span>":"")+"</div>";}).join(""):"")
++(refF.length?sT("&#128222;","References")+refF.map(function(r,i){return "<div style='margin-bottom:4px;'><span style='font-size:7.5px;font-weight:700;color:#1a1926;'>"+(i+1)+". "+r.name+"</span>"+(r.post?", <span style='font-size:7px;color:"+a+";font-style:italic;'>"+r.post+"</span>":"")+(r.tel?", <span style='font-size:7px;color:#555;'>Tel: "+r.tel+"</span>":"")+(r.email?", <span style='font-size:7px;color:#555;'>"+r.email+"</span>":"")+"</div>";}).join(""):"")
     +"</div></div></div>";
 }
 
@@ -1150,7 +1207,7 @@ function r3(exF,edF,skF,lgF,ctF,pjF,inF,itF,refF){
     +(ctF.length?sT("&#127942;","Formations &amp; Certif.")+ctF.map(function(c){return "<div style='font-size:7px;color:#444;margin-bottom:2px;'>&#10003; <b style='color:#0e0e12;'>"+c.name+"</b>"+(c.issuer?" &mdash; "+c.issuer:"")+(c.date?" <b>("+c.date+")</b>":"")+"</div>";}).join(""):"")
     +(inF.length?sT("&#127919;","Interets")+inF.map(function(i){return "<div style='font-size:7px;color:#555;margin-bottom:2px;'>&#8226; "+i+"</div>";}).join(""):"")
     +(pjF.length?sT("&#128640;","Projets")+pjF.map(function(pr){return "<div style='margin-bottom:5px;'><div style='font-size:8px;font-weight:700;color:#1a1926;'>"+pr.name+"</div>"+(pr.tech?"<div style='font-size:7px;color:"+a+";'>"+pr.tech+"</div>":"")+(pr.desc?"<div style='font-size:7px;color:#555;'>"+pr.desc+"</div>":"")+"</div>";}).join(""):"")
-+(refF.length?sT("&#128222;","References")+refF.map(function(r,i){return "<div style='margin-bottom:4px;'><div style='font-size:7.5px;font-weight:700;color:#0e0e12;'>"+(i+1)+". "+r.name+"</div>"+(r.post?"<div style='font-size:7px;color:"+a+";font-style:italic;'>"+r.post+"</div>":"")+(r.tel?"<div style='font-size:7px;color:#555;'>"+r.tel+"</div>":"")+"</div>";}).join(""):"")
++(refF.length?sT("&#128222;","References")+refF.map(function(r,i){return "<div style='margin-bottom:4px;'><div style='font-size:7.5px;font-weight:700;color:#0e0e12;'>"+(i+1)+". "+r.name+"</div>"+(r.post?"<div style='font-size:7px;color:"+a+";font-style:italic;'>"+r.post+"</div>":"")+(r.tel?"<div style='font-size:7px;color:#555;'>"+r.tel+"</div>":"")+(r.email?"<div style='font-size:7px;color:#555;'>"+r.email+"</div>":"")+"</div>";}).join(""):"")
     +"</div></div></div>";
 }
 
@@ -1176,7 +1233,7 @@ function r4(exF,edF,skF,lgF,ctF,pjF,inF,itF,refF){
     +(edF.length?sT("&#127979;","Formation",a)+edF.map(function(e){return "<div style='margin-bottom:5px;'><div style='display:flex;justify-content:space-between;'><div style='font-size:8px;font-weight:800;color:#fff;'>"+e.degree+"</div><div style='font-size:7px;color:#999;font-weight:700;'>"+e.dates+"</div></div><div style='font-size:7.5px;color:"+a+";font-weight:600;'>"+e.school+"</div>"+(e.desc?"<div style='font-size:7px;color:#888;font-style:italic;'>"+e.desc+"</div>":"")+"</div>";}).join(""):"")
     +(ctF.length?sT("&#127942;","Formations &amp; Certifications",a)+ctF.map(function(c){return "<div style='font-size:7.5px;color:#bbb;margin-bottom:3px;'>&#10003; <b style='color:#fff;'>"+c.name+"</b>"+(c.issuer?" &mdash; "+c.issuer:"")+(c.date?" <b>("+c.date+")</b>":"")+"</div>";}).join(""):"")
     +(pjF.length?sT("&#128640;","Projets",a)+pjF.map(function(pr){return "<div style='margin-bottom:5px;'><div style='font-size:8px;font-weight:700;color:#fff;'>"+pr.name+"</div>"+(pr.tech?"<div style='font-size:7px;color:"+a+";'>"+pr.tech+"</div>":"")+(pr.desc?"<div style='font-size:7px;color:#aaa;'>"+pr.desc+"</div>":"")+"</div>";}).join(""):"")
-+(refF.length?sT("&#128222;","References",a)+refF.map(function(r,i){return "<div style='margin-bottom:4px;'><span style='font-size:7.5px;font-weight:700;color:#fff;'>"+(i+1)+". "+r.name+"</span>"+(r.post?", <span style='font-size:7px;color:"+a+";'>"+r.post+"</span>":"")+(r.tel?", <span style='font-size:7px;color:#888;'>"+r.tel+"</span>":"")+"</div>";}).join(""):"")
++(refF.length?sT("&#128222;","References",a)+refF.map(function(r,i){return "<div style='margin-bottom:4px;'><span style='font-size:7.5px;font-weight:700;color:#fff;'>"+(i+1)+". "+r.name+"</span>"+(r.post?", <span style='font-size:7px;color:"+a+";'>"+r.post+"</span>":"")+(r.tel?", <span style='font-size:7px;color:#888;'>"+r.tel+"</span>":"")+(r.email?", <span style='font-size:7px;color:#888;'>"+r.email+"</span>":"")+"</div>";}).join(""):"")
     +"</div></div></div>";
 }
 
@@ -1297,8 +1354,9 @@ function renderRefs(){
   el.innerHTML=D.refs.map(function(r,i){
     return "<div class='icard'><div class='icard-h'><span class='icard-l'>Reference "+(i+1)+"</span>"+(i>0?"<button class='brm' data-i='"+i+"' data-t='ref'>&times;</button>":"")+"</div>"
       +"<div class='fg2'><label>Nom complet</label>"+fi2(r.name,"rname",i,"ref","Moussa Sawadogo")+"</div>"
-      +"<div class='fr2'><div class='fg2'><label>Poste</label>"+fi2(r.post,"rpost",i,"ref","President")+"</div>"
-      +"<div class='fg2'><label>Tel</label>"+fi2(r.tel,"rtel",i,"ref","76200527")+"</div></div></div>";
+      +"<div class='fg2'><label>Poste</label>"+fi2(r.post,"rpost",i,"ref","President")+"</div>"
+      +"<div class='fr2'><div class='fg2'><label>Tel</label>"+fi2(r.tel,"rtel",i,"ref","76200527")+"</div>"
+      +"<div class='fg2'><label>Email</label>"+fi2(r.email,"remail",i,"ref","email@exemple.com")+"</div></div></div>";
   }).join("");
 }
 
@@ -1311,7 +1369,7 @@ function initLists(){
   if(!D.pjs.length)D.pjs=[{id:1,name:"",tech:"",desc:""}];
   if(!D.ins.length)D.ins=[""];
   if(!D.its.length)D.its=[{id:1,cat:"",items:""}];
-  if(!D.refs.length)D.refs=[{id:1,name:"",post:"",tel:""}];
+  if(!D.refs.length)D.refs=[{id:1,name:"",post:"",tel:"",email:""}];
   renderExps();renderEdus();renderSks();renderLgs();renderCts();renderPjs();renderIns();renderIts();renderRefs();
 }
 
@@ -1342,6 +1400,7 @@ document.addEventListener("input",function(e){
   else if(f==="rname"&&D.refs[i])D.refs[i].name=t.value;
   else if(f==="rpost"&&D.refs[i])D.refs[i].post=t.value;
   else if(f==="rtel"&&D.refs[i])D.refs[i].tel=t.value;
+  else if(f==="remail"&&D.refs[i])D.refs[i].email=t.value;
   else if(tp==="exp"&&D.exps[i]){if(f==="bullets")D.exps[i].bullets=t.value.split("\n");else D.exps[i][f]=t.value;}
   else if(tp==="edu"&&D.edus[i])D.edus[i][f]=t.value;
   renderCV();
@@ -1380,7 +1439,7 @@ G("btn-addct").onclick=function(){D.cts.unshift({id:Date.now(),name:"",issuer:""
 G("btn-addpj").onclick=function(){D.pjs.unshift({id:Date.now(),name:"",tech:"",desc:""});renderPjs();};
 G("btn-addin").onclick=function(){D.ins.unshift("");renderIns();};
 G("btn-addit").onclick=function(){D.its.unshift({id:Date.now(),cat:"",items:""});renderIts();};
-G("btn-addref").onclick=function(){D.refs.unshift({id:Date.now(),name:"",post:"",tel:""});renderRefs();};
+G("btn-addref").onclick=function(){D.refs.unshift({id:Date.now(),name:"",post:"",tel:"",email:""});renderRefs();};
 
 // ============================================================
 // BIOMÉTRIE - WebAuthn
@@ -1772,7 +1831,21 @@ checkBiometric().then(function(available){
     }
   }
 });
-G("btn-gen").onclick=function(){curCode=genCode();addCode(curCode);G("code-val").textContent=curCode;G("code-disp").style.display="block";updateStats();renderHist();toast("Code: "+curCode,"ok");};
+G("btn-gen").onclick=async function(){
+  this.disabled=true;this.innerHTML="<span class='sp'></span> Generation...";
+  curCode=genCode();
+  var ok=await sbAddCode(curCode);
+  if(ok){
+    addCode(curCode);
+    G("code-val").textContent=curCode;
+    G("code-disp").style.display="block";
+    updateStats();renderHist();
+    toast("Code genere: "+curCode,"ok");
+  }else{
+    toast("Erreur connexion serveur. Reessayez.","er");
+  }
+  this.disabled=false;this.innerHTML="&#9889; Generer un code";
+};
 G("btn-copy").onclick=function(){var el=document.createElement("textarea");el.value=curCode;document.body.appendChild(el);el.select();document.execCommand("copy");document.body.removeChild(el);toast("Code copie !","ok");};
 G("btn-wa-send").onclick=function(){
   var num=G("client-wa").value.trim().replace(/[^0-9]/g,"");if(!num){toast("Entrez le numero","er");return;}
@@ -1801,21 +1874,26 @@ G("btn-resume-new").onclick = function(){
   openOv("pages");
 };
 
-G("btn-resume-code").onclick = function(){
+G("btn-resume-code").onclick = async function(){
   var code = G("resume-code").value.trim().toUpperCase();
   if(!code){toast("Entrez votre code","er");return;}
   var draft = loadDraft();
   if(!draft||!draft.D||!draft.D.name){toast("Aucun CV sauvegarde","er");return;}
-  if(checkCode(code)){
-    useCode(code);
+  var btn=this;btn.disabled=true;btn.innerHTML="<span class='sp'></span>";
+  var valid=await checkCode(code);
+  if(valid){
+    var marked=await useCode(code);
+    if(!marked){
+      toast("Ce code vient d etre utilise par quelqu un d autre","er");
+      btn.disabled=false;btn.innerHTML="&#9989; OK";
+      return;
+    }
     closeOv("resume");
-    // Charger toutes les donnees
     Object.assign(D,draft.D);
     if(draft.PHO)PHO=draft.PHO;
     if(draft.TI)TI=draft.TI;
     if(draft.CI)CI=draft.CI;
     NB_PAGES=draft.NB_PAGES||1;
-    // Ouvrir builder
     go("builder");
     initLists();
     renderColors();
@@ -1831,6 +1909,7 @@ G("btn-resume-code").onclick = function(){
     var ic=G("resume-code");
     if(ic){ic.style.borderColor="#e74c3c";setTimeout(function(){ic.style.borderColor="";},2000);}
   }
+  btn.disabled=false;btn.innerHTML="&#9989; OK";
 };
 
 // Au démarrage: vérifier si brouillon existe
@@ -1888,14 +1967,20 @@ go = function(id){
 
 
 // VERIFICATION CODE DEBLOCAGE
-G("btn-verify").onclick=function(){
+G("btn-verify").onclick=async function(){
   var code=G("input-code").value.trim().toUpperCase();
   if(!code){toast("Entrez votre code","er");return;}
-  if(checkCode(code)){
-    useCode(code);
+  var btn=this;btn.disabled=true;btn.innerHTML="<span class='sp'></span> Verification...";
+  var valid=await checkCode(code);
+  if(valid){
+    var marked=await useCode(code);
+    if(!marked){
+      toast("Ce code vient d etre utilise par quelqu un d autre","er");
+      btn.disabled=false;btn.innerHTML="&#9989; Verifier et telecharger";
+      return;
+    }
     closeOv("code");
     toast("Code valide ! Chargement du CV...","ok");
-    // Etape 1: charger le brouillon
     var draft=loadDraft();
     if(draft&&draft.D&&draft.D.name){
       Object.assign(D,draft.D);
@@ -1906,17 +1991,14 @@ G("btn-verify").onclick=function(){
     }
     if(!D.name){
       toast("Aucun CV sauvegarde. Refaites votre CV d abord.","er");
+      btn.disabled=false;btn.innerHTML="&#9989; Verifier et telecharger";
       return;
     }
-    // Etape 2: aller dans le builder
     go("builder");
-    // Etape 3: initialiser les listes
     initLists();
     renderColors();
-    // Etape 4: rendre le CV avec toutes les données
     setTimeout(function(){
       renderCV();
-      // Etape 5: exporter après que le CV soit rendu
       setTimeout(function(){
         toast("Generation du PDF...","ok");
         exportPDF();
@@ -1927,6 +2009,7 @@ G("btn-verify").onclick=function(){
     var ic=G("input-code");
     if(ic){ic.style.borderColor="#e74c3c";setTimeout(function(){ic.style.borderColor="";},2000);}
   }
+  btn.disabled=false;btn.innerHTML="&#9989; Verifier et telecharger";
 };
 
 // ============================================================
@@ -1987,22 +2070,31 @@ function renderPending(){
   }).join("");
 }
 
-document.addEventListener("click",function(e){
+document.addEventListener("click",async function(e){
   var btn=e.target.closest("[data-pending-unlock]");
   if(!btn)return;
   var idx=parseInt(btn.getAttribute("data-pending-unlock"));
   var input=document.querySelector("[data-pending-code=\'"+idx+"\']");
   var code=input?input.value.trim().toUpperCase():"";
   if(!code){toast("Entrez le code","er");return;}
-  if(!checkCode(code)){toast("Code invalide ou deja utilise","er");return;}
+  btn.disabled=true;btn.innerHTML="<span class='sp'></span>";
+  var valid=await checkCode(code);
+  if(!valid){
+    toast("Code invalide ou deja utilise","er");
+    btn.disabled=false;btn.innerHTML="D&eacute;bloquer";
+    return;
+  }
+  var marked=await useCode(code);
+  if(!marked){
+    toast("Ce code vient d etre utilise par quelqu un d autre","er");
+    btn.disabled=false;btn.innerHTML="D&eacute;bloquer";
+    return;
+  }
 
   var pending=getAccountPending(CU.email);
   var p=pending[idx];
   if(!p)return;
 
-  useCode(code);
-
-  // Charger les données et exporter
   Object.assign(D,p.data);
   PHO=p.pho;TI=p.ti;CI=p.ci;NB_PAGES=p.nbPages;
 
@@ -2012,7 +2104,6 @@ document.addEventListener("click",function(e){
     renderCV();
     setTimeout(function(){
       exportPDF();
-      // Ajouter à l historique et retirer des pending
       addAccountHist(CU.email,{name:p.name,title:p.title,date:new Date().toISOString(),pages:p.nbPages});
       removeAccountPending(CU.email,p.name);
       toast("CV debloque et telecharge !","ok");
@@ -2041,6 +2132,7 @@ var sv=sessionStorage.getItem("cvpro_cu");
 if(sv){try{var su=JSON.parse(sv);CU=su;G("nav-av").textContent=su.name[0].toUpperCase();G("nav-nm").textContent=su.name.split(" ")[0];}catch(e){}}
 renderAvis();
 renderCV();
+
 
 
 
