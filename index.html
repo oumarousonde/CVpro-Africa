@@ -632,9 +632,11 @@ textarea.fi2{resize:vertical;min-height:58px;}
 
 
 
+
 <script>
 (function(){
 "use strict";
+
 
 
 
@@ -1137,28 +1139,42 @@ function renderCV(){
   el.innerHTML=h;
 }
 
+function sT1(icon,lbl,col){return "<div style='display:flex;align-items:center;gap:5px;margin-bottom:2px;margin-top:7px;'><span style='font-size:10px;'>"+icon+"</span><div style='font-size:9px;font-weight:800;color:"+(col||ap())+";text-transform:uppercase;letter-spacing:.8px;'>"+lbl+"</div></div><div style='height:1.5px;background:"+(col||ap())+";opacity:.6;margin-bottom:5px;'></div>";}
+function tl1(arr,tc){
+  tc=tc||"#1a1926";
+  return arr.map(function(e){
+    return "<div style='margin-bottom:7px;'>"
+      +"<div style='display:flex;justify-content:space-between;align-items:baseline;'>"
+      +"<div style='font-size:9.5px;font-weight:800;color:"+tc+";'>"+e.title+"</div>"
+      +"<div style='font-size:7.5px;color:#555;font-weight:700;white-space:nowrap;margin-left:6px;'>"+e.dates+"</div>"
+      +"</div>"
+      +"<div style='font-size:8px;color:"+ap()+";font-weight:700;margin-bottom:2px;'>"+e.company+(e.loc?" &bull; "+e.loc:"")+"</div>"
+      +(e.bullets||[]).filter(function(b){return b;}).map(function(b){return "<div style='font-size:7.8px;color:#444;line-height:1.45;padding-left:9px;position:relative;'><span style='position:absolute;left:0;color:"+ap()+";'>&#9656;</span>"+b+"</div>";}).join("")
+      +"</div>";
+  }).join("");
+}
 function r1(exF,edF,skF,lgF,ctF,pjF,inF,itF,refF){
-  var a=ap(),p=pp(),wb="rgba(255,255,255,0.15)";
+  var a=ap(),p=pp();
   return "<div style='display:flex;min-height:848px;font-family:Poppins,sans-serif;'>"
-    +"<div style='width:200px;flex-shrink:0;background:"+p+";padding:22px 14px;'>"
-    +"<div style='text-align:center;margin-bottom:12px;'>"+ph("","78px")+"</div>"
-    +"<div style='font-size:14px;font-weight:900;color:#fff;text-align:center;font-family:Playfair Display,serif;margin-bottom:3px;'>"+(D.name||"Prenom Nom")+"</div>"
-    +"<div style='font-size:7.5px;text-align:center;font-weight:600;color:"+a+";margin-bottom:10px;text-transform:uppercase;letter-spacing:.5px;'>"+(D.title||"Titre")+"</div>"
-    +(D.nat||D.birth?"<div style='text-align:center;margin-bottom:8px;'>"+(D.nat?"<div style='font-size:7px;color:#b8b8d0;margin-bottom:2px;'>&#127760; "+D.nat+"</div>":"")+(D.birth?"<div style='font-size:7px;color:#b8b8d0;'>&#128197; "+D.birth+"</div>":"")+"</div>":"")
-    +"<div style='height:1px;background:"+a+";opacity:.3;margin-bottom:9px;'></div>"
-    +(D.phone||D.email||D.loc?"<div style='margin-bottom:9px;'><div style='font-size:7px;font-weight:800;color:"+a+";text-transform:uppercase;margin-bottom:4px;'>Contact</div>"+(D.phone?"<div style='font-size:7px;color:#b8b8d0;margin-bottom:3px;'>&#128222; "+D.phone+"</div>":"")+(D.email?"<div style='font-size:7px;color:#b8b8d0;margin-bottom:3px;'>&#9993; "+D.email+"</div>":"")+(D.loc?"<div style='font-size:7px;color:#b8b8d0;margin-bottom:3px;'>&#128205; "+D.loc+"</div>":"")+(D.li?"<div style='font-size:7px;color:#b8b8d0;margin-bottom:3px;'>&#128279; "+D.li+"</div>":"")+"</div>":"")
-    +(skF.length?"<div style='height:1px;background:"+a+";opacity:.25;margin-bottom:8px;'></div><div style='font-size:7px;font-weight:800;color:"+a+";margin-bottom:5px;'>&#128273; COMPETENCES</div>"+skF.map(function(s){return "<div style='margin-bottom:5px;'><div style='font-size:7px;color:#fff;font-weight:700;'>"+s.name+"</div>"+(s.detail?"<div style='font-size:6.5px;color:#b8b8d0;font-style:italic;line-height:1.4;'>"+s.detail+"</div>":"")+"</div>";}).join(""):"")
-    +(lgF.length?"<div style='height:1px;background:"+a+";opacity:.25;margin-bottom:8px;'></div><div style='font-size:7px;font-weight:800;color:"+a+";margin-bottom:5px;'>&#127758; LANGUES</div>"+lgF.map(function(l){return "<div style='display:flex;justify-content:space-between;margin-bottom:2px;'><div style='font-size:7px;color:#e8e6f0;'>"+l.name+"</div><div style='font-size:7px;color:"+a+";font-style:italic;'>"+l.level+"</div></div>"+bar(l.pct||70,wb,a);}).join(""):"")
-    +(itF.length?"<div style='height:1px;background:"+a+";opacity:.25;margin-bottom:8px;'></div><div style='font-size:7px;font-weight:800;color:"+a+";margin-bottom:5px;'>&#128187; INFORMATIQUE</div>"+itF.map(function(c){return "<div style='margin-bottom:3px;'><span style='font-size:7px;font-weight:700;color:"+a+";'>"+c.cat+":</span> <span style='font-size:7px;color:#e8e6f0;font-style:italic;'>"+c.items+"</span></div>";}).join(""):"")
-    +(inF.length?"<div style='height:1px;background:"+a+";opacity:.25;margin-bottom:8px;'></div><div style='font-size:7px;font-weight:800;color:"+a+";margin-bottom:5px;'>&#127919; INTERETS</div>"+inF.map(function(i){return "<div style='font-size:7px;color:#b8b8d0;margin-bottom:2px;'>&#8226; "+i+"</div>";}).join(""):"")
+    +"<div style='width:172px;flex-shrink:0;background:"+p+";padding:18px 13px;'>"
+    +"<div style='text-align:center;margin-bottom:9px;'>"+ph("","64px")+"</div>"
+    +"<div style='font-size:15px;font-weight:900;color:#fff;text-align:center;font-family:Playfair Display,serif;margin-bottom:2px;line-height:1.15;'>"+(D.name||"Prenom Nom")+"</div>"
+    +"<div style='font-size:7.5px;text-align:center;font-weight:700;color:"+a+";margin-bottom:8px;text-transform:uppercase;letter-spacing:.6px;'>"+(D.title||"Titre")+"</div>"
+    +(D.nat||D.birth?"<div style='text-align:center;margin-bottom:6px;font-size:6.8px;color:#b8b8d0;'>"+(D.nat?D.nat:"")+(D.nat&&D.birth?" &bull; ":"")+(D.birth?D.birth:"")+"</div>":"")
+    +"<div style='height:1px;background:"+a+";opacity:.35;margin-bottom:7px;'></div>"
+    +(D.phone||D.email||D.loc?"<div style='margin-bottom:7px;'>"+(D.phone?"<div style='font-size:7px;color:#d8d6e8;margin-bottom:2.5px;'>&#128222; "+D.phone+"</div>":"")+(D.email?"<div style='font-size:7px;color:#d8d6e8;margin-bottom:2.5px;word-break:break-all;'>&#9993; "+D.email+"</div>":"")+(D.loc?"<div style='font-size:7px;color:#d8d6e8;margin-bottom:2.5px;'>&#128205; "+D.loc+"</div>":"")+(D.li?"<div style='font-size:7px;color:#d8d6e8;margin-bottom:2.5px;word-break:break-all;'>&#128279; "+D.li+"</div>":"")+(D.gh?"<div style='font-size:7px;color:#d8d6e8;word-break:break-all;'>&#128187; "+D.gh+"</div>":"")+"</div>":"")
+    +(skF.length?"<div style='height:1px;background:"+a+";opacity:.3;margin-bottom:6px;'></div><div style='font-size:7.5px;font-weight:800;color:"+a+";margin-bottom:4px;letter-spacing:.5px;'>COMPETENCES</div>"+skF.map(function(s){return "<div style='margin-bottom:4px;'><div style='font-size:7.3px;color:#fff;font-weight:700;line-height:1.3;'>"+s.name+"</div>"+(s.detail?"<div style='font-size:6.6px;color:#b8b8d0;line-height:1.35;'>"+s.detail+"</div>":"")+"</div>";}).join(""):"")
+    +(lgF.length?"<div style='height:1px;background:"+a+";opacity:.3;margin-bottom:6px;'></div><div style='font-size:7.5px;font-weight:800;color:"+a+";margin-bottom:4px;letter-spacing:.5px;'>LANGUES</div>"+lgF.map(function(l){return "<div style='display:flex;justify-content:space-between;margin-bottom:3px;'><div style='font-size:7px;color:#e8e6f0;font-weight:600;'>"+l.name+"</div><div style='font-size:6.5px;color:"+a+";'>"+l.level+"</div></div>";}).join(""):"")
+    +(itF.length?"<div style='height:1px;background:"+a+";opacity:.3;margin-bottom:6px;'></div><div style='font-size:7.5px;font-weight:800;color:"+a+";margin-bottom:4px;letter-spacing:.5px;'>INFORMATIQUE</div>"+itF.map(function(c){return "<div style='margin-bottom:3px;'><span style='font-size:6.8px;font-weight:700;color:"+a+";'>"+c.cat+": </span><span style='font-size:6.8px;color:#d8d6e8;'>"+c.items+"</span></div>";}).join(""):"")
+    +(inF.length?"<div style='height:1px;background:"+a+";opacity:.3;margin-bottom:6px;'></div><div style='font-size:7.5px;font-weight:800;color:"+a+";margin-bottom:4px;letter-spacing:.5px;'>INTERETS</div><div style='font-size:6.8px;color:#d8d6e8;line-height:1.5;'>"+inF.join(" &bull; ")+"</div>":"")
     +"</div>"
-    +"<div style='flex:1;padding:20px 18px;'>"
-    +(D.sum?sT("&#128100;","Profil")+"<div style='font-size:7.5px;color:#444;line-height:1.7;background:#f9f7f3;padding:7px;border-radius:5px;font-style:italic;margin-bottom:4px;'>"+boldifyProfile(D.sum,a)+"</div>":"")
-    +(exF.length?sT("&#128188;","Experience Professionnelle")+tl(exF):"")
-    +(edF.length?sT("&#127979;","Formation")+edF.map(function(e){return "<div style='margin-bottom:6px;'><div style='display:flex;justify-content:space-between;'><div style='font-size:8px;font-weight:800;color:#1a1926;'>"+e.degree+"</div><div style='font-size:7px;color:#666;font-weight:700;'>"+e.dates+"</div></div><div style='font-size:7.5px;color:"+a+";font-weight:600;'>"+e.school+"</div>"+(e.desc?"<div style='font-size:7px;color:#777;font-style:italic;'>"+e.desc+"</div>":"")+"</div>";}).join(""):"")
-    +(ctF.length?sT("&#127942;","Formations &amp; Certifications")+ctF.map(function(c){return "<div style='font-size:7.5px;color:#444;margin-bottom:3px;'>&#10003; <b style='color:#1a1926;'>"+c.name+"</b>"+(c.issuer?" &mdash; "+c.issuer:"")+(c.date?" <b>("+c.date+")</b>":"")+"</div>";}).join(""):"")
-    +(pjF.length?sT("&#128640;","Projets")+pjF.map(function(pr){return "<div style='margin-bottom:5px;'><div style='font-size:8px;font-weight:700;color:#1a1926;'>"+pr.name+"</div>"+(pr.tech?"<div style='font-size:7px;color:"+a+";'>"+pr.tech+"</div>":"")+(pr.desc?"<div style='font-size:7px;color:#555;'>"+pr.desc+"</div>":"")+"</div>";}).join(""):"")
-    +(refF.length?sT("&#128222;","References")+refF.map(function(r,i){return "<div style='margin-bottom:4px;'><span style='font-size:7.5px;font-weight:700;color:#1a1926;'>"+(i+1)+". "+r.name+"</span>"+(r.post?", <span style='font-size:7px;color:"+a+";font-style:italic;'>"+r.post+"</span>":"")+(r.tel?", <span style='font-size:7px;color:#555;'>Tel: "+r.tel+"</span>":"")+(r.email?", <span style='font-size:7px;color:#555;'>"+r.email+"</span>":"")+"</div>";}).join(""):"")
+    +"<div style='flex:1;padding:17px 16px;'>"
+    +(D.sum?"<div style='font-size:8px;color:#333;line-height:1.55;margin-bottom:9px;border-left:3px solid "+a+";padding-left:8px;'>"+boldifyProfile(D.sum,a)+"</div>":"")
+    +(exF.length?sT1("&#128188;","Experience Professionnelle")+tl1(exF):"")
+    +(edF.length?sT1("&#127979;","Formation")+edF.map(function(e){return "<div style='margin-bottom:4px;'><div style='display:flex;justify-content:space-between;'><div style='font-size:8.5px;font-weight:800;color:#1a1926;'>"+e.degree+"</div><div style='font-size:7.5px;color:#555;font-weight:700;'>"+e.dates+"</div></div><div style='font-size:7.8px;color:"+a+";font-weight:700;'>"+e.school+"</div>"+(e.desc?"<div style='font-size:7.3px;color:#777;'>"+e.desc+"</div>":"")+"</div>";}).join(""):"")
+    +(ctF.length?sT1("&#127942;","Formations &amp; Certifications")+ctF.map(function(c){return "<div style='font-size:7.8px;color:#444;margin-bottom:2.5px;line-height:1.4;'>&#10003; <b style='color:#1a1926;'>"+c.name+"</b>"+(c.issuer?" &mdash; "+c.issuer:"")+(c.date?" <b>("+c.date+")</b>":"")+"</div>";}).join(""):"")
+    +(pjF.length?sT1("&#128640;","Projets")+"<div style='display:flex;flex-wrap:wrap;gap:5px;'>"+pjF.map(function(pr){return "<div style='flex:1;min-width:140px;background:"+a+"0d;border-left:2.5px solid "+a+";border-radius:3px;padding:5px 7px;margin-bottom:4px;'><div style='font-size:8px;font-weight:800;color:#1a1926;'>"+pr.name+"</div>"+(pr.tech?"<div style='font-size:6.8px;color:"+a+";font-weight:700;'>"+pr.tech+"</div>":"")+(pr.desc?"<div style='font-size:7px;color:#555;line-height:1.35;'>"+pr.desc+"</div>":"")+"</div>";}).join("")+"</div>":"")
+    +(refF.length?sT1("&#128222;","References")+refF.map(function(r,i){return "<div style='font-size:7.8px;margin-bottom:2.5px;'><span style='font-weight:700;color:#1a1926;'>"+(i+1)+". "+r.name+"</span>"+(r.post?" &mdash; <span style='color:"+a+";'>"+r.post+"</span>":"")+(r.tel?" &bull; <span style='color:#666;'>"+r.tel+"</span>":"")+(r.email?" &bull; <span style='color:#666;'>"+r.email+"</span>":"")+"</div>";}).join(""):"")
     +"</div></div>";
 }
 
@@ -2132,6 +2148,7 @@ var sv=sessionStorage.getItem("cvpro_cu");
 if(sv){try{var su=JSON.parse(sv);CU=su;G("nav-av").textContent=su.name[0].toUpperCase();G("nav-nm").textContent=su.name.split(" ")[0];}catch(e){}}
 renderAvis();
 renderCV();
+
 
 
 
