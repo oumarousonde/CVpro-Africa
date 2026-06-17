@@ -635,9 +635,11 @@ textarea.fi2{resize:vertical;min-height:58px;}
 
 
 
+
 <script>
 (function(){
 "use strict";
+
 
 
 
@@ -1120,7 +1122,7 @@ function tl(arr,tc){tc=tc||"#1a1926";return arr.map(function(e){return "<div sty
 
 function boldifyProfile(txt,color){
   if(!txt)return "";
-  return txt.replace(/\*\*(.+?)\*\*/g,"<b style='color:"+color+";'>$1</b>");
+  return txt.replace(/\*\*\s*(.+?)\s*\*\*/g,"<b style='color:"+color+";'>$1</b>");
 }
 
 function renderCV(){
@@ -1194,7 +1196,7 @@ function r1(exF,edF,skF,lgF,ctF,pjF,inF,itF,refF){
   html+="<div style='height:2.5px;background:"+a+";margin-top:8px;margin-bottom:4px;'></div>";
 
   // PROFIL
-  if(D.sum) html+=secTitle("&#128100;","Profil",a)+"<div style='font-size:9.5px;color:#333;line-height:1.55;font-style:italic;'>"+boldifyProfile(D.sum,a)+"</div>";
+  if(D.sum) html+=secTitle("&#128100;","Profil",a)+"<div style='font-size:9.5px;color:#333;line-height:1.55;font-style:italic;overflow-wrap:break-word;word-wrap:break-word;'>"+boldifyProfile(D.sum,a)+"</div>";
 
   // FORMATION
   if(edF.length){
@@ -1210,9 +1212,9 @@ function r1(exF,edF,skF,lgF,ctF,pjF,inF,itF,refF){
     html+=secTitle("&#128188;","Exp&eacute;rience Professionnelle",a);
     exF.forEach(function(e,idx){
       if(idx>0) html+="<div style='height:6px;'></div>";
-      html+="<div style='display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;'>"
-        +"<div style='font-size:10.5px;font-weight:800;color:"+a+";'>"+e.title+"</div>"
-        +"<div style='font-size:8.8px;color:#666;font-weight:700;'>"+e.dates+"</div></div>";
+      html+="<div style='display:flex;justify-content:space-between;align-items:baseline;gap:10px;'>"
+        +"<div style='font-size:10.5px;font-weight:800;color:"+a+";flex:1;'>"+e.title+"</div>"
+        +"<div style='font-size:8.8px;color:#666;font-weight:700;white-space:nowrap;'>"+e.dates+"</div></div>";
       html+="<div style='font-size:9px;color:#555;font-style:italic;margin-bottom:3px;'>"+e.company+(e.loc?" &bull; "+e.loc:"")+"</div>";
       (e.bullets||[]).filter(function(b){return b;}).forEach(function(b){html+=bullet(b,a);});
     });
@@ -1252,12 +1254,12 @@ function r1(exF,edF,skF,lgF,ctF,pjF,inF,itF,refF){
 
   if(pjF.length){
     html+=secTitle("&#128640;","Projets",a);
-    html+="<div style='display:flex;gap:10px;flex-wrap:wrap;'>";
+    html+="<div style='display:flex;gap:8px;flex-wrap:wrap;'>";
     pjF.forEach(function(pr){
-      html+="<div style='flex:1;min-width:160px;'>"
-        +"<div style='font-size:10px;font-weight:800;color:"+a+";'>"+pr.name+"</div>"
-        +(pr.tech?"<div style='font-size:8.3px;color:#666;font-style:italic;margin-bottom:2px;'>"+pr.tech+"</div>":"")
-        +(pr.desc?"<div style='font-size:8.8px;color:#444;line-height:1.4;'>"+pr.desc+"</div>":"")
+      html+="<div style='flex:1;min-width:155px;background:"+a+"0d;border-left:3px solid "+a+";border-radius:4px;padding:6px 9px;'>"
+        +"<div style='font-size:9.8px;font-weight:800;color:"+a+";margin-bottom:1px;'>&#128338; "+pr.name+"</div>"
+        +(pr.tech?"<div style='font-size:7.8px;color:#777;font-style:italic;margin-bottom:2px;'>"+pr.tech+"</div>":"")
+        +(pr.desc?"<div style='font-size:8.5px;color:#444;line-height:1.35;'>"+pr.desc+"</div>":"")
         +"</div>";
     });
     html+="</div>";
@@ -1265,7 +1267,9 @@ function r1(exF,edF,skF,lgF,ctF,pjF,inF,itF,refF){
 
   if(inF.length){
     html+=secTitle("&#127919;","Int&eacute;r&ecirc;ts",a);
-    html+="<div style='font-size:9px;color:#444;'>"+inF.join(" &bull; ")+"</div>";
+    html+="<div style='display:flex;gap:6px;flex-wrap:wrap;'>"+inF.map(function(i){
+      return "<span style='font-size:8.3px;color:"+a+";background:"+a+"12;border:1px solid "+a+"33;border-radius:50px;padding:2.5px 9px;font-weight:600;'>"+i+"</span>";
+    }).join("")+"</div>";
   }
 
   if(refF.length){
@@ -2250,6 +2254,7 @@ var sv=sessionStorage.getItem("cvpro_cu");
 if(sv){try{var su=JSON.parse(sv);CU=su;G("nav-av").textContent=su.name[0].toUpperCase();G("nav-nm").textContent=su.name.split(" ")[0];}catch(e){}}
 renderAvis();
 renderCV();
+
 
 
 
