@@ -636,9 +636,11 @@ textarea.fi2{resize:vertical;min-height:58px;}
 
 
 
+
 <script>
 (function(){
 "use strict";
+
 
 
 
@@ -1172,7 +1174,7 @@ function bullet(html,a){
 }
 function r1(exF,edF,skF,lgF,ctF,pjF,inF,itF,refF){
   var a=ap();
-  var html="<div style='padding:20px 24px;font-family:Poppins,sans-serif;'>";
+  var html="<div style='padding:20px 24px;font-family:Poppins,sans-serif;overflow-wrap:break-word;word-wrap:break-word;word-break:break-word;'>";
 
   // HEADER
   html+="<div style='display:flex;align-items:center;gap:12px;margin-bottom:8px;'>";
@@ -1202,7 +1204,7 @@ function r1(exF,edF,skF,lgF,ctF,pjF,inF,itF,refF){
   if(edF.length){
     html+=secTitle("&#127979;","Formation",a);
     edF.forEach(function(e){
-      var line="<b style='color:"+a+";'>"+e.dates+"</b>: <i>"+e.degree+"</i>, "+e.school+(e.desc?" (Mention: <b style='color:"+a+";'>"+e.desc+"</b>)":"");
+      var line="<span style='color:"+a+";font-weight:700;'>"+e.dates+"</span>: <b style='color:#1a1926;'>"+e.degree+"</b>, <i>"+e.school+"</i>"+(e.desc?" (Mention: <b style='color:"+a+";'>"+e.desc+"</b>)":"");
       html+=bullet(line,a);
     });
   }
@@ -1224,7 +1226,7 @@ function r1(exF,edF,skF,lgF,ctF,pjF,inF,itF,refF){
   if(skF.length){
     html+=secTitle("&#128295;","Comp&eacute;tences",a);
     skF.forEach(function(s){
-      var line="<b style='color:"+a+";'>"+s.name+":</b> "+(s.detail?"<i>"+s.detail+"</i>":"");
+      var line="<b style='color:"+a+";font-size:10px;'>"+s.name+":</b> "+(s.detail?"<i>"+s.detail+"</i>":"");
       html+=bullet(line,a);
     });
   }
@@ -1232,7 +1234,7 @@ function r1(exF,edF,skF,lgF,ctF,pjF,inF,itF,refF){
   if(ctF.length){
     html+=secTitle("&#127942;","Formations &amp; Certifications",a);
     ctF.forEach(function(c){
-      var line="<b style='color:"+a+";'>"+c.date+":</b> "+c.name+(c.issuer?" ("+c.issuer+")":"");
+      var line="<span style='color:"+a+";font-weight:700;'>"+c.date+":</span> <b style='color:#1a1926;'>"+c.name+"</b>"+(c.issuer?" <i>("+c.issuer+")</i>":"");
       html+=bullet(line,a);
     });
   }
@@ -2254,6 +2256,7 @@ var sv=sessionStorage.getItem("cvpro_cu");
 if(sv){try{var su=JSON.parse(sv);CU=su;G("nav-av").textContent=su.name[0].toUpperCase();G("nav-nm").textContent=su.name.split(" ")[0];}catch(e){}}
 renderAvis();
 renderCV();
+
 
 
 
